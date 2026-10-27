@@ -1,0 +1,13 @@
+---
+import type { Mod } from '../data/mods';
+import Artwork from './Artwork.astro';
+import Icon from './Icon.astro';
+interface Props { mod: Mod; index?: number; }
+const { mod, index = 0 } = Astro.props;
+---
+<article class="mod-card" data-category={mod.category} data-mod-name={`${mod.name} ${mod.description}`.toLowerCase()}>
+  <a class="mod-card-link" href={`/mods/${mod.slug}/`}>
+    <div class="mod-card-art"><Artwork name={mod.image} alt={`${mod.name} official artwork`} /><span class="mod-card-number">{String(index + 1).padStart(2, '0')}</span><span class="mod-card-arrow"><Icon name="diagonal" /></span></div>
+    <div class="mod-card-copy"><span class="eyebrow">{mod.category}</span><h3>{mod.name}</h3><p>{mod.description}</p><span class="mod-card-bottom"><span>NeoForge <span class="small-dot">·</span> 1.21.1</span><span>v{mod.version}</span></span></div>
+  </a>
+</article>

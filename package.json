@@ -1,0 +1,31 @@
+{
+  "name": "realm-studios",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0",
+    "check": "astro check",
+    "build": "astro build && pagefind --site dist",
+    "preview": "astro preview --host 0.0.0.0",
+    "test": "node --test tests/site.test.mjs",
+    "test:content": "node --test tests/content.test.mjs",
+    "test:browser": "playwright test"
+  },
+  "dependencies": {
+    "@fontsource/cormorant-garamond": "^5.2.0",
+    "@fontsource/dm-sans": "^5.2.0",
+    "astro": "7.4.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
+    "axe-core": "^4.14.0",
+    "pagefind": "1.5.2",
+    "typescript": "^5.9.0"
+  }
+}
