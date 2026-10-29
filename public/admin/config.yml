@@ -2,7 +2,7 @@ backend:
   name: github
   repo: ROCKABITS/Realm-Site
   branch: realm-studios-site
-  base_url: https://realm-studios-admin-auth.YOUR-ACCOUNT.workers.dev
+  base_url: https://realm-studios-admin-auth.rockabits2007.workers.dev
   auth_endpoint: /auth
 
 site_url: https://realmstudios.pt
