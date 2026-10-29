@@ -81,11 +81,14 @@ body {
 
 #nc-root section img[alt="Logo"] {
   display: block;
-  width: min(360px, 76vw) !important;
-  max-width: 360px !important;
-  max-height: none !important;
+  width: min(190px, 48vw) !important;
+  height: min(190px, 48vw) !important;
+  max-width: 190px !important;
+  max-height: 190px !important;
   margin: 4px auto 8px !important;
-  filter: drop-shadow(0 12px 24px rgba(0,0,0,.18));
+  object-fit: contain !important;
+  border-radius: 18px;
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,.22));
 }
 
 #nc-root section button {
@@ -146,11 +149,14 @@ body {
 }
 
 #nc-root header nav img[alt="Logo"] {
-  width: 190px !important;
-  max-width: 190px !important;
+  display: block;
+  width: 48px !important;
+  height: 48px !important;
+  max-width: 48px !important;
   max-height: 48px !important;
-  padding: 8px 20px 8px 0 !important;
-  object-fit: contain;
+  padding: 4px 14px 4px 0 !important;
+  object-fit: contain !important;
+  border-radius: 8px;
 }
 
 #nc-root header nav a,
@@ -410,7 +416,10 @@ body {
   }
 
   #nc-root header nav img[alt="Logo"] {
-    width: 150px !important;
+    width: 42px !important;
+    height: 42px !important;
+    max-width: 42px !important;
+    max-height: 42px !important;
     padding-right: 8px !important;
   }
 
