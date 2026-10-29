@@ -8,7 +8,7 @@ backend:
 site_url: https://realmstudios.pt
 display_url: https://realmstudios.pt
 logo:
-  src: https://realmstudios.pt/admin/realm-studios-admin.svg
+  src: https://realmstudios.pt/favicon.svg
   show_in_header: true
 media_folder: public/uploads
 public_folder: /uploads
