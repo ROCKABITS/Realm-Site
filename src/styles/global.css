@@ -4018,3 +4018,44 @@ html { scroll-padding-top: 92px; }
     border-radius: 8px !important;
   }
 }
+
+
+/* Season 8: use the official modpack logo in the homepage feature and modpack hero. */
+.season-emblem {
+  overflow: hidden;
+}
+.season-emblem-logo {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+}
+.season-logo-large {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: min(100%, 330px);
+  height: min(330px, 74vw);
+  object-fit: contain;
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, .32));
+}
+@media (max-width: 700px) {
+  .season-emblem-logo {
+    width: 84%;
+    height: 84%;
+  }
+  .season-logo-large {
+    width: min(100%, 245px);
+    height: min(245px, 65vw);
+  }
+  .season-large-art {
+    height: 280px;
+  }
+  .season-star {
+    top: 25px;
+    right: 12px;
+    font-size: 24px;
+  }
+}
