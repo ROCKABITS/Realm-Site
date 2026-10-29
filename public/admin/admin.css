@@ -41,7 +41,7 @@ body {
 }
 
 /* LOGIN — full-screen dark brand experience */
-#nc-root > section {
+#nc-root section {
   position: relative !important;
   isolation: isolate;
   overflow: hidden;
@@ -55,7 +55,7 @@ body {
     linear-gradient(145deg, var(--realm-forest-deep), var(--realm-forest) 56%, #1a3b2a) !important;
 }
 
-#nc-root > section::before {
+#nc-root section::before {
   content: "";
   position: absolute;
   z-index: -1;
@@ -65,7 +65,7 @@ body {
   pointer-events: none;
 }
 
-#nc-root > section::after {
+#nc-root section::after {
   content: "REALM STUDIOS  /  CONTENT CONSOLE";
   position: absolute;
   left: 0;
@@ -79,7 +79,7 @@ body {
   pointer-events: none;
 }
 
-#nc-root > section img[alt="Logo"] {
+#nc-root section img[alt="Logo"] {
   display: block;
   width: min(360px, 76vw) !important;
   max-width: 360px !important;
@@ -88,7 +88,7 @@ body {
   filter: drop-shadow(0 12px 24px rgba(0,0,0,.18));
 }
 
-#nc-root > section button {
+#nc-root section button {
   min-height: 50px !important;
   padding: 0 25px !important;
   border: 1px solid #e5c97e !important;
@@ -102,19 +102,19 @@ body {
   transition: transform .18s ease, box-shadow .18s ease, filter .18s ease !important;
 }
 
-#nc-root > section button:hover {
+#nc-root section button:hover {
   transform: translateY(-2px);
   filter: brightness(1.06);
   box-shadow: 0 14px 30px rgba(0,0,0,.26) !important;
 }
 
-#nc-root > section a {
+#nc-root section a {
   color: #f3e8c9 !important;
   font-size: 13px !important;
   text-underline-offset: 4px;
 }
 
-#nc-root > section p {
+#nc-root section p {
   color: #f8e8c4 !important;
 }
 
