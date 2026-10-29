@@ -20,8 +20,8 @@ export default { async fetch(request:Request,env:Env):Promise<Response> {
   const tokenData=await tokenRes.json() as {access_token?:string};if(!tokenRes.ok||!tokenData.access_token)return reply('GitHub token exchange failed',502,clear);
   const userRes=await fetch('https://api.github.com/user',{headers:{'Authorization':'Bearer '+tokenData.access_token,'Accept':'application/vnd.github+json','User-Agent':'Realm-Studios-Admin'}});
   const user=await userRes.json() as {login?:string};if(!userRes.ok||user.login?.toLowerCase()!==env.ALLOWED_GITHUB_LOGIN.toLowerCase())return reply('This GitHub account is not allowed to edit this site.',403,clear);
-  const payload=esc(JSON.stringify({token:tokenData.access_token}));const origin=JSON.stringify(env.CMS_ORIGIN);
-  const html='<!doctype html><meta charset="utf-8"><title>Signed in</title><p>Signed in to GitHub. You can close this window.</p><script>window.opener.postMessage("authorization:github:success:"+'+JSON.stringify(payload)+','+origin+');window.close();</script>';
+  const message='authorization:github:success:'+JSON.stringify({token:tokenData.access_token,provider:'github'});const origin=JSON.stringify(env.CMS_ORIGIN);
+  const html='<!doctype html><meta charset="utf-8"><title>Signed in</title><p>Signed in to GitHub. You can close this window.</p><script>(function(){var origin='+esc(origin)+',message='+esc(JSON.stringify(message))+';function receive(e){if(e.origin!==origin)return;window.removeEventListener("message",receive);e.source.postMessage(message,origin);setTimeout(function(){window.close()},300)}window.addEventListener("message",receive);window.opener.postMessage("authorizing:github",origin)})();</script>';
   return new Response(html,{headers:baseHeaders({'Content-Type':'text/html; charset=utf-8',...clear,'Content-Security-Policy':"default-src 'none'; script-src 'unsafe-inline'; base-uri 'none'; frame-ancestors 'none'"})});
  }
  return reply('Not found',404);
