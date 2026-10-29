@@ -6,6 +6,10 @@ backend:
   auth_endpoint: /auth
 
 site_url: https://realmstudios.pt
+display_url: https://realmstudios.pt
+logo:
+  src: https://realmstudios.pt/admin/realm-studios-admin.svg
+  show_in_header: true
 media_folder: public/uploads
 public_folder: /uploads
 publish_mode: simple
