@@ -1,0 +1,9 @@
+{
+  "name": "realm-studios-admin-auth",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-29",
+  "vars": {
+    "CMS_ORIGIN": "https://realmstudios.pt",
+    "ALLOWED_GITHUB_LOGIN": "ROCKABITS"
+  }
+}

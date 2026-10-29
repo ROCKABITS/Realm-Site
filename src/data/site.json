@@ -1,0 +1,18 @@
+{
+  "siteName": "Realm Studios",
+  "creator": "ROCKadm",
+  "github": "https://github.com/ROCKABITS/Mods",
+  "curseforge": "https://www.curseforge.com/members/rockadm/projects",
+  "categories": [
+    "All mods",
+    "Character & society",
+    "Economy & trade",
+    "Kingdom & justice",
+    "Activities & rewards"
+  ],
+  "modpack": {
+    "name": "Season 8",
+    "version": "",
+    "downloadUrl": ""
+  }
+}

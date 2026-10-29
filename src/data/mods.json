@@ -1,0 +1,23 @@
+{
+  "mods": {
+    "slug": "realm-origins",
+    "name": "Realm Origins",
+    "label": "Your story starts here",
+    "version": "0.5.7",
+    "category": "Character & society",
+    "image": "origins",
+    "featured": true,
+    "description": "Give your character a name, a past, and a place in the world.",
+    "story": "Every great story begins with someone. Create a roleplay character through a chapter-based introduction, then carry their history, achievements, and money in a parchment character book.",
+    "features": [
+      "Chapter-based character creation with a live 3D portrait.",
+      "Custom occupation, personal history, and a drawn signature.",
+      "Roleplay names above players, in TAB, and in normal chat.",
+      "A character book, digital wallet, and currency exchange."
+    ],
+    "firstStep": "Create your character when prompted. Press P to open your character book afterwards.",
+    "integrations": "Requires Origins 0.3.2 and Jupiter 2.3.7 for NeoForge. Origins: Classes 0.3 is optional. Replaces Chronicles RP; keep only one JAR.",
+    "folder": "realm-origins",
+    "jar": "realm-origins-0.5.7.jar"
+  }
+}
