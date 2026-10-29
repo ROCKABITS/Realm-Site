@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="360" height="72" viewBox="0 0 360 72" role="img" aria-labelledby="title desc">
-  <title id="title">Realm Studios</title>
-  <desc id="desc">A gold crown emblem with the Realm Studios wordmark.</desc>
-  <rect x="2" y="4" width="64" height="64" rx="16" fill="#10271e"/>
-  <path d="M13 25l10 8 9-15 10 15 10-8-6 24H19z" fill="none" stroke="#d6b66d" stroke-width="3.1" stroke-linejoin="round"/>
-  <path d="M21 55h22" stroke="#d6b66d" stroke-width="3.1" stroke-linecap="round"/>
-  <text x="82" y="37" fill="#10271e" font-family="Georgia, 'Times New Roman', serif" font-size="27" letter-spacing="2.2">REALM</text>
-  <text x="84" y="56" fill="#9a793d" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="700" letter-spacing="4.4">STUDIOS</text>
-</svg>
