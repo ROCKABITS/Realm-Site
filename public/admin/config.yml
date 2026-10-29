@@ -1,4 +1,46 @@
-backend:,  name: github,  repo: ROCKABITS/Realm-Site,  branch: realm-studios-site,  base_url: https://realm-studios-admin-auth.YOUR-ACCOUNT.workers.dev,  auth_endpoint: /auth,,site_url: https://realmstudios.pt,media_folder: public/uploads,public_folder: /uploads,publish_mode: simple,show_preview_links: true,,collections:,  - name: settings,    label: Site settings,    files:,      - name: site,        label: Brand and modpack,        file: src/data/site.json,        format: json,        fields:,          - { label: Site name, name: siteName, widget: string },          - { label: Creator, name: creator, widget: string },          - { label: GitHub link, name: github, widget: string },          - { label: CurseForge link, name: curseforge, widget: string },          - label: Categories,            name: categories,            widget: list,            field: { label: Category, name: category, widget: string },          - label: Modpack,            name: modpack,            widget: object,            fields:,              - { label: Name, name: name, widget: string },              - { label: Version, name: version, widget: string, required: false },              - { label: Download URL, name: downloadUrl, widget: string, required: false },      - name: home,        label: Homepage,        file: src/data/home.json,        format: json,        fields:          - { label: Eyebrow, name: eyebrow, widget: string }
+backend:
+  name: github
+  repo: ROCKABITS/Realm-Site
+  branch: realm-studios-site
+  base_url: https://realm-studios-admin-auth.YOUR-ACCOUNT.workers.dev
+  auth_endpoint: /auth
+
+site_url: https://realmstudios.pt
+media_folder: public/uploads
+public_folder: /uploads
+publish_mode: simple
+show_preview_links: true
+
+collections:
+  - name: settings
+    label: Site settings
+    files:
+      - name: site
+        label: Brand and modpack
+        file: src/data/site.json
+        format: json
+        fields:
+          - { label: Site name, name: siteName, widget: string }
+          - { label: Creator, name: creator, widget: string }
+          - { label: GitHub link, name: github, widget: string }
+          - { label: CurseForge link, name: curseforge, widget: string }
+          - label: Categories
+            name: categories
+            widget: list
+            field: { label: Category, name: category, widget: string }
+          - label: Modpack
+            name: modpack
+            widget: object
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Version, name: version, widget: string, required: false }
+              - { label: Download URL, name: downloadUrl, widget: string, required: false }
+      - name: home
+        label: Homepage
+        file: src/data/home.json
+        format: json
+        fields:
+          - { label: Eyebrow, name: eyebrow, widget: string }
           - { label: Main title, name: heroTitle, widget: string }
           - { label: Main title emphasis, name: heroEmphasis, widget: string }
           - { label: Introduction, name: heroDescription, widget: text }
