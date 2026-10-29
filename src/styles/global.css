@@ -3988,3 +3988,33 @@ html { scroll-padding-top: 92px; }
 @media (prefers-reduced-motion: reduce) {
   .scroll-cue b { transition: none; }
 }
+
+
+/* Use the current site favicon as the official brand mark everywhere. */
+.brand-seal {
+  display: block;
+  flex: 0 0 auto;
+  width: 43px !important;
+  height: 43px !important;
+  padding: 0 !important;
+  overflow: hidden;
+  border: 0 !important;
+  border-radius: 10px !important;
+  clip-path: none !important;
+  background: transparent !important;
+  color: inherit;
+}
+.brand-seal img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: inherit;
+}
+@media (max-width: 700px) {
+  .brand-seal {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 8px !important;
+  }
+}
