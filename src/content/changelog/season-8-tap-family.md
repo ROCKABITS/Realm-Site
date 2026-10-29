@@ -4,7 +4,7 @@ version: 1.0.0
 date: 2026-10-29
 summary: The first release of Season 8, bringing together an adventure-focused
   RPG experience, exploration, and Realm Studios mods.
-draft: true
+draft: false
 ---
 ## Added
 
