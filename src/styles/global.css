@@ -3790,3 +3790,201 @@ em { font-style: normal; font-weight: 600; color: var(--gold); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+
+/* Realm journey layout: each page section feels like another level to explore */
+html { scroll-padding-top: 92px; }
+.hero.container.journey-entry {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: none;
+  min-height: min(850px, calc(100svh - 78px));
+  margin: 0;
+  padding: 66px max(32px, calc((100% - 1280px) / 2)) 86px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 72% 54%, rgba(84, 153, 76, .19), transparent 34%),
+    radial-gradient(ellipse at 15% 15%, rgba(53, 98, 73, .18), transparent 35%),
+    linear-gradient(180deg, #0b1013 0%, #0c1614 68%, #101d19 100%);
+}
+.hero.container.journey-entry::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .36;
+  background:
+    linear-gradient(120deg, transparent 0 48%, rgba(196, 244, 134, .05) 48.1%, transparent 48.3%),
+    radial-gradient(ellipse at 70% 65%, transparent 0 26%, rgba(6, 10, 10, .28) 67%);
+}
+.hero.container.journey-entry::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -5%;
+  right: -5%;
+  bottom: -1px;
+  height: 18%;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 84px, rgba(196,244,134,.045) 85px 86px),
+    linear-gradient(180deg, #14231d, #0b1111);
+  clip-path: polygon(0 24%, 14% 17%, 30% 23%, 49% 12%, 67% 20%, 84% 10%, 100% 18%, 100% 100%, 0 100%);
+  border-top: 1px solid rgba(184,243,107,.12);
+}
+.journey-entry .hero-copy, .journey-entry .hero-art { position: relative; z-index: 1; }
+.journey-entry .hero-art::before {
+  inset: 6% 2% 14%;
+  background: radial-gradient(ellipse, rgba(142, 216, 91, .2), transparent 66%);
+}
+.journey-entry .hero-piece {
+  border-radius: 24px;
+  border-color: rgba(197, 237, 165, .24);
+}
+.journey-entry .piece-origins { transform: rotate(-2deg); }
+.journey-entry .piece-treasury { transform: rotate(3deg); }
+.journey-entry .piece-markets { transform: rotate(2deg); }
+.journey-entry .hero-art-note { border-color: rgba(184,243,107,.18); }
+.scroll-cue {
+  position: absolute;
+  z-index: 2;
+  bottom: 29px;
+  left: max(32px, calc((100% - 1280px) / 2));
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  color: #b9c7bb;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.scroll-cue b {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  border: 1px solid rgba(184,243,107,.3);
+  border-radius: 50%;
+  color: var(--gold);
+  font-size: 15px;
+  transition: transform .2s ease, background .2s ease;
+}
+.scroll-cue:hover b { transform: translateY(3px); background: rgba(184,243,107,.09); }
+.compatibility-strip { position: relative; z-index: 2; }
+.realm-level {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-top: 1px solid rgba(207, 231, 212, .1);
+}
+.realm-level > .level-marker {
+  position: absolute;
+  z-index: 3;
+  top: 27px;
+  left: max(24px, calc((100% - 1280px) / 2));
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #b6f27a;
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.level-marker b {
+  display: grid;
+  width: 29px;
+  height: 29px;
+  place-items: center;
+  border: 1px solid rgba(184,243,107,.3);
+  border-radius: 50%;
+  font: 600 10px var(--sans);
+}
+.level-marker i { font-style: normal; }
+.realm-level-collection {
+  min-height: 84vh;
+  padding-top: 30px;
+  background:
+    radial-gradient(ellipse at 82% 30%, rgba(79, 143, 77, .16), transparent 40%),
+    linear-gradient(180deg, #101b18 0%, #101719 100%);
+}
+.realm-level-collection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .26;
+  background-image:
+    linear-gradient(rgba(197,230,192,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(197,230,192,.045) 1px, transparent 1px);
+  background-size: 68px 68px;
+  mask-image: linear-gradient(180deg, transparent, #000 22%, transparent 95%);
+}
+.realm-level-collection .section-heading { padding-top: 35px; }
+.realm-level-collection .mod-card {
+  position: relative;
+  border-radius: 18px;
+  background: linear-gradient(155deg, rgba(26,42,34,.96), rgba(15,23,25,.98));
+}
+.realm-level-collection .mod-card-art { aspect-ratio: 1.08; }
+.realm-level-collection .mod-card:hover { transform: translateY(-7px); }
+.realm-level-wiki {
+  min-height: 72vh;
+  background:
+    radial-gradient(ellipse at 6% 75%, rgba(123, 163, 80, .13), transparent 42%),
+    linear-gradient(120deg, #e8efe2, #f1f3e9 65%, #dfe9d8);
+}
+.realm-level-wiki .level-marker { color: #43642f; }
+.realm-level-wiki .level-marker b { border-color: rgba(67,100,47,.3); }
+.realm-level-wiki .wiki-feature-inner { padding-block: 100px 78px; }
+.realm-level-wiki::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 9px;
+  background: linear-gradient(90deg, transparent, rgba(83,124,53,.16), transparent);
+}
+.realm-level-season {
+  min-height: 70vh;
+  background:
+    radial-gradient(ellipse at 85% 70%, rgba(90, 150, 79, .17), transparent 40%),
+    linear-gradient(180deg, #0d1717, #0b1013);
+}
+.realm-level-season .container { padding-top: 100px; padding-bottom: 80px; }
+.realm-level-season .season-banner {
+  min-height: min(450px, 55vh);
+  border-radius: 26px;
+  background:
+    radial-gradient(ellipse at 80% 40%, rgba(161, 222, 101, .19), transparent 42%),
+    linear-gradient(125deg, #152520, #11191d 68%, #1c2c20);
+  box-shadow: 0 30px 90px rgba(0,0,0,.25);
+}
+.realm-level-season .season-banner::before {
+  display: block;
+  inset: auto 0 0;
+  height: 2px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: .6;
+}
+.realm-level-season .season-emblem { background: rgba(8,14,12,.22); }
+.realm-level-season .level-marker { top: 29px; }
+@media (max-width: 700px) {
+  .hero.container.journey-entry {
+    width: 100%;
+    padding: 48px 18px 78px;
+    min-height: 0;
+  }
+  .hero.container.journey-entry::after { height: 13%; }
+  .scroll-cue { left: 18px; bottom: 20px; font-size: 8px; }
+  .realm-level { min-height: 0; }
+  .realm-level > .level-marker { top: 18px; left: 18px; }
+  .realm-level-collection { padding-top: 10px; }
+  .realm-level-collection .section-heading { padding-top: 38px; }
+  .realm-level-wiki .wiki-feature-inner { padding-block: 76px 56px; }
+  .realm-level-season .container { padding-top: 76px; padding-bottom: 52px; }
+  .realm-level-season .season-banner { min-height: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue b { transition: none; }
+}
