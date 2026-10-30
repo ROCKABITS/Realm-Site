@@ -13,7 +13,7 @@ import Icon from '../components/Icon.astro';
 import Search from '../components/Search.astro';
 import { curseforge, github } from '../data/site';
 interface Props { title: string; description?: string; image?: string; noindex?: boolean; light?: boolean; }
-const { title, description = 'Minecraft mods by ROCKadm. Discover a connected world of roleplay, economy, and kingdom life, with player guides for every adventure.', image = '/social-card.png', noindex = false, light = false } = Astro.props;
+const { title, description = 'Independent Minecraft mods by ROCKadm for roleplay and multiplayer worlds. Browse the collection, player guides and the Season 8 modpack.', image = '/social-card.png', noindex = false, light = false } = Astro.props;
 const path = Astro.url.pathname;
 const canonical = Astro.site ? new URL(path, Astro.site).href : undefined;
 const ogImage = Astro.site ? new URL(image, Astro.site).href : undefined;
@@ -28,7 +28,7 @@ const navigation = [{ name: 'Mods', href: '/mods/' }, { name: 'Wiki', href: '/wi
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     {canonical && <link rel="canonical" href={canonical} />}
     {noindex && <meta name="robots" content="noindex, follow" />}
-    <meta property="og:type" content="website" /><meta property="og:site_name" content="Realm Studios" /><meta property="og:title" content={`${title === 'Home' ? 'Bring your world to life' : title} — Realm Studios`} /><meta property="og:description" content={description} />
+    <meta property="og:type" content="website" /><meta property="og:site_name" content="Realm Studios" /><meta property="og:title" content={`${title === 'Home' ? 'Minecraft mods by ROCKadm' : title} — Realm Studios`} /><meta property="og:description" content={description} />
     {canonical && <meta property="og:url" content={canonical} />}{ogImage && <meta property="og:image" content={ogImage} />}
     <meta name="twitter:card" content="summary_large_image" />
   </head>
@@ -42,7 +42,7 @@ const navigation = [{ name: 'Mods', href: '/mods/' }, { name: 'Wiki', href: '/wi
       <nav id="mobile-nav" aria-label="Mobile navigation" hidden>{navigation.map(item => <a href={item.href} aria-current={path.startsWith(item.href) ? 'page' : undefined}>{item.name}<Icon name="arrow" size={16} /></a>)}<a href={curseforge} target="_blank" rel="noopener noreferrer">ROCKadm on CurseForge<Icon name="diagonal" size={16} /></a></nav>
     </header>
     <main id="main"><slot /></main>
-    <footer class="site-footer" data-pagefind-ignore><div class="container footer-main"><div><Brand footer /><p>Small details. Bigger stories.<br />Minecraft mods, made by ROCKadm.</p></div><div class="footer-links"><div><span class="eyebrow">Explore</span><a href="/mods/">The mod collection</a><a href="/wiki/">Player wiki</a><a href="/modpack/">Season 8 modpack</a></div><div><span class="eyebrow">Elsewhere</span><a href={curseforge} target="_blank" rel="noopener noreferrer">CurseForge <Icon name="diagonal" size={13} /></a><a href={github} target="_blank" rel="noopener noreferrer">GitHub <Icon name="diagonal" size={13} /></a><a href="/about/">About the creator</a></div></div></div><div class="container footer-bottom"><span>© {new Date().getUTCFullYear()} Realm Studios · ROCKadm</span><span>An independent project. Not an official Minecraft product.</span><a href="#top" aria-label="Back to top">Back to top ↑</a></div></footer>
+    <footer class="site-footer" data-pagefind-ignore><div class="container footer-main"><div><Brand footer /><p>Independent Minecraft mods.<br />Made by ROCKadm.</p></div><div class="footer-links"><div><span class="eyebrow">Explore</span><a href="/mods/">The mod collection</a><a href="/wiki/">Player wiki</a><a href="/modpack/">Season 8 modpack</a></div><div><span class="eyebrow">Elsewhere</span><a href={curseforge} target="_blank" rel="noopener noreferrer">CurseForge <Icon name="diagonal" size={13} /></a><a href={github} target="_blank" rel="noopener noreferrer">GitHub <Icon name="diagonal" size={13} /></a><a href="/about/">About the creator</a></div></div></div><div class="container footer-bottom"><span>© {new Date().getUTCFullYear()} Realm Studios · ROCKadm</span><span>An independent project. Not an official Minecraft product.</span><a href="#top" aria-label="Back to top">Back to top ↑</a></div></footer>
     <Search />
     <script>
       const toggle = document.querySelector<HTMLButtonElement>('.mobile-toggle')!;
