@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Artwork from '../components/Artwork.astro';
+import ModCard from '../components/ModCard.astro';
+import Icon from '../components/Icon.astro';
+import { mods } from '../data/mods';
+---
+<Layout title="Home" description="Independent Minecraft mods by ROCKadm for roleplay and multiplayer worlds. Browse the collection, player guides and the Season 8 modpack.">
+  <section class="home-intro">
+    <div class="container home-intro-inner">
+      <div class="home-intro-copy">
+        <p class="eyebrow">Independent Minecraft modding</p>
+        <h1>Minecraft mods for <em>roleplay and multiplayer.</em></h1>
+        <p class="home-lead">I'm ROCKadm. I make NeoForge mods that add character systems, economies, markets and community features to Minecraft worlds.</p>
+        <div class="button-row">
+          <a href="/mods/" class="button button-gold">Browse the mods <Icon name="arrow" size={18} /></a>
+          <a href="/wiki/" class="button button-quiet">Read the wiki <Icon name="book" size={18} /></a>
+        </div>
+        <div class="home-meta" aria-label="Compatibility">
+          <span>Minecraft Java 1.21.1</span>
+          <span>NeoForge 21.1.256+</span>
+          <span>Java 21</span>
+        </div>
+      </div>
+      <div class="home-art-area">
+        <div class="hero-art" aria-label="Artwork from Realm Origins, Realm Treasury, and Realm Markets">
+          <div class="orbit orbit-outer"></div>
+          <div class="orbit orbit-inner"></div>
+          <span class="orbit-star star-one">✦</span>
+          <span class="orbit-star star-two">✧</span>
+          <span class="art-caption caption-top">FROM THE MOD COLLECTION</span>
+          <div class="hero-piece piece-treasury"><Artwork name="treasury" alt="Realm Treasury artwork" eager /></div>
+          <div class="hero-piece piece-origins"><Artwork name="origins" alt="Realm Origins character book artwork" eager /></div>
+          <div class="hero-piece piece-markets"><Artwork name="markets" alt="Realm Markets artwork" eager /></div>
+          <div class="hero-art-note"><span class="status-dot"></span><span><strong>13 mods.</strong> Made for Minecraft multiplayer.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container home-collection" id="mods" aria-labelledby="home-mods-title">
+    <div class="home-section-heading">
+      <div>
+        <p class="eyebrow">The mod collection</p>
+        <h2 id="home-mods-title">Browse the mods.</h2>
+        <p>Character creation, trading, elections, contracts and other systems for modded multiplayer worlds.</p>
+      </div>
+      <a href="/mods/" class="text-link">All {mods.length} mods <Icon name="arrow" size={18} /></a>
+    </div>
+    <div class="mod-grid featured-grid">
+      {mods.filter(mod => mod.featured).map((mod, index) => <ModCard mod={mod} index={index} />)}
+    </div>
+  </section>
+
+  <section class="home-guides">
+    <div class="container home-guides-inner">
+      <div class="home-guides-copy">
+        <p class="eyebrow">Player guides</p>
+        <h2>Need help setting things up?</h2>
+        <p>The wiki covers installation, dependencies and the basics of each system.</p>
+        <a href="/wiki/" class="button button-dark">Open the wiki <Icon name="arrow" size={18} /></a>
+      </div>
+      <div class="home-guide-list">
+        <a href="/wiki/installation/">
+          <span><strong>Installation</strong><small>Set up the mods and check their dependencies.</small></span>
+          <Icon name="arrow" size={18} />
+        </a>
+        <a href="/wiki/realm-origins/">
+          <span><strong>Realm Origins</strong><small>Character creation, the character book and wallet.</small></span>
+          <Icon name="arrow" size={18} />
+        </a>
+        <a href="/wiki/realm-markets/">
+          <span><strong>Realm Markets</strong><small>Stalls, stock, prices and sales.</small></span>
+          <Icon name="arrow" size={18} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container home-season">
+    <div class="home-season-panel">
+      <div class="home-season-logo">
+        <Artwork name="season8Logo" alt="Season 8 modpack logo" />
+      </div>
+      <div class="home-season-copy">
+        <p class="eyebrow">Our group modpack</p>
+        <h2>Season 8</h2>
+        <p>The modpack our group uses to play together. Check the modpack page for information, updates and release notes.</p>
+        <a href="/modpack/" class="text-link">Season 8 details <Icon name="arrow" size={18} /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-about">
+    <div class="container home-about-inner">
+      <div>
+        <p class="eyebrow">Who makes these?</p>
+        <h2>I'm ROCKadm.</h2>
+      </div>
+      <div>
+        <p>Realm Studios is where I share the Minecraft mods I build, along with their downloads, guides and updates. It's an independent project that grows as I work on new features.</p>
+        <a href="/about/" class="text-link">A little more about the project <Icon name="arrow" size={18} /></a>
+      </div>
+    </div>
+  </section>
+</Layout>

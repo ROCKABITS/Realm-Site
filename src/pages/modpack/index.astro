@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Artwork from '../../components/Artwork.astro';
+import Icon from '../../components/Icon.astro';
+import { modpack } from '../../data/site';
+const releases = (await getCollection('changelog', ({ data }) => !data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Layout title="Season 8 modpack" description="Information, guides and release notes for the Season 8 Minecraft modpack played by our group.">
+  <section class="container modpack-hero" data-pagefind-body>
+    <div class="modpack-hero-copy">
+      <p class="eyebrow">Realm Studios / Modpack</p>
+      <h1>Season 8.<br /><em>The modpack.</em></h1>
+      <p>The Minecraft modpack our group uses to play together. Find the information you need, follow updates and check the release notes here.</p>
+      <div class="button-row">
+        {modpack.downloadUrl ? <a href={modpack.downloadUrl} class="button button-gold" target="_blank" rel="noopener noreferrer"><Icon name="download" size={18} /> Download the modpack</a> : <a href="/modpack/changelog/" class="button button-gold"><Icon name="scroll" size={18} /> View release notes</a>}
+        <a href="/wiki/" class="button button-quiet">Player wiki <Icon name="arrow" size={18} /></a>
+      </div>
+      {modpack.version && <span class="version-label">Current version: {modpack.version}</span>}
+    </div>
+    <div class="season-large-art">
+      <div class="season-ring" aria-hidden="true"></div>
+      <div class="season-ring ring-two" aria-hidden="true"></div>
+      <div class="season-art-frame">
+        <div class="season-art-frame-top">
+          <span>REALM STUDIOS</span>
+          <span>08 / TAP FAMILY</span>
+        </div>
+        <Artwork name="season8Logo" alt="Season 8 modpack logo" class="season-logo-large" eager />
+        <div class="season-art-frame-bottom">
+          <span>SEASON <strong>08</strong></span>
+          <span>MINECRAFT · NEOFORGE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container modpack-divider">
+    <span>SEASON 8</span>
+    <span>RELEASE NOTES</span>
+  </div>
+
+  <section class="container section modpack-updates">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Updates</p>
+        <h2>What's changed?</h2>
+      </div>
+      <a href="/modpack/changelog/" class="text-link">All release notes <Icon name="arrow" size={18} /></a>
+    </div>
+    {releases.length ? <div class="release-list">{releases.slice(0, 3).map(release => <a class="release-card" href={`/modpack/changelog/${release.id}/`}><span class="release-version">{release.data.version}</span><div><span class="eyebrow">{release.data.date.toLocaleDateString('en-GB', { dateStyle: 'long', timeZone: 'UTC' })}</span><h3>{release.data.title}</h3><p>{release.data.summary}</p></div><Icon name="arrow" /></a>)}</div> : <div class="journal-empty"><div><span class="eyebrow">No updates published yet</span><h3>Release notes will appear here.</h3><p>When a new version of the modpack is ready, its changes and update instructions will be listed on this page.</p></div></div>}
+  </section>
+
+  <section class="container modpack-links">
+    <a href="/mods/"><Icon name="spark" size={25} /><h3>Realm Studios mods</h3><p>See the mods made for the collection.</p><span class="text-link">Browse the mods <Icon name="arrow" size={16} /></span></a>
+    <a href="/wiki/"><Icon name="book" size={25} /><h3>Player wiki</h3><p>Installation instructions and guides to the in-game systems.</p><span class="text-link">Open the wiki <Icon name="arrow" size={16} /></span></a>
+  </section>
+</Layout>

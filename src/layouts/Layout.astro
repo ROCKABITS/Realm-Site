@@ -1,0 +1,58 @@
+---
+import '@fontsource/cormorant-garamond/400.css';
+import '@fontsource/cormorant-garamond/500.css';
+import '@fontsource/cormorant-garamond/600.css';
+import '@fontsource/cormorant-garamond/400-italic.css';
+import '@fontsource/dm-sans/400.css';
+import '@fontsource/dm-sans/500.css';
+import '@fontsource/dm-sans/600.css';
+import '@fontsource/dm-sans/700.css';
+import '../styles/global.css';
+import Brand from '../components/Brand.astro';
+import Icon from '../components/Icon.astro';
+import Search from '../components/Search.astro';
+import { curseforge, github } from '../data/site';
+interface Props { title: string; description?: string; image?: string; noindex?: boolean; light?: boolean; }
+const { title, description = 'Independent Minecraft mods by ROCKadm for roleplay and multiplayer worlds. Browse the collection, player guides and the Season 8 modpack.', image = '/social-card.png', noindex = false, light = false } = Astro.props;
+const path = Astro.url.pathname;
+const canonical = Astro.site ? new URL(path, Astro.site).href : undefined;
+const ogImage = Astro.site ? new URL(image, Astro.site).href : undefined;
+const navigation = [{ name: 'Mods', href: '/mods/' }, { name: 'Wiki', href: '/wiki/' }, { name: 'Season 8', href: '/modpack/' }, { name: 'About', href: '/about/' }];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0c1915" /><meta name="description" content={description} />
+    <title>{title === 'Home' ? 'Realm Studios — Minecraft mods by ROCKadm' : `${title} | Realm Studios`}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta property="og:type" content="website" /><meta property="og:site_name" content="Realm Studios" /><meta property="og:title" content={`${title === 'Home' ? 'Minecraft mods by ROCKadm' : title} — Realm Studios`} /><meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}{ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body id="top" class:list={[{ 'light-page': light }]}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" data-pagefind-ignore>
+      <div class="header-inner"><Brand />
+        <nav aria-label="Main navigation" class="desktop-nav">{navigation.map(item => <a href={item.href} class:list={[{ active: path.startsWith(item.href) }]} aria-current={path.startsWith(item.href) ? 'page' : undefined}>{item.name}{item.name === 'Season 8' && <span class="nav-dot" />}</a>)}</nav>
+        <div class="header-actions"><button class="search-trigger" data-search-open aria-label="Search the site"><Icon name="search" size={17} /><span>Search</span><kbd>⌘ K</kbd></button><a href={curseforge} class="header-creator" target="_blank" rel="noopener noreferrer">By ROCKadm <Icon name="diagonal" size={14} /></a><button class="icon-button mobile-toggle" aria-label="Open navigation" aria-controls="mobile-nav" aria-expanded="false"><Icon name="menu" /></button></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation" hidden>{navigation.map(item => <a href={item.href} aria-current={path.startsWith(item.href) ? 'page' : undefined}>{item.name}<Icon name="arrow" size={16} /></a>)}<a href={curseforge} target="_blank" rel="noopener noreferrer">ROCKadm on CurseForge<Icon name="diagonal" size={16} /></a></nav>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="site-footer" data-pagefind-ignore><div class="container footer-main"><div><Brand footer /><p>Independent Minecraft mods.<br />Made by ROCKadm.</p></div><div class="footer-links"><div><span class="eyebrow">Explore</span><a href="/mods/">The mod collection</a><a href="/wiki/">Player wiki</a><a href="/modpack/">Season 8 modpack</a></div><div><span class="eyebrow">Elsewhere</span><a href={curseforge} target="_blank" rel="noopener noreferrer">CurseForge <Icon name="diagonal" size={13} /></a><a href={github} target="_blank" rel="noopener noreferrer">GitHub <Icon name="diagonal" size={13} /></a><a href="/about/">About the creator</a></div></div></div><div class="container footer-bottom"><span>© {new Date().getUTCFullYear()} Realm Studios · ROCKadm</span><span>An independent project. Not an official Minecraft product.</span><a href="#top" aria-label="Back to top">Back to top ↑</a></div></footer>
+    <Search />
+    <script>
+      const toggle = document.querySelector<HTMLButtonElement>('.mobile-toggle')!;
+      const mobileNav = document.querySelector<HTMLElement>('#mobile-nav')!;
+      const closeMenu = () => { toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Open navigation'); mobileNav.hidden = true; };
+      toggle.addEventListener('click', () => { const open = toggle.getAttribute('aria-expanded') !== 'true'; toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation'); mobileNav.hidden = !open; });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape' && !mobileNav.hidden) { closeMenu(); toggle.focus(); } });
+      matchMedia('(min-width: 901px)').addEventListener('change', e => { if (e.matches) closeMenu(); });
+      const observer = new IntersectionObserver(entries => { for (const entry of entries) if (entry.isIntersecting) { entry.target.classList.add('in-view'); observer.unobserve(entry.target); } }, { threshold: 0.08 });
+      document.querySelectorAll('[data-reveal]').forEach(element => observer.observe(element));
+    </script>
+  </body>
+</html>

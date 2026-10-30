@@ -1,0 +1,8 @@
+---
+interface Props { footer?: boolean; }
+const { footer = false } = Astro.props;
+---
+<a class:list={['brand', { 'brand-footer': footer }]} href="/" aria-label="Realm Studios home">
+  <span class="brand-seal" aria-hidden="true"><img src="/favicon.svg" alt="" /></span>
+  <span class="brand-type">REALM<span>STUDIOS</span></span>
+</a>

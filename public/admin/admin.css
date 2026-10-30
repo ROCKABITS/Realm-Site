@@ -1,0 +1,452 @@
+/*
+ * Realm Studios Admin — visual theme for Decap CMS
+ * Loaded in the main document (not the content-preview iframe).
+ */
+:root {
+  color-scheme: light;
+  --realm-forest: #10271e;
+  --realm-forest-deep: #0a1b14;
+  --realm-green: #315c43;
+  --realm-green-light: #e8f0e8;
+  --realm-gold: #d6b66d;
+  --realm-gold-soft: #f3e8c9;
+  --realm-ink: #1c2b22;
+  --realm-muted: #67776b;
+  --realm-border: #dce5dc;
+  --realm-paper: #f4f7f2;
+  --realm-card: #ffffff;
+  --realm-radius: 18px;
+  --realm-shadow: 0 12px 30px rgba(16, 39, 30, .07), 0 2px 7px rgba(16, 39, 30, .04);
+}
+
+html {
+  min-height: 100%;
+  background: var(--realm-paper) !important;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0 !important;
+  background: var(--realm-paper) !important;
+  color: var(--realm-ink) !important;
+  font-family: Inter, "DM Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#nc-root {
+  min-height: 100vh;
+  color: var(--realm-ink);
+  background: var(--realm-paper);
+}
+
+/* LOGIN — full-screen dark brand experience */
+#nc-root section {
+  position: relative !important;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 100vh !important;
+  box-sizing: border-box;
+  gap: 26px !important;
+  padding: 56px 24px 64px !important;
+  background:
+    radial-gradient(ellipse at 12% 12%, rgba(214,182,109,.13), transparent 36%),
+    radial-gradient(ellipse at 90% 88%, rgba(74,125,88,.20), transparent 38%),
+    linear-gradient(145deg, var(--realm-forest-deep), var(--realm-forest) 56%, #1a3b2a) !important;
+}
+
+#nc-root section::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 22px;
+  border: 1px solid rgba(214,182,109,.23);
+  border-radius: 28px;
+  pointer-events: none;
+}
+
+#nc-root section::after {
+  content: "REALM STUDIOS  /  CONTENT CONSOLE";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 28px;
+  color: rgba(243,232,201,.62);
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .28em;
+  pointer-events: none;
+}
+
+#nc-root section img[alt="Logo"] {
+  display: block;
+  width: min(190px, 48vw) !important;
+  height: min(190px, 48vw) !important;
+  max-width: 190px !important;
+  max-height: 190px !important;
+  margin: 4px auto 8px !important;
+  object-fit: contain !important;
+  border-radius: 18px;
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,.22));
+}
+
+#nc-root section button {
+  min-height: 50px !important;
+  padding: 0 25px !important;
+  border: 1px solid #e5c97e !important;
+  border-radius: 999px !important;
+  background: var(--realm-gold) !important;
+  color: var(--realm-forest-deep) !important;
+  font-size: 15px !important;
+  font-weight: 750 !important;
+  box-shadow: 0 10px 26px rgba(0,0,0,.2) !important;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease !important;
+}
+
+#nc-root section button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow: 0 14px 30px rgba(0,0,0,.26) !important;
+}
+
+#nc-root section a {
+  color: #f3e8c9 !important;
+  font-size: 13px !important;
+  text-underline-offset: 4px;
+}
+
+#nc-root section p {
+  color: #f8e8c4 !important;
+}
+
+/* TOP NAVIGATION — brand-green command bar */
+#nc-root header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  background: var(--realm-forest) !important;
+  border-bottom: 1px solid rgba(214,182,109,.48) !important;
+  box-shadow: 0 8px 24px rgba(10,27,20,.16) !important;
+}
+
+#nc-root header > div {
+  min-height: 76px;
+  padding: 0 28px !important;
+  gap: 20px;
+}
+
+#nc-root header nav ul {
+  min-height: 76px;
+  align-items: center !important;
+  gap: 6px;
+}
+
+#nc-root header nav li {
+  display: flex;
+  align-items: center;
+}
+
+#nc-root header nav img[alt="Logo"] {
+  display: block;
+  width: 48px !important;
+  height: 48px !important;
+  max-width: 48px !important;
+  max-height: 48px !important;
+  padding: 4px 14px 4px 0 !important;
+  object-fit: contain !important;
+  border-radius: 8px;
+}
+
+#nc-root header nav a,
+#nc-root header nav button {
+  min-height: 42px !important;
+  padding: 0 15px !important;
+  border-radius: 10px !important;
+  color: rgba(255,255,255,.76) !important;
+  font-size: 13px !important;
+  font-weight: 650 !important;
+  text-decoration: none !important;
+  transition: background .16s ease, color .16s ease !important;
+}
+
+#nc-root header nav a:hover,
+#nc-root header nav button:hover,
+#nc-root header nav a.header-link-active {
+  background: rgba(255,255,255,.09) !important;
+  color: #f1d88f !important;
+}
+
+#nc-root header nav svg {
+  color: #d6b66d !important;
+}
+
+#nc-root header button {
+  border-radius: 10px !important;
+}
+
+#nc-root header button:hover {
+  filter: brightness(1.06);
+}
+
+/* COLLECTION MENU — visually distinct side rail */
+#nc-root aside {
+  background: var(--realm-forest) !important;
+  border: 1px solid rgba(214,182,109,.24) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 16px 36px rgba(10,27,20,.13) !important;
+  padding: 16px 0 18px !important;
+  overflow: hidden;
+}
+
+#nc-root aside h2 {
+  margin: 8px 19px 14px !important;
+  color: #e6c976 !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: .16em !important;
+  text-transform: uppercase !important;
+}
+
+#nc-root aside input:not([type="checkbox"]):not([type="radio"]) {
+  width: calc(100% - 28px) !important;
+  margin: 0 14px 8px !important;
+  box-sizing: border-box !important;
+  background: rgba(255,255,255,.08) !important;
+  color: white !important;
+  border: 1px solid rgba(255,255,255,.14) !important;
+}
+
+#nc-root aside input::placeholder {
+  color: rgba(255,255,255,.52) !important;
+}
+
+#nc-root aside ul {
+  margin-top: 8px !important;
+  padding: 0 10px !important;
+}
+
+#nc-root aside ul li {
+  margin: 3px 0;
+}
+
+#nc-root aside a {
+  min-height: 42px;
+  box-sizing: border-box;
+  margin: 2px 0;
+  padding: 10px 13px !important;
+  border: 1px solid transparent !important;
+  border-left: 3px solid transparent !important;
+  border-radius: 10px !important;
+  color: rgba(255,255,255,.76) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+#nc-root aside a:hover,
+#nc-root aside a.sidebar-active {
+  background: rgba(214,182,109,.13) !important;
+  border-color: rgba(214,182,109,.13) !important;
+  border-left-color: var(--realm-gold) !important;
+  color: #ffe7a2 !important;
+}
+
+#nc-root aside svg {
+  color: #d6b66d !important;
+}
+
+/* CONTENT AREA — more breathing room and editorial hierarchy */
+#nc-root main {
+  min-width: 0;
+}
+
+#nc-root main h1 {
+  color: var(--realm-forest) !important;
+  font-size: clamp(26px, 2.2vw, 34px) !important;
+  font-weight: 760 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -.035em !important;
+}
+
+#nc-root main > div:first-child {
+  margin-bottom: 22px !important;
+  padding: 27px 30px !important;
+  background: var(--realm-card) !important;
+  border: 1px solid var(--realm-border) !important;
+  border-top: 3px solid var(--realm-gold) !important;
+  border-radius: var(--realm-radius) !important;
+  box-shadow: var(--realm-shadow) !important;
+}
+
+#nc-root main > div:first-child p {
+  max-width: 700px;
+  color: var(--realm-muted) !important;
+  font-size: 14px !important;
+  line-height: 1.75 !important;
+}
+
+#nc-root main > div:nth-child(2) {
+  margin-top: 18px !important;
+}
+
+#nc-root main ul > li {
+  border: 1px solid var(--realm-border) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 5px 16px rgba(16,39,30,.035) !important;
+  background: var(--realm-card) !important;
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease !important;
+}
+
+#nc-root main ul > li:hover {
+  transform: translateY(-2px);
+  border-color: #bccdbd !important;
+  box-shadow: 0 12px 24px rgba(16,39,30,.09) !important;
+}
+
+#nc-root main ul > li > a {
+  padding: 21px 22px !important;
+  border-radius: 14px !important;
+  text-decoration: none !important;
+}
+
+#nc-root main ul > li h2 {
+  color: var(--realm-ink) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1.45 !important;
+}
+
+#nc-root main ul > li a:hover h2 {
+  color: var(--realm-green) !important;
+}
+
+#nc-root main ul > li h2:first-child:not(:last-child) {
+  margin-bottom: 7px;
+}
+
+#nc-root main button,
+#nc-root main a[role="button"],
+#nc-root button[aria-label*="Add"],
+#nc-root button[aria-label*="New"] {
+  border-radius: 10px !important;
+}
+
+/* EDITOR — comfortable forms, clear section rhythm */
+#nc-root label {
+  color: #354b3a !important;
+  font-size: 12px !important;
+  font-weight: 750 !important;
+  letter-spacing: .015em;
+}
+
+#nc-root input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+#nc-root textarea,
+#nc-root select {
+  min-height: 42px;
+  box-sizing: border-box;
+  border: 1px solid var(--realm-border) !important;
+  border-radius: 10px !important;
+  background-color: #fff !important;
+  color: var(--realm-ink) !important;
+  box-shadow: inset 0 1px 2px rgba(16,39,30,.025) !important;
+  transition: border-color .16s ease, box-shadow .16s ease, background-color .16s ease !important;
+}
+
+#nc-root textarea {
+  min-height: 120px;
+  line-height: 1.65;
+}
+
+#nc-root input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):focus,
+#nc-root textarea:focus,
+#nc-root select:focus,
+#nc-root [contenteditable="true"]:focus {
+  border-color: var(--realm-green) !important;
+  box-shadow: 0 0 0 4px rgba(49,92,67,.12) !important;
+  outline: none !important;
+}
+
+#nc-root input[type="checkbox"],
+#nc-root input[type="radio"] {
+  accent-color: var(--realm-green) !important;
+}
+
+#nc-root [contenteditable="true"] {
+  border-radius: 10px;
+}
+
+#nc-root button:focus-visible,
+#nc-root a:focus-visible,
+#nc-root [role="button"]:focus-visible {
+  outline: 3px solid var(--realm-gold) !important;
+  outline-offset: 3px !important;
+}
+
+/* ENTRY EDITOR TOOLBAR */
+#nc-root div[style*="position: absolute"][style*="height: 66px"] {
+  background: #fff !important;
+  border-bottom: 1px solid var(--realm-border) !important;
+  box-shadow: 0 8px 24px rgba(16,39,30,.08) !important;
+}
+
+#nc-root button:hover,
+#nc-root [role="button"]:hover {
+  transition: background-color .16s ease, border-color .16s ease, box-shadow .16s ease !important;
+}
+
+#nc-root a {
+  text-underline-offset: 3px;
+}
+
+#nc-root ::selection {
+  background: rgba(214,182,109,.3);
+  color: var(--realm-forest-deep);
+}
+
+@media (max-width: 799px) {
+  #nc-root header > div {
+    padding: 10px 14px !important;
+  }
+
+  #nc-root header nav ul {
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
+
+  #nc-root header nav img[alt="Logo"] {
+    width: 42px !important;
+    height: 42px !important;
+    max-width: 42px !important;
+    max-height: 42px !important;
+    padding-right: 8px !important;
+  }
+
+  #nc-root aside {
+    position: relative !important;
+    width: 100% !important;
+    max-height: 330px !important;
+    margin-bottom: 18px;
+  }
+
+  #nc-root main > div:first-child {
+    padding: 21px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #nc-root *,
+  #nc-root *::before,
+  #nc-root *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Hide the default CMS watermark on the custom branded login page. */
+#nc-root section > svg {
+  display: none !important;
+}

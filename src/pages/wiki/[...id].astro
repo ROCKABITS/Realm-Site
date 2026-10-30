@@ -1,0 +1,17 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import { getMod } from '../../data/mods';
+export async function getStaticPaths() { return (await getCollection('wiki')).map(guide => ({ params: { id: guide.id }, props: { guide } })); }
+const { guide } = Astro.props;
+const { Content, headings } = await render(guide);
+const guides = (await getCollection('wiki')).sort((a, b) => a.data.order - b.data.order);
+const groups = [...new Set(guides.map(item => item.data.category))];
+const mod = guide.data.mod ? getMod(guide.data.mod) : undefined;
+const next = guides[guides.findIndex(item => item.id === guide.id) + 1];
+---
+<Layout title={guide.data.title} description={guide.data.description} light>
+  <div class="container"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/wiki/">Player wiki</a><Icon name="chevron" size={12} /><span>{guide.data.title}</span></nav></div>
+  <div class="container article-grid"><aside class="article-sidebar"><a href="/wiki/" class="text-link">← The player wiki</a><nav aria-label="Wiki articles">{groups.map(group => <div><span class="eyebrow">{group}</span>{guides.filter(item => item.data.category === group).map(item => <a class:list={[{ active: item.id === guide.id }]} href={`/wiki/${item.id}/`} aria-current={item.id === guide.id ? 'page' : undefined}>{item.data.title}</a>)}</div>)}</nav></aside><article class="wiki-article" data-pagefind-body><header><p class="eyebrow">{guide.data.category}</p><h1>{guide.data.title}</h1><p class="article-lead">{guide.data.description}</p>{mod && <a href={`/mods/${mod.slug}/`} class="article-version">{mod.name} · v{mod.version} <Icon name="diagonal" size={13} /></a>}</header><div class="prose"><Content /></div><div class="article-end"><Icon name="spark" size={20} /><p>Part of the Realm Studios player wiki.<br />Created from the mod documentation by ROCKadm.</p></div>{next && <a href={`/wiki/${next.id}/`} class="next-article"><span><span class="eyebrow">KEEP READING</span><strong>{next.data.title}</strong></span><Icon name="arrow" /></a>}</article><aside class="article-toc"><details open><summary>On this page</summary><nav aria-label="On this page">{headings.filter(heading => heading.depth === 2).map(heading => <a href={`#${heading.slug}`}>{heading.text}</a>)}</nav></details>{mod && <div class="toc-mod"><span class="eyebrow">THE MOD</span><h3>{mod.name}</h3><a href={`/mods/${mod.slug}/`} class="text-link">View mod <Icon name="diagonal" size={14} /></a></div>}</aside></div>
+</Layout>

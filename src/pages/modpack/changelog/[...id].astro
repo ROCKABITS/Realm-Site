@@ -1,0 +1,9 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import Icon from '../../../components/Icon.astro';
+export async function getStaticPaths() { return (await getCollection('changelog', ({ data }) => !data.draft)).map(release => ({ params: { id: release.id }, props: { release } })); }
+const { release } = Astro.props;
+const { Content } = await render(release);
+---
+<Layout title={`Season 8 ${release.data.version} — ${release.data.title}`} description={release.data.summary} light><div class="container narrow"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/modpack/">Season 8</a><Icon name="chevron" size={12} /><a href="/modpack/changelog/">Changelog</a><Icon name="chevron" size={12} /><span>{release.data.version}</span></nav><article class="wiki-article release-article" data-pagefind-body><header><p class="eyebrow">SEASON 8 · {release.data.version}</p><h1>{release.data.title}</h1><time datetime={release.data.date.toISOString()}>{release.data.date.toLocaleDateString('en-GB', { dateStyle: 'long', timeZone: 'UTC' })}</time><p class="article-lead">{release.data.summary}</p></header><div class="prose"><Content /></div><a class="text-link" href="/modpack/changelog/">← All release notes</a></article></div></Layout>

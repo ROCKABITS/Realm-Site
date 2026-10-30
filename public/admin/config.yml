@@ -1,0 +1,119 @@
+backend:
+  name: github
+  repo: ROCKABITS/Realm-Site
+  branch: realm-studios-site
+  base_url: https://realm-studios-admin-auth.rockabits2007.workers.dev
+  auth_endpoint: /auth
+
+site_url: https://realmstudios.pt
+display_url: https://realmstudios.pt
+logo:
+  src: https://realmstudios.pt/favicon.svg
+  show_in_header: true
+media_folder: public/uploads
+public_folder: /uploads
+publish_mode: simple
+show_preview_links: true
+
+collections:
+  - name: settings
+    label: Site settings
+    files:
+      - name: site
+        label: Brand and modpack
+        file: src/data/site.json
+        format: json
+        fields:
+          - { label: Site name, name: siteName, widget: string }
+          - { label: Creator, name: creator, widget: string }
+          - { label: GitHub link, name: github, widget: string }
+          - { label: CurseForge link, name: curseforge, widget: string }
+          - label: Categories
+            name: categories
+            widget: list
+            field: { label: Category, name: category, widget: string }
+          - label: Modpack
+            name: modpack
+            widget: object
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Version, name: version, widget: string, required: false }
+              - { label: Download URL, name: downloadUrl, widget: string, required: false }
+      - name: home
+        label: Homepage
+        file: src/data/home.json
+        format: json
+        fields:
+          - { label: Eyebrow, name: eyebrow, widget: string }
+          - { label: Main title, name: heroTitle, widget: string }
+          - { label: Main title emphasis, name: heroEmphasis, widget: string }
+          - { label: Introduction, name: heroDescription, widget: text }
+          - { label: Main button, name: heroPrimary, widget: string }
+          - { label: Second button, name: heroSecondary, widget: string }
+          - { label: Collection eyebrow, name: collectionEyebrow, widget: string }
+          - { label: Collection title, name: collectionTitle, widget: string }
+          - { label: Collection title emphasis, name: collectionEmphasis, widget: string }
+          - { label: Collection link, name: collectionLink, widget: string }
+          - { label: Wiki eyebrow, name: wikiEyebrow, widget: string }
+          - { label: Wiki title, name: wikiTitle, widget: string }
+          - { label: Wiki title emphasis, name: wikiEmphasis, widget: string }
+          - { label: Wiki description, name: wikiDescription, widget: text }
+          - { label: Modpack eyebrow, name: seasonLabel, widget: string }
+          - { label: Modpack title, name: seasonTitle, widget: string }
+          - { label: Modpack title emphasis, name: seasonEmphasis, widget: string }
+          - { label: Modpack description, name: seasonDescription, widget: text }
+  - name: mods
+    label: Mods
+    files:
+      - name: catalogue
+        label: Mod catalogue
+        file: src/data/mods.json
+        format: json
+        fields:
+          - label: Mods
+            name: mods
+            widget: list
+            summary: '{{fields.name}} · {{fields.version}}'
+            fields:
+              - { label: Slug, name: slug, widget: string }
+              - { label: Name, name: name, widget: string }
+              - { label: Short label, name: label, widget: string }
+              - { label: Version, name: version, widget: string }
+              - { label: Category, name: category, widget: string }
+              - { label: Artwork key, name: image, widget: string }
+              - { label: Description, name: description, widget: text }
+              - { label: Story, name: story, widget: text }
+              - { label: Features, name: features, widget: list, field: { label: Feature, name: feature, widget: string } }
+              - { label: First step, name: firstStep, widget: text }
+              - { label: Integrations, name: integrations, widget: text }
+              - { label: Source folder, name: folder, widget: string }
+              - { label: JAR filename, name: jar, widget: string }
+              - { label: Feature on homepage, name: featured, widget: boolean, required: false }
+  - name: wiki
+    label: Wiki guides
+    folder: src/content/wiki
+    create: true
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text }
+      - { label: Section, name: section, widget: string }
+      - { label: Order, name: order, widget: number }
+      - { label: Draft, name: draft, widget: boolean, required: false }
+      - { label: Body, name: body, widget: markdown }
+  - name: changelog
+    label: Modpack changelog
+    folder: src/content/changelog
+    create: true
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Version, name: version, widget: string }
+      - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Draft, name: draft, widget: boolean, default: true }
+      - { label: Body, name: body, widget: markdown }

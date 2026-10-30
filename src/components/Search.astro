@@ -1,0 +1,60 @@
+---
+import Icon from './Icon.astro';
+---
+<dialog id="site-search" class="search-dialog" aria-labelledby="search-title">
+  <div class="search-top"><label id="search-title" for="global-search-input">Search the archives</label><button class="icon-button" data-search-close aria-label="Close search"><Icon name="close" /></button></div>
+  <div class="search-input-wrap"><Icon name="search" /><input id="global-search-input" type="search" placeholder="Try “wallet”, “wedding”, or “elections”…" autocomplete="off" /><kbd>ESC</kbd></div>
+  <p id="search-status" class="search-status" role="status">Search mods, player guides, and release notes.</p>
+  <div id="search-results" class="search-results"></div>
+  <div class="search-bottom">THE REALM STUDIOS ARCHIVE <span>Built for curious adventurers.</span></div>
+</dialog>
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('#site-search')!;
+  const input = document.querySelector<HTMLInputElement>('#global-search-input')!;
+  const results = document.querySelector<HTMLDivElement>('#search-results')!;
+  const status = document.querySelector<HTMLParagraphElement>('#search-status')!;
+  let generation = 0;
+  let timer: ReturnType<typeof setTimeout>;
+  type SearchData = { url: string; meta: { title?: string }; excerpt: string };
+  type SearchEngine = { search: (query: string) => Promise<{ results: { data: () => Promise<SearchData> }[] }> };
+  let enginePromise: Promise<SearchEngine> | undefined;
+  const open = () => { if (!dialog.open) dialog.showModal(); input.focus(); };
+  document.querySelectorAll('[data-search-open]').forEach(button => button.addEventListener('click', open));
+  document.querySelector('[data-search-close]')?.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('keydown', event => {
+    // A search input otherwise consumes the first Escape to clear its value.
+    if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); dialog.close(); }
+  }, true);
+  dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } });
+  document.addEventListener('keydown', event => { if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); open(); } });
+  input.addEventListener('input', () => {
+    clearTimeout(timer);
+    const request = ++generation;
+    timer = setTimeout(async () => {
+      const query = input.value.trim();
+      results.replaceChildren();
+      if (!query) { status.textContent = 'Search mods, player guides, and release notes.'; return; }
+      status.textContent = 'Searching…';
+      try {
+        const path = '/pagefind/pagefind.js';
+        enginePromise ??= import(/* @vite-ignore */ path) as Promise<SearchEngine>;
+        const engine = await enginePromise;
+        const found = await engine.search(query);
+        const data = await Promise.all(found.results.slice(0, 8).map(result => result.data()));
+        if (request !== generation) return;
+        status.textContent = found.results.length ? `${found.results.length} result${found.results.length === 1 ? '' : 's'} found` : 'No results yet. Try a mod name or a different keyword.';
+        for (const result of data) {
+          const link = document.createElement('a'); link.href = result.url; link.className = 'search-result';
+          const title = document.createElement('strong'); title.textContent = result.meta.title || 'Read article';
+          const excerpt = document.createElement('span'); excerpt.textContent = new DOMParser().parseFromString(result.excerpt, 'text/html').body.textContent;
+          link.append(title, excerpt); results.append(link);
+        }
+      } catch {
+        if (request !== generation) return;
+        enginePromise = undefined;
+        status.textContent = 'Search could not load. You can still browse the mod collection and wiki below.';
+        for (const [label, href] of [['Browse mods', '/mods/'], ['Open the wiki', '/wiki/']]) { const a = document.createElement('a'); a.href = href; a.textContent = label; a.className = 'search-result'; results.append(a); }
+      }
+    }, 180);
+  });
+</script>
