@@ -4620,3 +4620,100 @@ html { scroll-padding-top: 92px; }
   clip-path: none;
   object-fit: cover;
 }
+
+/* Season 8 page: present the square logo as a framed modpack cover. */
+.modpack-hero .season-large-art {
+  height: 430px;
+}
+.modpack-hero .season-ring {
+  inset: 5% 2%;
+  border-radius: 26px;
+  opacity: .72;
+}
+.modpack-hero .ring-two {
+  inset: 10% 7%;
+  border-radius: 20px;
+}
+.season-art-frame {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 365px);
+  padding: 14px;
+  border: 1px solid rgba(209, 175, 103, .34);
+  border-radius: 17px;
+  background:
+    linear-gradient(145deg, rgba(31, 49, 37, .98), rgba(13, 25, 20, .98));
+  box-shadow: 0 24px 65px rgba(0, 0, 0, .34);
+}
+.season-art-frame::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(209, 175, 103, .12);
+  border-radius: 11px;
+  pointer-events: none;
+}
+.season-art-frame-top,
+.season-art-frame-bottom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #aab7a8;
+  font-size: 8px;
+  line-height: 1.4;
+  letter-spacing: 1.5px;
+}
+.season-art-frame-top {
+  padding: 1px 3px 12px;
+}
+.season-art-frame-top span:first-child {
+  color: var(--gold-bright);
+  font-weight: 600;
+}
+.season-art-frame-top span:last-child {
+  letter-spacing: 1px;
+}
+.season-art-frame .season-logo-large {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  margin: 0;
+  border: 1px solid rgba(209, 175, 103, .3);
+  border-radius: 9px;
+  clip-path: none;
+  object-fit: cover;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .25);
+  filter: none;
+}
+.season-art-frame-bottom {
+  padding: 13px 3px 1px;
+  color: #8f9d90;
+}
+.season-art-frame-bottom strong {
+  color: var(--gold-bright);
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 3px;
+}
+@media (max-width: 700px) {
+  .modpack-hero .season-large-art {
+    height: 360px;
+  }
+  .season-art-frame {
+    width: min(100%, 300px);
+    padding: 12px;
+  }
+  .season-art-frame-top,
+  .season-art-frame-bottom {
+    font-size: 7px;
+    letter-spacing: 1.1px;
+  }
+}
