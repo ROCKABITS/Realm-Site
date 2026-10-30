@@ -4478,3 +4478,138 @@ html { scroll-padding-top: 92px; }
   .modpack-updates { padding-top: 48px; }
   .modpack-links { grid-template-columns: 1fr; gap: 12px; padding-bottom: 48px; }
 }
+
+
+/* Restore the layered three-mod artwork in the homepage hero. */
+.home-art-area {
+  min-width: 0;
+  min-height: 505px;
+  display: flex;
+  align-items: center;
+}
+.home-art-area .hero-art {
+  width: 100%;
+  height: 505px;
+}
+.home-art-area .hero-art::before {
+  inset: 5% -5%;
+  background: radial-gradient(ellipse, rgba(73, 113, 60, .2), transparent 67%);
+}
+.home-art-area .orbit,
+.home-art-area .orbit-star,
+.home-art-area .art-caption {
+  display: block;
+}
+.home-art-area .orbit {
+  width: min(450px, 94%);
+  height: auto;
+  aspect-ratio: 1;
+  border-color: rgba(209, 175, 103, .13);
+}
+.home-art-area .orbit-inner {
+  width: min(340px, 72%);
+  height: auto;
+  aspect-ratio: 1;
+}
+.home-art-area .orbit-star {
+  position: absolute;
+  z-index: 4;
+  color: var(--gold);
+  font-size: 23px;
+}
+.home-art-area .star-one { top: 12%; left: 14%; }
+.home-art-area .star-two { right: 13%; bottom: 17%; }
+.home-art-area .art-caption {
+  position: absolute;
+  z-index: 4;
+  color: #99a694;
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+.home-art-area .caption-top { top: 2%; left: 50%; transform: translateX(-50%); }
+.home-art-area .hero-piece {
+  background: #14221b;
+  border: 1px solid rgba(197, 180, 133, .24);
+  border-radius: 18px;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, .35);
+  overflow: hidden;
+}
+.home-art-area .hero-piece img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.home-art-area .piece-origins {
+  width: min(305px, 66%);
+  height: auto;
+  aspect-ratio: 1;
+  left: 9%;
+  top: 17%;
+  z-index: 2;
+  transform: rotate(-4deg);
+}
+.home-art-area .piece-treasury {
+  width: min(192px, 42%);
+  height: auto;
+  aspect-ratio: 1;
+  right: 1%;
+  top: 4%;
+  z-index: 1;
+  transform: rotate(5deg);
+}
+.home-art-area .piece-markets {
+  width: min(207px, 45%);
+  height: auto;
+  aspect-ratio: 1;
+  right: 0;
+  bottom: 5%;
+  z-index: 3;
+  transform: rotate(4deg);
+}
+.home-art-area .hero-art:hover .piece-origins {
+  transform: rotate(-2deg) translateY(-5px);
+}
+.home-art-area .hero-art:hover .piece-markets {
+  transform: rotate(2deg) translateY(-4px);
+}
+.home-art-area .hero-art-note {
+  left: 1%;
+  bottom: 2%;
+  border-radius: 8px;
+  padding: 10px 13px;
+  background: rgba(17, 28, 27, .92);
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 25px rgba(0,0,0,.24);
+  font-size: 10px;
+}
+@media (max-width: 1000px) {
+  .home-art-area { min-height: 420px; }
+  .home-art-area .hero-art { height: 420px; }
+  .home-art-area .piece-origins { width: min(265px, 66%); }
+}
+@media (max-width: 700px) {
+  .home-art-area { min-height: 340px; }
+  .home-art-area .hero-art { height: 340px; }
+  .home-art-area .piece-origins {
+    width: 64%;
+    left: 5%;
+    top: 15%;
+  }
+  .home-art-area .piece-treasury {
+    width: 41%;
+    right: 1%;
+    top: 3%;
+  }
+  .home-art-area .piece-markets {
+    width: 43%;
+    right: 0;
+    bottom: 4%;
+  }
+  .home-art-area .art-caption { font-size: 6px; letter-spacing: 1.2px; }
+  .home-art-area .hero-art-note {
+    left: 0;
+    bottom: 0;
+    padding: 8px 10px;
+    font-size: 9px;
+  }
+}
