@@ -4085,3 +4085,396 @@ html { scroll-padding-top: 92px; }
     height: min(245px, 65vw);
   }
 }
+
+
+/* Homepage refresh: quieter layouts, direct copy and fewer decorative effects. */
+.home-intro {
+  background: #0d1713;
+  border-bottom: 1px solid var(--line);
+}
+.home-intro-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(38px, 6vw, 82px);
+  padding-block: 82px 76px;
+}
+.home-intro-copy .eyebrow,
+.home-section-heading .eyebrow,
+.home-guides .eyebrow,
+.home-season .eyebrow,
+.home-about .eyebrow,
+.about-simple .eyebrow {
+  letter-spacing: 1.3px;
+  margin-bottom: 17px;
+}
+.home-intro-copy h1 {
+  max-width: 610px;
+  font: 600 clamp(44px, 5.3vw, 70px)/1.06 var(--sans);
+  letter-spacing: -.06em;
+  margin: 0 0 22px;
+}
+.home-intro-copy h1 em {
+  color: var(--gold-bright);
+  font-style: normal;
+}
+.home-lead {
+  max-width: 520px;
+  margin-bottom: 27px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #c0cbc2;
+}
+.home-intro-copy .button-row { gap: 10px; }
+.home-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 19px;
+  margin-top: 32px;
+  padding-top: 17px;
+  border-top: 1px solid var(--line);
+  color: #95a397;
+  font-size: 11px;
+}
+.home-meta span + span::before {
+  content: "·";
+  color: var(--gold);
+  margin-right: 19px;
+}
+.home-art-area { min-width: 0; }
+.home-art-grid {
+  display: grid;
+  grid-template-columns: 1.12fr .88fr;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.home-art-grid figure {
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 17px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(197, 180, 133, .18);
+  border-radius: 8px;
+  background: #14221b;
+}
+.home-art-grid .home-art-main {
+  grid-row: 1 / span 2;
+  min-height: 390px;
+}
+.home-art-grid figure img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+.home-art-grid figcaption {
+  flex: 0 0 auto;
+  width: 100%;
+  color: #bac5b8;
+  font-size: 11px;
+  text-align: left;
+}
+.home-art-caption {
+  margin: 12px 0 0;
+  font-size: 10px;
+  color: #7f9184;
+}
+.home-collection {
+  padding-block: 76px 84px;
+}
+.home-section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+.home-section-heading h2,
+.home-guides h2,
+.home-season h2,
+.home-about h2 {
+  font: 600 clamp(34px, 4vw, 49px)/1.1 var(--sans);
+  letter-spacing: -.045em;
+  margin: 0;
+}
+.home-section-heading > div > p:last-child {
+  margin: 12px 0 0;
+  max-width: 620px;
+  font-size: 13px;
+}
+.home-collection .mod-grid { gap: 16px; }
+.home-collection .mod-card {
+  border: 1px solid rgba(197, 180, 133, .15);
+  border-radius: 8px;
+  background: #111e18;
+  box-shadow: none;
+  transition: border-color .18s ease;
+}
+.home-collection .mod-card:hover {
+  transform: none;
+  border-color: rgba(209, 175, 103, .55);
+  box-shadow: none;
+}
+.home-collection .mod-card-art {
+  aspect-ratio: 1.1;
+  padding: 22px;
+  background: #14231b;
+}
+.home-collection .mod-card-number,
+.home-collection .mod-card-arrow { display: none; }
+.home-collection .mod-card-copy {
+  padding: 16px 17px 14px;
+  border-top: 1px solid var(--line);
+}
+.home-collection .mod-card .eyebrow {
+  font-size: 8px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.home-collection .mod-card h3 {
+  font: 600 19px/1.25 var(--sans);
+  letter-spacing: -.025em;
+  margin-bottom: 8px;
+}
+.home-collection .mod-card p {
+  min-height: 40px;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.home-collection .mod-card-bottom {
+  padding-top: 11px;
+  font-size: 9px;
+}
+.home-guides {
+  background: #e9eee5;
+  color: #243127;
+}
+.home-guides-inner {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: 80px;
+  padding-block: 73px;
+}
+.home-guides .eyebrow { color: #587447; }
+.home-guides h2 { max-width: 430px; }
+.home-guides-copy > p:not(.eyebrow) {
+  max-width: 390px;
+  margin: 17px 0 23px;
+  color: #59675b;
+  font-size: 13px;
+}
+.home-guides .button-dark { border-radius: 4px; }
+.home-guide-list { border-top: 1px solid rgba(38, 55, 40, .17); }
+.home-guide-list > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 19px 2px;
+  border-bottom: 1px solid rgba(38, 55, 40, .17);
+  color: #29382d;
+}
+.home-guide-list > a:hover strong { text-decoration: underline; text-underline-offset: 4px; }
+.home-guide-list > a > span { display: grid; gap: 4px; }
+.home-guide-list strong { font-size: 14px; font-weight: 600; }
+.home-guide-list small { font-size: 11px; color: #667368; }
+.home-guide-list svg { color: #587447; }
+.home-season { padding-block: 66px; }
+.home-season-panel {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  align-items: center;
+  gap: 38px;
+  padding: 30px 36px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #111e18;
+}
+.home-season-logo {
+  display: grid;
+  place-items: center;
+  min-height: 185px;
+  padding: 14px;
+  border-right: 1px solid var(--line);
+}
+.home-season-logo img {
+  width: 165px;
+  height: 165px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+.home-season-copy .eyebrow { margin-bottom: 9px; }
+.home-season-copy h2 { margin-bottom: 9px; }
+.home-season-copy > p:not(.eyebrow) {
+  max-width: 620px;
+  margin: 0 0 14px;
+  color: #aebbb0;
+  font-size: 13px;
+}
+.home-about {
+  border-top: 1px solid var(--line);
+  background: #0a1410;
+}
+.home-about-inner {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 60px;
+  align-items: start;
+  padding-block: 52px 58px;
+}
+.home-about h2 { font-size: 30px; }
+.home-about-inner > div:last-child > p {
+  max-width: 700px;
+  margin: 0 0 12px;
+  color: #aebbb0;
+  font-size: 13px;
+}
+.about-simple {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr);
+  align-items: center;
+  gap: 72px;
+  padding-block: 75px;
+}
+.about-simple-copy h1 {
+  max-width: 690px;
+  font: 600 clamp(42px, 5vw, 65px)/1.08 var(--sans);
+  letter-spacing: -.055em;
+  margin-bottom: 22px;
+}
+.about-simple-copy h1 em { font-style: normal; color: var(--gold-bright); }
+.about-simple-copy > p:not(.eyebrow) {
+  max-width: 610px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.about-simple-copy .about-lead {
+  color: #d1d8d0;
+  font-size: 16px;
+}
+.about-simple-copy .button-row { margin-top: 25px; }
+.about-simple-art {
+  padding: 25px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #132119;
+}
+.about-simple-art img {
+  width: 100%;
+  max-height: 340px;
+  object-fit: contain;
+}
+.about-simple-art span {
+  display: block;
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+  color: #92a094;
+  font-size: 10px;
+}
+.about-simple-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  padding-bottom: 76px;
+}
+.about-simple-links > a {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 5px 12px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  color: #e3e7df;
+}
+.about-simple-links strong { font-size: 13px; }
+.about-simple-links span { color: #9eaa9f; font-size: 11px; }
+.about-simple-links svg { grid-column: 2; grid-row: 1 / span 2; color: var(--gold); }
+.modpack-hero {
+  min-height: 570px;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
+  gap: 55px;
+}
+.modpack-hero-copy h1 {
+  font: 600 clamp(47px, 5.5vw, 72px)/1.05 var(--sans);
+  letter-spacing: -.055em;
+  margin: 25px 0 20px;
+}
+.modpack-hero-copy h1 em { font-style: normal; color: var(--gold-bright); }
+.modpack-hero-copy > p:not(.eyebrow) {
+  max-width: 520px;
+  color: #b4c0b5;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.modpack-hero-copy .eyebrow { margin-bottom: 14px; }
+.modpack-hero .season-large-art { height: 400px; }
+.modpack-hero .season-ring { inset: 15px 3%; }
+.modpack-hero .ring-two { inset: 40px 10%; }
+.modpack-hero .season-logo-large { width: min(78%, 300px); height: auto; aspect-ratio: 1; }
+.modpack-divider {
+  justify-content: flex-start;
+  gap: 25px;
+}
+.modpack-updates { padding-top: 65px; }
+.modpack-links {
+  padding-bottom: 76px;
+}
+.modpack-links > a {
+  border-radius: 8px;
+  background: #111e18;
+  border-color: var(--line);
+}
+.modpack-links > a:hover { transform: none; border-color: rgba(209,175,103,.45); }
+@media (max-width: 900px) {
+  .home-intro-inner { gap: 35px; }
+  .home-guides-inner { gap: 38px; }
+  .about-simple { gap: 38px; }
+  .modpack-hero { gap: 25px; }
+}
+@media (max-width: 700px) {
+  .home-intro-inner {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    padding-block: 55px 46px;
+  }
+  .home-intro-copy h1 { font-size: clamp(42px, 11vw, 60px); }
+  .home-lead { font-size: 14px; }
+  .home-meta { gap: 7px 12px; margin-top: 25px; }
+  .home-meta span + span::before { margin-right: 12px; }
+  .home-art-grid { gap: 8px; }
+  .home-art-grid figure { padding: 11px; gap: 8px; }
+  .home-art-grid .home-art-main { min-height: 245px; }
+  .home-art-grid figcaption { font-size: 9px; }
+  .home-collection { padding-block: 52px 58px; }
+  .home-section-heading { display: block; }
+  .home-section-heading > .text-link { margin-top: 18px; }
+  .home-collection .mod-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .home-collection .mod-card-art { padding: 12px; }
+  .home-collection .mod-card-copy { padding: 12px 11px 10px; }
+  .home-collection .mod-card h3 { font-size: 15px; }
+  .home-collection .mod-card p { font-size: 10px; min-height: 55px; }
+  .home-collection .mod-card-bottom { flex-direction: column; gap: 3px; }
+  .home-guides-inner { grid-template-columns: 1fr; gap: 28px; padding-block: 54px; }
+  .home-season { padding-block: 42px; }
+  .home-season-panel { grid-template-columns: 1fr; gap: 18px; padding: 20px; }
+  .home-season-logo { min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); padding: 5px 5px 20px; }
+  .home-season-logo img { width: 135px; height: 135px; }
+  .home-about-inner { grid-template-columns: 1fr; gap: 13px; padding-block: 42px; }
+  .about-simple { grid-template-columns: 1fr; gap: 30px; padding-block: 52px; }
+  .about-simple-links { grid-template-columns: 1fr; gap: 12px; padding-bottom: 48px; }
+  .modpack-hero {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding-block: 55px 40px;
+  }
+  .modpack-hero-copy h1 { font-size: clamp(44px, 11vw, 58px); margin-top: 12px; }
+  .modpack-hero .season-large-art { height: 300px; }
+  .modpack-hero .season-logo-large { width: min(74%, 235px); }
+  .modpack-updates { padding-top: 48px; }
+  .modpack-links { grid-template-columns: 1fr; gap: 12px; padding-bottom: 48px; }
+}
