@@ -8,8 +8,8 @@ const files = (await readdir(root, { recursive: true })).filter(path => path.end
 const documents = await Promise.all(files.map(async file => [file, await readFile(join(root, file), 'utf8')]));
 
 test('every mod and wiki guide has a generated page', async () => {
-  const source = await readFile(new URL('../src/data/mods.ts', import.meta.url), 'utf8');
-  const slugs = [...source.matchAll(/slug: '([^']+)'/g)].map(match => match[1]);
+  const source = JSON.parse(await readFile(new URL('../src/data/mods.json', import.meta.url), 'utf8'));
+  const slugs = source.mods.map(mod => mod.slug);
   assert.equal(slugs.length, 13);
   for (const slug of slugs) {
     await access(join(root, 'mods', slug, 'index.html'));
@@ -55,12 +55,22 @@ test('pages have English metadata, one h1, descriptions, and unique titles', () 
   assert.equal(new Set(titles).size, titles.length);
 });
 
-test('draft release content is absent from pages, search and sitemap', async () => {
+test('draft release content is hidden and the changelog matches published releases', async () => {
   for (const [file, html] of documents) {
     assert(!html.includes('YOUR-VERSION'), file);
     assert(!html.includes('Draft template'), file);
   }
   assert(!(await readFile(join(root, 'sitemap.xml'), 'utf8')).includes('first-release'));
   await access(join(root, 'pagefind/pagefind.js'));
-  assert.match(documents.find(([file]) => file === 'modpack/changelog/index.html')[1], /No release notes yet/);
+
+  const changelog = documents.find(([file]) => file === 'modpack/changelog/index.html')?.[1];
+  assert(changelog, 'modpack changelog page should exist');
+  const firstReleaseLink = changelog.match(/href="(\/modpack\/changelog\/[^"]+\/)"/);
+  if (firstReleaseLink) {
+    const detailPath = firstReleaseLink[1].replace(/^\//, '') + 'index.html';
+    await access(join(root, detailPath));
+    assert(!changelog.includes('No release notes yet'));
+  } else {
+    assert.match(changelog, /No release notes yet/);
+  }
 });
