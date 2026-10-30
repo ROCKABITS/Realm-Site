@@ -128,7 +128,7 @@
       "slug": "realm-economy",
       "name": "Realm Economy",
       "label": "Give every coin a purpose",
-      "version": "0.4.1",
+      "version": "0.5.0",
       "category": "Economy & trade",
       "image": "economy",
       "description": "Bring the kingdom’s economy into everyday survival.",
@@ -142,7 +142,7 @@
       "firstStep": "Install Realm Origins and its dependencies first, then read the service guide before using paid workstations.",
       "integrations": "Uses Realm Origins 0.5.7. Treasury receives applicable taxes and Council identifies the President. Replaces Realm Villager Economy; remove the old JAR.",
       "folder": "realm-economy",
-      "jar": "realm-economy-0.4.1.jar"
+      "jar": "realm-economy-0.5.0.jar"
     },
     {
       "slug": "realm-titles",
