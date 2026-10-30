@@ -21,7 +21,17 @@ const releases = (await getCollection('changelog', ({ data }) => !data.draft)).s
     <div class="season-large-art">
       <div class="season-ring" aria-hidden="true"></div>
       <div class="season-ring ring-two" aria-hidden="true"></div>
-      <Artwork name="season8Logo" alt="Season 8 modpack logo" class="season-logo-large" eager />
+      <div class="season-art-frame">
+        <div class="season-art-frame-top">
+          <span>REALM STUDIOS</span>
+          <span>08 / TAP FAMILY</span>
+        </div>
+        <Artwork name="season8Logo" alt="Season 8 modpack logo" class="season-logo-large" eager />
+        <div class="season-art-frame-bottom">
+          <span>SEASON <strong>08</strong></span>
+          <span>MINECRAFT · NEOFORGE</span>
+        </div>
+      </div>
     </div>
   </section>
 
