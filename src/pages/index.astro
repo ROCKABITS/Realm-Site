@@ -23,21 +23,17 @@ import { mods } from '../data/mods';
         </div>
       </div>
       <div class="home-art-area">
-        <div class="home-art-grid" aria-label="Artwork from three mods in the collection">
-          <figure class="home-art-main">
-            <Artwork name="origins" alt="Realm Origins character book artwork" eager />
-            <figcaption>Realm Origins</figcaption>
-          </figure>
-          <figure>
-            <Artwork name="treasury" alt="Realm Treasury artwork" eager />
-            <figcaption>Realm Treasury</figcaption>
-          </figure>
-          <figure>
-            <Artwork name="markets" alt="Realm Markets artwork" eager />
-            <figcaption>Realm Markets</figcaption>
-          </figure>
+        <div class="hero-art" aria-label="Artwork from Realm Origins, Realm Treasury, and Realm Markets">
+          <div class="orbit orbit-outer"></div>
+          <div class="orbit orbit-inner"></div>
+          <span class="orbit-star star-one">✦</span>
+          <span class="orbit-star star-two">✧</span>
+          <span class="art-caption caption-top">FROM THE MOD COLLECTION</span>
+          <div class="hero-piece piece-treasury"><Artwork name="treasury" alt="Realm Treasury artwork" eager /></div>
+          <div class="hero-piece piece-origins"><Artwork name="origins" alt="Realm Origins character book artwork" eager /></div>
+          <div class="hero-piece piece-markets"><Artwork name="markets" alt="Realm Markets artwork" eager /></div>
+          <div class="hero-art-note"><span class="status-dot"></span><span><strong>13 mods.</strong> Made for Minecraft multiplayer.</span></div>
         </div>
-        <p class="home-art-caption">A few projects from the current collection.</p>
       </div>
     </div>
   </section>
