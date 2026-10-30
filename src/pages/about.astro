@@ -4,4 +4,26 @@ import Artwork from '../components/Artwork.astro';
 import Icon from '../components/Icon.astro';
 import { github, curseforge } from '../data/site';
 ---
-<Layout title="About ROCKadm" description="Meet Realm Studios, the home of Minecraft mods and the Season 8 modpack created by ROCKadm."><section class="container about-hero" data-pagefind-body><div><p class="eyebrow">THE CREATOR BEHIND THE COLLECTION</p><h1>Made by ROCKadm.<br /><em>For your stories.</em></h1><p class="hero-description">Realm Studios is the home of my Minecraft mods: a collection of systems for the characters, communities, and kingdoms players create together.</p><p>From a signature on an identity document to an election in the town square, each mod gives the world another detail to make your own.</p><div class="button-row"><a class="button button-gold" href={curseforge} target="_blank" rel="noopener noreferrer">Find me on CurseForge <Icon name="diagonal" size={18} /></a><a class="button button-outline" href={github} target="_blank" rel="noopener noreferrer">Explore the source <Icon name="code" size={18} /></a></div></div><div class="about-art"><Artwork name="contracts" alt="An illustrated medieval noticeboard from Contracts & Bounties" eager /></div></section><section class="container about-values"><div><span class="eyebrow">01 / A WORLD YOU CAN TOUCH</span><h2>Built into the world.</h2><p>Stalls, desks, noticeboards, and ballot boxes give systems a physical home in the places players build.</p></div><div><span class="eyebrow">02 / A PART IN THE STORY</span><h2>Made for roleplay.</h2><p>Characters, commerce, government, and community life create opportunities for players to write their own stories.</p></div><div><span class="eyebrow">03 / KNOWLEDGE TO SHARE</span><h2>A guide for the journey.</h2><p>The wiki explains how to get started, how each system works, and which integrations bring the collection together.</p></div></section></Layout>
+<Layout title="About ROCKadm" description="Learn about Realm Studios, an independent Minecraft modding project by ROCKadm.">
+  <section class="container about-simple" data-pagefind-body>
+    <div class="about-simple-copy">
+      <p class="eyebrow">About this project</p>
+      <h1>I'm ROCKadm. I make Minecraft mods.</h1>
+      <p class="about-lead">Realm Studios is where I publish the mods I build for Minecraft Java. Most focus on roleplay and multiplayer, with systems for characters, money, shops and community life.</p>
+      <p>I started making these mods for the worlds I play in with friends. As the collection grew, I made this site to keep the projects, guides and updates together.</p>
+      <div class="button-row">
+        <a class="button button-gold" href={curseforge} target="_blank" rel="noopener noreferrer">My CurseForge projects <Icon name="diagonal" size={18} /></a>
+        <a class="button button-outline" href={github} target="_blank" rel="noopener noreferrer">GitHub source <Icon name="code" size={18} /></a>
+      </div>
+    </div>
+    <div class="about-simple-art">
+      <Artwork name="origins" alt="Realm Origins mod artwork" eager />
+      <span>One of the projects in the collection: Realm Origins.</span>
+    </div>
+  </section>
+  <section class="container about-simple-links">
+    <a href="/mods/"><strong>Browse the mods</strong><span>See the full list of projects.</span><Icon name="arrow" size={18} /></a>
+    <a href="/wiki/"><strong>Read the wiki</strong><span>Installation help and player guides.</span><Icon name="arrow" size={18} /></a>
+    <a href="/modpack/"><strong>Season 8</strong><span>Information and release notes for the group modpack.</span><Icon name="arrow" size={18} /></a>
+  </section>
+</Layout>
