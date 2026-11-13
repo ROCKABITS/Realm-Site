@@ -1,9 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
+const mods = JSON.parse(readFileSync(new URL('../../src/data/mods.json', import.meta.url),'utf8')).mods;
+const guideCount = readdirSync(new URL('../../src/content/wiki/', import.meta.url)).filter(x => x.endsWith('.md')).length;
 
 test('mod category and text filters work together and reset', async ({ page }) => {
   await page.goto('/mods/');
-  await expect(page.locator('.mod-card:visible')).toHaveCount(13);
+  await expect(page.locator('.mod-card:visible')).toHaveCount(mods.length);
   await page.getByRole('button', { name: 'Economy & trade', exact: true }).click();
   await expect(page.locator('.mod-card:visible')).toHaveCount(3);
   await page.getByRole('searchbox', { name: 'Search mods' }).fill('market');
@@ -11,7 +13,7 @@ test('mod category and text filters work together and reset', async ({ page }) =
   await page.getByRole('searchbox', { name: 'Search mods' }).fill('no-such-mod');
   await expect(page.locator('#no-mods')).toBeVisible();
   await page.getByRole('button', { name: 'Show all mods' }).click();
-  await expect(page.locator('.mod-card:visible')).toHaveCount(13);
+  await expect(page.locator('.mod-card:visible')).toHaveCount(mods.length);
 });
 
 test('full-text search finds guide content and supports keyboard dismissal', async ({ page }) => {
@@ -30,16 +32,16 @@ test('full-text search finds guide content and supports keyboard dismissal', asy
 
 test('wiki filtering hides empty categories and restores all guides', async ({ page }) => {
   await page.goto('/wiki/');
-  await expect(page.locator('.wiki-guide-card:visible')).toHaveCount(14);
+  await expect(page.locator('.wiki-guide-card:visible')).toHaveCount(guideCount);
   await page.getByRole('searchbox', { name: 'Filter player guides' }).fill('wedding');
   await expect(page.locator('.wiki-guide-card:visible')).toHaveCount(1);
   await expect(page.locator('.wiki-group:visible')).toHaveCount(1);
   await page.getByRole('searchbox', { name: 'Filter player guides' }).fill('');
-  await expect(page.locator('.wiki-guide-card:visible')).toHaveCount(14);
+  await expect(page.locator('.wiki-guide-card:visible')).toHaveCount(guideCount);
 });
 
 test('mobile navigation, overflow, and images work across key pages', async ({ page }) => {
-  for (const width of [360, 390, 768]) {
+  for (const width of [320, 360, 390, 768]) {
     await page.setViewportSize({ width, height: 844 });
     for (const route of ['/', '/mods/', '/mods/realm-origins/', '/wiki/', '/wiki/realm-marriage/', '/modpack/', '/modpack/changelog/']) {
       await page.goto(route);
@@ -58,9 +60,11 @@ test('mobile navigation, overflow, and images work across key pages', async ({ p
   await expect(menu).toBeFocused();
 });
 
-test('published changelog has an honest empty state and no draft', async ({ page }) => {
+test('changelog matches the published release content and hides drafts', async ({ page }) => {
   await page.goto('/modpack/changelog/');
-  await expect(page.getByRole('heading', { name: 'No release notes yet.' })).toBeVisible();
+  const published = readdirSync(new URL('../../src/content/changelog/',import.meta.url)).filter(x=>x.endsWith('.md')).some(name=>!/draft:\s*true/.test(readFileSync(new URL('../../src/content/changelog/'+name, import.meta.url),'utf8')));
+  if (published) { await expect(page.locator('.release-card').first()).toBeVisible();await expect(page.getByRole('heading',{name:'No release notes yet.'})).not.toBeVisible(); }
+  else await expect(page.getByRole('heading',{name:'No release notes yet.'})).toBeVisible();
   await expect(page.locator('body')).not.toContainText('YOUR-VERSION');
   await expect(page.locator('body')).not.toContainText('Draft template');
 });
@@ -76,4 +80,25 @@ test('key pages pass serious and critical accessibility checks', async ({ page }
     });
     expect(violations, route).toEqual([]);
   }
+});
+
+
+test('mobile downloads are visible before scrolling and loader editions are distinct', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const slug of ['realm-origins','realm-gym','contracts-bounties']) {
+    await page.goto(`/mods/${slug}/`);await page.evaluate(async()=>{await document.fonts.ready;});
+    const button=page.getByRole('link',{name:'Download JAR',exact:true});const box=await button.boundingBox();
+    expect(box).not.toBeNull();expect(box!.y+box!.height).toBeLessThan(844);
+  }
+  await expect(page.getByRole('link',{name:'Download Contracts & Bounties for Forge 1.20.1',exact:true})).toHaveAttribute('href',/forge-1.20.1.jar$/);
+});
+
+test('Realm Gym has gameplay images and a video without autoplay', async ({ page }) => {
+  await page.goto('/mods/realm-gym/');await expect(page.locator('.gameplay-grid img')).toHaveCount(2);
+  await expect(page.locator('video')).toHaveAttribute('preload','none');await expect(page.locator('video')).not.toHaveAttribute('autoplay','');
+});
+
+test('Season 8 explains availability and links to access instructions', async ({ page }) => {
+  await page.goto('/modpack/');await expect(page.locator('.version-label')).not.toBeEmpty();
+  await expect(page.locator('#modpack-access')).toBeVisible();await expect(page.locator('.distribution-label')).not.toBeEmpty();
 });

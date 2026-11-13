@@ -5,18 +5,19 @@ import { join, extname } from 'node:path';
 
 const root = new URL('../dist/', import.meta.url).pathname;
 const files = (await readdir(root, { recursive: true })).filter(path => path.endsWith('.html'));
-const documents = await Promise.all(files.map(async file => [file, await readFile(join(root, file), 'utf8')]));
+const documents = await Promise.all(files.filter(file => !file.startsWith('admin/')).map(async file => [file, await readFile(join(root, file), 'utf8')]));
 
 test('every mod and wiki guide has a generated page', async () => {
   const source = JSON.parse(await readFile(new URL('../src/data/mods.json', import.meta.url), 'utf8'));
   const slugs = source.mods.map(mod => mod.slug);
-  assert.equal(slugs.length, 13);
+  assert(slugs.length > 0);
+  assert.equal(new Set(slugs).size, slugs.length);
   for (const slug of slugs) {
     await access(join(root, 'mods', slug, 'index.html'));
     await access(join(root, 'wiki', slug, 'index.html'));
   }
   await access(join(root, 'wiki/installation/index.html'));
-  assert.equal(files.length, 34);
+  assert(files.length >= slugs.length * 2 + 6);
 });
 
 test('internal links, image sources, scripts and fragment targets resolve', async () => {
@@ -73,4 +74,24 @@ test('draft release content is hidden and the changelog matches published releas
   } else {
     assert.match(changelog, /No release notes yet/);
   }
+});
+
+
+test('production metadata uses the canonical domain and the CMS home content is rendered', async () => {
+  const home = JSON.parse(await readFile(new URL('../src/data/home.json', import.meta.url), 'utf8'));
+  const html = await readFile(join(root, 'index.html'), 'utf8');
+  for (const key of ['heroTitle','heroEmphasis','heroPrimary','heroSecondary','collectionTitle','wikiTitle','seasonTitle']) assert(html.includes(home[key]), key);
+  for (const [file, document] of documents) {
+    assert(document.includes('rel="canonical" href="https://realmstudios.pt/'), file);
+    assert(!document.includes('pages.dev'), file);
+  }
+  assert((await readFile(join(root,'sitemap.xml'),'utf8')).includes('https://realmstudios.pt/mods/realm-gym/'));
+  assert((await readFile(join(root,'robots.txt'),'utf8')).includes('Sitemap: https://realmstudios.pt/sitemap.xml'));
+});
+
+test('mod pages expose actual screenshots and separate loader downloads', async () => {
+  const gym = await readFile(join(root, 'mods/realm-gym/index.html'), 'utf8');
+  assert(gym.includes('gameplay-section'));assert(gym.includes('<video'));assert(gym.includes('Realm Gym'));
+  const contracts = await readFile(join(root, 'mods/contracts-bounties/index.html'), 'utf8');
+  assert(contracts.includes('Forge · Minecraft 1.20.1'));assert(contracts.includes('Download Forge'));assert(contracts.includes('Download NeoForge'));
 });

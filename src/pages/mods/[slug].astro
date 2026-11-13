@@ -1,15 +1,37 @@
 ---
+import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Artwork from '../../components/Artwork.astro';
 import Icon from '../../components/Icon.astro';
 import ModCard from '../../components/ModCard.astro';
+import ModGallery from '../../components/ModGallery.astro';
 import { mods, sourceUrl, downloadUrl } from '../../data/mods';
+import { artwork, type ArtworkName } from '../../data/artwork';
+import { creator } from '../../data/site';
 export function getStaticPaths() { return mods.map(mod => ({ params: { slug: mod.slug }, props: { mod } })); }
 const { mod } = Astro.props;
+const primary = mod.editions[0];
+const label = /[.!?]$/.test(mod.label) ? mod.label : `${mod.label}.`;
 const related = mods.filter(item => item.category === mod.category && item.slug !== mod.slug).slice(0, 3);
+const social = await getImage({ src: artwork[mod.image as ArtworkName], width: 800, format: 'webp' });
 ---
-<Layout title={mod.name} description={mod.description}>
+<Layout title={mod.name} description={mod.description} image={social.src}>
   <div class="container"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/mods/">The collection</a><Icon name="chevron" size={12} /><span>{mod.name}</span></nav></div>
-  <article data-pagefind-body><section class="container mod-detail-hero"><div class="mod-detail-art"><Artwork name={mod.image} alt={`${mod.name} official artwork`} eager /><span class="art-label">THE REALM STUDIOS COLLECTION</span></div><div><p class="eyebrow">{mod.category}</p><h1>{mod.name}</h1><p class="mod-label">{mod.label}.</p><p class="detail-description">{mod.story}</p><div class="detail-pills"><span>v{mod.version}</span><span>NeoForge</span><span>Client + server</span></div><div class="button-row"><a href={downloadUrl(mod)} class="button button-gold"><Icon name="download" size={18} /> Download JAR</a><a href={`/wiki/${mod.slug}/`} class="button button-outline"><Icon name="book" size={18} /> Player guide</a></div><p class="download-note">For Minecraft 1.21.1 · Java 21 · Created by ROCKadm</p></div></section><div class="container mod-detail-grid"><section><p class="eyebrow">A CLOSER LOOK</p><h2>A place in <em>your world.</em></h2><ul class="feature-list">{mod.features.map(feature => <li><span><Icon name="check" size={16} /></span>{feature}</li>)}</ul><div class="first-step"><span class="eyebrow">YOUR FIRST STEP</span><h3>Let’s get you started.</h3><p>{mod.firstStep}</p><a class="text-link" href={`/wiki/${mod.slug}/`}>Follow the player guide <Icon name="arrow" size={17} /></a></div></section><aside class="mod-specs"><h3>Good to know</h3><dl><div><dt>Minecraft</dt><dd>Java 1.21.1</dd></div><div><dt>Mod loader</dt><dd>NeoForge 21.1.256+</dd></div><div><dt>Java</dt><dd>21</dd></div><div><dt>Install on</dt><dd>Client & server</dd></div><div><dt>Listed version</dt><dd>{mod.version}</dd></div><div><dt>Creator</dt><dd>ROCKadm</dd></div></dl><h4>Dependencies & integrations</h4><p>{mod.integrations}</p><a href="/wiki/installation/" class="text-link">Installation guide <Icon name="diagonal" size={14} /></a><a href={sourceUrl(mod)} target="_blank" rel="noopener noreferrer" class="text-link">Source & detailed documentation <Icon name="diagonal" size={14} /></a><small>Version details are maintained with the site. Check the source documentation before updating an existing world.</small></aside></div></article>
-  {related.length > 0 && <section class="container section"><div class="section-heading"><div><p class="eyebrow">KEEP EXPLORING</p><h2>More for <em>your story.</em></h2></div><a class="text-link" href="/mods/">All mods <Icon name="arrow" size={17} /></a></div><div class="mod-grid related-grid">{related.map(item => <ModCard mod={item} />)}</div></section>}
+  <article data-pagefind-body>
+    <section class="container mod-detail-hero">
+      <div class="mod-detail-copy"><p class="eyebrow">{mod.category}</p><h1>{mod.name}</h1><p class="mod-label">{label}</p><p class="detail-description">{mod.description}</p>
+        <div class="detail-pills"><span>v{primary.version}</span><span>{primary.loader} · {primary.minecraft}</span><span>Client + server</span>{primary.status === 'Beta' && <span>Beta</span>}</div>
+        <div class="button-row"><a href={downloadUrl(mod)} class="button button-primary"><Icon name="download" size={18} /> Download JAR</a><a href={`/wiki/${mod.slug}/`} class="button button-outline"><Icon name="book" size={18} /> Player guide</a></div>
+        <p class="download-note">Minecraft {primary.minecraft} · {primary.loader} {primary.loaderVersion} · Java {primary.java}</p>
+        {mod.editions.length > 1 && <a href="#downloads" class="text-link">Choose another Minecraft / loader edition <Icon name="arrow" size={16} /></a>}
+      </div>
+      <div class="mod-detail-art"><Artwork name={mod.image} alt={`${mod.name} artwork`} eager /></div>
+    </section>
+    <ModGallery mod={mod} />
+    <div class="container mod-detail-grid"><section><p class="eyebrow">A closer look</p><h2>A place in <em>your world.</em></h2><p class="detail-story">{mod.story}</p><ul class="feature-list">{mod.features.map(feature => <li><span><Icon name="check" size={16} /></span>{feature}</li>)}</ul><div class="first-step"><span class="eyebrow">Your first step</span><h3>Let’s get you started.</h3><p>{mod.firstStep}</p><a class="text-link" href={`/wiki/${mod.slug}/`}>Follow the player guide <Icon name="arrow" size={17} /></a></div></section>
+      <aside class="mod-specs"><h3>Good to know</h3><dl><div><dt>Minecraft</dt><dd>{[...new Set(mod.editions.map(x => x.minecraft))].join(' / ')}</dd></div><div><dt>Mod loaders</dt><dd>{[...new Set(mod.editions.map(x => x.loader))].join(' / ')}</dd></div><div><dt>Install on</dt><dd>Client & server</dd></div><div><dt>Creator</dt><dd>{creator}</dd></div></dl><h4>Dependencies & integrations</h4><p>{mod.integrations}</p><a href="/wiki/installation/" class="text-link">Installation guide <Icon name="diagonal" size={14} /></a><a href={sourceUrl(mod)} target="_blank" rel="noopener noreferrer" class="text-link">Source & detailed documentation <Icon name="diagonal" size={14} /></a></aside>
+    </div>
+    <section class="container downloads-section" id="downloads" aria-labelledby="downloads-title"><p class="eyebrow">Choose your edition</p><h2 id="downloads-title">Ready to <em>play?</em></h2><p>Match both Minecraft and your mod loader. Install the same edition on the server and every client.</p><div class="download-grid">{mod.editions.map(edition => <article class="download-card"><h3>{edition.loader} · Minecraft {edition.minecraft}</h3><p>Version {edition.version}{edition.status === 'Beta' && ' · Beta'} · Java {edition.java}</p><p class="download-requirement">{edition.loader} {edition.loaderVersion}</p><a href={edition.downloadUrl} class="button button-primary" aria-label={`Download ${mod.name} for ${edition.loader} ${edition.minecraft}`}><Icon name="download" size={18} /> Download {edition.loader}</a></article>)}</div></section>
+  </article>
+  {related.length > 0 && <section class="container section"><div class="section-heading"><div><p class="eyebrow">Keep exploring</p><h2>More for <em>your story.</em></h2></div><a class="text-link" href="/mods/">All mods <Icon name="arrow" size={17} /></a></div><div class="mod-grid related-grid">{related.map(item => <ModCard mod={item} />)}</div></section>}
 </Layout>

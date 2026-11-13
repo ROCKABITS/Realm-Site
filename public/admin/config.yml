@@ -26,6 +26,7 @@ collections:
         fields:
           - { label: Site name, name: siteName, widget: string }
           - { label: Creator, name: creator, widget: string }
+          - { label: Site description, name: description, widget: text }
           - { label: GitHub link, name: github, widget: string }
           - { label: CurseForge link, name: curseforge, widget: string }
           - label: Categories
@@ -38,7 +39,8 @@ collections:
             fields:
               - { label: Name, name: name, widget: string }
               - { label: Version, name: version, widget: string, required: false }
-              - { label: Download URL, name: downloadUrl, widget: string, required: false }
+              - { label: Distribution, name: distribution, widget: select, options: [group, public], default: group }
+              - { label: Download URL, name: downloadUrl, widget: string, required: false, hint: "Required for public distribution." }
       - name: home
         label: Homepage
         file: src/data/home.json
@@ -52,15 +54,15 @@ collections:
           - { label: Second button, name: heroSecondary, widget: string }
           - { label: Collection eyebrow, name: collectionEyebrow, widget: string }
           - { label: Collection title, name: collectionTitle, widget: string }
-          - { label: Collection title emphasis, name: collectionEmphasis, widget: string }
+          - { label: Collection title emphasis, name: collectionEmphasis, widget: string, required: false }
           - { label: Collection link, name: collectionLink, widget: string }
           - { label: Wiki eyebrow, name: wikiEyebrow, widget: string }
           - { label: Wiki title, name: wikiTitle, widget: string }
-          - { label: Wiki title emphasis, name: wikiEmphasis, widget: string }
+          - { label: Wiki title emphasis, name: wikiEmphasis, widget: string, required: false }
           - { label: Wiki description, name: wikiDescription, widget: text }
           - { label: Modpack eyebrow, name: seasonLabel, widget: string }
           - { label: Modpack title, name: seasonTitle, widget: string }
-          - { label: Modpack title emphasis, name: seasonEmphasis, widget: string }
+          - { label: Modpack title emphasis, name: seasonEmphasis, widget: string, required: false }
           - { label: Modpack description, name: seasonDescription, widget: text }
   - name: mods
     label: Mods
@@ -78,17 +80,16 @@ collections:
               - { label: Slug, name: slug, widget: string }
               - { label: Name, name: name, widget: string }
               - { label: Short label, name: label, widget: string }
-              - { label: Version, name: version, widget: string }
-              - { label: Category, name: category, widget: string }
-              - { label: Artwork key, name: image, widget: string }
+              - { label: Category, name: category, widget: select, options: ["Character & society", "Economy & trade", "Kingdom & justice", "Activities & rewards"] }
+              - { label: Artwork key, name: image, widget: select, options: [origins, treasury, markets, council, contracts, identity, economy, titles, marriage, justice, casino, rewards, notifications, gym] }
               - { label: Description, name: description, widget: text }
               - { label: Story, name: story, widget: text }
               - { label: Features, name: features, widget: list, field: { label: Feature, name: feature, widget: string } }
               - { label: First step, name: firstStep, widget: text }
               - { label: Integrations, name: integrations, widget: text }
-              - { label: Source folder, name: folder, widget: string }
-              - { label: JAR filename, name: jar, widget: string }
               - { label: Feature on homepage, name: featured, widget: boolean, required: false }
+              - { label: Screenshots, name: gallery, widget: select, multiple: true, required: false, options: [originsCreation, originsBook, treasuryLoans, marketsStalls, casinoTables, marriageAltar, gymEquipment, gymProfile, treasuryContract, marriageAgreement, casinoPoker, contractsCatalogue] }
+              - { label: Gameplay video, name: video, widget: select, required: false, options: [gymBench] }
   - name: wiki
     label: Wiki guides
     folder: src/content/wiki
@@ -99,7 +100,8 @@ collections:
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Description, name: description, widget: text }
-      - { label: Section, name: section, widget: string }
+      - { label: Category, name: category, widget: select, options: ["Getting started", "Character & society", "Economy & trade", "Kingdom & justice", "Activities & rewards"] }
+      - { label: Mod slug, name: mod, widget: string, required: false }
       - { label: Order, name: order, widget: number }
       - { label: Draft, name: draft, widget: boolean, required: false }
       - { label: Body, name: body, widget: markdown }

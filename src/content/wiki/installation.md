@@ -7,7 +7,7 @@ order: 1
 
 ## Before you begin
 
-The Realm gameplay mods target **Minecraft Java 1.21.1**, **NeoForge 21.1.256+ in the 21.1 series**, and **Java 21**. These downloads are for NeoForge, so choose the matching loader when creating your instance.
+Most Realm gameplay mods target **Minecraft Java 1.21.1**, **NeoForge 21.1.256+**, and **Java 21**. Contracts & Bounties also has a separate **Forge 1.20.1 / Java 17** edition. Choose the exact Minecraft and loader edition shown on each download; these editions are not interchangeable.
 
 Install the same version of each gameplay mod on the server and on every participating client. For a LAN world, the hosting player's instance also acts as the server.
 
@@ -42,6 +42,7 @@ Several projects have changed names:
 | Realm Origins | Chronicles RP |
 | Realm Treasury | Crown Ledger |
 | Realm Economy | Realm Villager Economy |
+| Realm Gym | Realm Fitness |
 
 Each pair shares or migrates existing systems. Do not install both the old and new mod. A downgrade may require restoring the complete pre-update backup.
 

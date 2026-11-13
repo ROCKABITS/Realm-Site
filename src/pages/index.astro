@@ -4,22 +4,24 @@ import Artwork from '../components/Artwork.astro';
 import ModCard from '../components/ModCard.astro';
 import Icon from '../components/Icon.astro';
 import { mods } from '../data/mods';
+import home from '../data/home';
+import { modpack, creator, siteName, description } from '../data/site';
 ---
-<Layout title="Home" description="Independent Minecraft mods by ROCKadm for roleplay and multiplayer worlds. Browse the collection, player guides and the Season 8 modpack.">
+<Layout title="Home" description={description}>
   <section class="home-intro">
     <div class="container home-intro-inner">
       <div class="home-intro-copy">
-        <p class="eyebrow">Independent Minecraft modding</p>
-        <h1>Minecraft mods for <em>roleplay and multiplayer.</em></h1>
-        <p class="home-lead">I'm ROCKadm. I make NeoForge mods that add character systems, economies, markets and community features to Minecraft worlds.</p>
+        <p class="eyebrow">{home.eyebrow}</p>
+        <h1>{home.heroTitle} <em>{home.heroEmphasis}</em></h1>
+        <p class="home-lead">{home.heroDescription}</p>
         <div class="button-row">
-          <a href="/mods/" class="button button-gold">Browse the mods <Icon name="arrow" size={18} /></a>
-          <a href="/wiki/" class="button button-quiet">Read the wiki <Icon name="book" size={18} /></a>
+          <a href="/mods/" class="button button-primary">{home.heroPrimary} <Icon name="arrow" size={18} /></a>
+          <a href="/wiki/" class="button button-quiet">{home.heroSecondary} <Icon name="book" size={18} /></a>
         </div>
         <div class="home-meta" aria-label="Compatibility">
-          <span>Minecraft Java 1.21.1</span>
-          <span>NeoForge 21.1.256+</span>
-          <span>Java 21</span>
+          <span>Minecraft Java</span>
+          <span>NeoForge · Forge editions</span>
+          <span>Check each download</span>
         </div>
       </div>
       <div class="home-art-area">
@@ -32,7 +34,7 @@ import { mods } from '../data/mods';
           <div class="hero-piece piece-treasury"><Artwork name="treasury" alt="Realm Treasury artwork" eager /></div>
           <div class="hero-piece piece-origins"><Artwork name="origins" alt="Realm Origins character book artwork" eager /></div>
           <div class="hero-piece piece-markets"><Artwork name="markets" alt="Realm Markets artwork" eager /></div>
-          <div class="hero-art-note"><span class="status-dot"></span><span><strong>13 mods.</strong> Made for Minecraft multiplayer.</span></div>
+          <div class="hero-art-note"><span class="status-dot"></span><span><strong>{mods.length} mods.</strong> Made for Minecraft multiplayer.</span></div>
         </div>
       </div>
     </div>
@@ -41,11 +43,11 @@ import { mods } from '../data/mods';
   <section class="container home-collection" id="mods" aria-labelledby="home-mods-title">
     <div class="home-section-heading">
       <div>
-        <p class="eyebrow">The mod collection</p>
-        <h2 id="home-mods-title">Browse the mods.</h2>
+        <p class="eyebrow">{home.collectionEyebrow}</p>
+        <h2 id="home-mods-title">{home.collectionTitle} {home.collectionEmphasis && <em>{home.collectionEmphasis}</em>}</h2>
         <p>Character creation, trading, elections, contracts and other systems for modded multiplayer worlds.</p>
       </div>
-      <a href="/mods/" class="text-link">All {mods.length} mods <Icon name="arrow" size={18} /></a>
+      <a href="/mods/" class="text-link">{home.collectionLink} <span>({mods.length})</span> <Icon name="arrow" size={18} /></a>
     </div>
     <div class="mod-grid featured-grid">
       {mods.filter(mod => mod.featured).map((mod, index) => <ModCard mod={mod} index={index} />)}
@@ -55,9 +57,9 @@ import { mods } from '../data/mods';
   <section class="home-guides">
     <div class="container home-guides-inner">
       <div class="home-guides-copy">
-        <p class="eyebrow">Player guides</p>
-        <h2>Need help setting things up?</h2>
-        <p>The wiki covers installation, dependencies and the basics of each system.</p>
+        <p class="eyebrow">{home.wikiEyebrow}</p>
+        <h2>{home.wikiTitle} {home.wikiEmphasis && <em>{home.wikiEmphasis}</em>}</h2>
+        <p>{home.wikiDescription}</p>
         <a href="/wiki/" class="button button-dark">Open the wiki <Icon name="arrow" size={18} /></a>
       </div>
       <div class="home-guide-list">
@@ -83,10 +85,10 @@ import { mods } from '../data/mods';
         <Artwork name="season8Logo" alt="Season 8 modpack logo" />
       </div>
       <div class="home-season-copy">
-        <p class="eyebrow">Our group modpack</p>
-        <h2>Season 8</h2>
-        <p>The modpack our group uses to play together. Check the modpack page for information, updates and release notes.</p>
-        <a href="/modpack/" class="text-link">Season 8 details <Icon name="arrow" size={18} /></a>
+        <p class="eyebrow">{home.seasonLabel}</p>
+        <h2>{home.seasonTitle} {home.seasonEmphasis && <em>{home.seasonEmphasis}</em>}</h2>
+        <p>{home.seasonDescription}</p>
+        <a href="/modpack/" class="text-link">{modpack.name} details <Icon name="arrow" size={18} /></a>
       </div>
     </div>
   </section>
@@ -95,10 +97,10 @@ import { mods } from '../data/mods';
     <div class="container home-about-inner">
       <div>
         <p class="eyebrow">Who makes these?</p>
-        <h2>I'm ROCKadm.</h2>
+        <h2>I'm {creator}.</h2>
       </div>
       <div>
-        <p>Realm Studios is where I share the Minecraft mods I build, along with their downloads, guides and updates. It's an independent project that grows as I work on new features.</p>
+        <p>{siteName} is where I share the Minecraft mods I build, along with their downloads, guides and updates. It's an independent project that grows as I work on new features.</p>
         <a href="/about/" class="text-link">A little more about the project <Icon name="arrow" size={18} /></a>
       </div>
     </div>

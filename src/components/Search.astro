@@ -1,12 +1,13 @@
 ---
 import Icon from './Icon.astro';
+import { siteName } from '../data/site';
 ---
 <dialog id="site-search" class="search-dialog" aria-labelledby="search-title">
   <div class="search-top"><label id="search-title" for="global-search-input">Search the archives</label><button class="icon-button" data-search-close aria-label="Close search"><Icon name="close" /></button></div>
   <div class="search-input-wrap"><Icon name="search" /><input id="global-search-input" type="search" placeholder="Try “wallet”, “wedding”, or “elections”…" autocomplete="off" /><kbd>ESC</kbd></div>
   <p id="search-status" class="search-status" role="status">Search mods, player guides, and release notes.</p>
   <div id="search-results" class="search-results"></div>
-  <div class="search-bottom">THE REALM STUDIOS ARCHIVE <span>Built for curious adventurers.</span></div>
+  <div class="search-bottom">{siteName.toUpperCase()} ARCHIVE <span>Built for curious adventurers.</span></div>
 </dialog>
 <script>
   const dialog = document.querySelector<HTMLDialogElement>('#site-search')!;

@@ -5,18 +5,20 @@ import Artwork from '../../components/Artwork.astro';
 import Icon from '../../components/Icon.astro';
 import { modpack } from '../../data/site';
 const releases = (await getCollection('changelog', ({ data }) => !data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const publishedVersion = modpack.version || releases[0]?.data.version;
+const publicDownload = modpack.distribution === 'public' && modpack.downloadUrl;
 ---
-<Layout title="Season 8 modpack" description="Information, guides and release notes for the Season 8 Minecraft modpack played by our group.">
+<Layout title={`${modpack.name} modpack`} description="Information, guides and release notes for the Season 8 Minecraft modpack played by our group.">
   <section class="container modpack-hero" data-pagefind-body>
     <div class="modpack-hero-copy">
       <p class="eyebrow">Realm Studios / Modpack</p>
-      <h1>Season 8.<br /><em>The modpack.</em></h1>
+      <h1>{modpack.name}.<br /><em>The modpack.</em></h1>
       <p>The Minecraft modpack our group uses to play together. Find the information you need, follow updates and check the release notes here.</p>
       <div class="button-row">
-        {modpack.downloadUrl ? <a href={modpack.downloadUrl} class="button button-gold" target="_blank" rel="noopener noreferrer"><Icon name="download" size={18} /> Download the modpack</a> : <a href="/modpack/changelog/" class="button button-gold"><Icon name="scroll" size={18} /> View release notes</a>}
+        {publicDownload ? <a href={modpack.downloadUrl} class="button button-primary" target="_blank" rel="noopener noreferrer"><Icon name="download" size={18} /> Download the modpack</a> : <a href="#modpack-access" class="button button-primary"><Icon name="arrow" size={18} /> How to get the modpack</a>}
         <a href="/wiki/" class="button button-quiet">Player wiki <Icon name="arrow" size={18} /></a>
       </div>
-      {modpack.version && <span class="version-label">Current version: {modpack.version}</span>}
+      {publishedVersion && <p class="version-label">{modpack.version ? 'Current version' : 'Latest published release'}: {publishedVersion}</p>}<p class="distribution-label">{publicDownload ? 'Public download available' : 'Shared within our group'}</p>
     </div>
     <div class="season-large-art">
       <div class="season-ring" aria-hidden="true"></div>
@@ -34,6 +36,8 @@ const releases = (await getCollection('changelog', ({ data }) => !data.draft)).s
       </div>
     </div>
   </section>
+
+  <section class="container modpack-access" id="modpack-access" aria-labelledby="access-title"><p class="eyebrow">Getting started</p><h2 id="access-title">{publicDownload ? 'Install the modpack.' : 'Playing with the group?'}</h2><p>{publicDownload ? 'Download the pack export, import it into a compatible Minecraft launcher, and follow the included version requirements.' : 'Season 8 is shared within our group. Ask your group organiser for the pack export, the matching launcher setup and the server details.'}</p><p>Use the pack’s exact Minecraft and loader versions. Update together with the group and keep a backup before changing an existing world.</p><a href="/wiki/installation/" class="text-link">Read the installation guide <Icon name="arrow" size={16} /></a></section>
 
   <div class="container modpack-divider">
     <span>SEASON 8</span>

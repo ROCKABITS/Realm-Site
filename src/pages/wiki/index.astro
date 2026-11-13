@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Icon from '../../components/Icon.astro';
-const guides = (await getCollection('wiki')).sort((a, b) => a.data.order - b.data.order);
+const guides = (await getCollection('wiki', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order);
 const groups = ['Getting started', 'Character & society', 'Economy & trade', 'Kingdom & justice', 'Activities & rewards'];
 ---
 <Layout title="Player wiki" description="Learn how to install and use Realm Studios mods. Step-by-step Minecraft guides for characters, shops, elections, marriage, and kingdom life." light>

@@ -13,5 +13,7 @@ import markets from '../../realm-markets-icon.png';
 import marriage from '../../realm-marriage-curseforge-icon.png';
 import season8Logo from '../../season8_logo.png';
 
-export const artwork = { origins, economy, notifications, rewards, titles, justice, contracts, treasury, casino, council, identity, markets, marriage, season8Logo };
+import gym from '../assets/mods/realm-gym.png';
+
+export const artwork = { origins, economy, notifications, rewards, titles, justice, contracts, treasury, casino, council, identity, markets, marriage, season8Logo, gym };
 export type ArtworkName = keyof typeof artwork;

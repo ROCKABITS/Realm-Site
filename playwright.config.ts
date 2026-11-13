@@ -12,7 +12,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',
   },
   webServer: {
-    command: 'npm run preview -- --port 4321',
+    command: 'npm run preview -- --port 4321 --ignore-lock',
     url: 'http://127.0.0.1:4321',
     reuseExistingServer: !process.env.CI,
     env: { ASTRO_TELEMETRY_DISABLED: '1' },

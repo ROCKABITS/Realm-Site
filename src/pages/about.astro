@@ -2,17 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import Artwork from '../components/Artwork.astro';
 import Icon from '../components/Icon.astro';
-import { github, curseforge } from '../data/site';
+import { github, curseforge, creator, siteName } from '../data/site';
 ---
-<Layout title="About ROCKadm" description="Learn about Realm Studios, an independent Minecraft modding project by ROCKadm.">
+<Layout title={`About ${creator}`} description={`Learn about ${siteName}, an independent Minecraft modding project by ${creator}.`}>
   <section class="container about-simple" data-pagefind-body>
     <div class="about-simple-copy">
       <p class="eyebrow">About this project</p>
-      <h1>I'm ROCKadm. I make Minecraft mods.</h1>
-      <p class="about-lead">Realm Studios is where I publish the mods I build for Minecraft Java. Most focus on roleplay and multiplayer, with systems for characters, money, shops and community life.</p>
+      <h1>I'm {creator}. I make Minecraft mods.</h1>
+      <p class="about-lead">{siteName} is where I publish the mods I build for Minecraft Java. Most focus on roleplay and multiplayer, with systems for characters, money, shops and community life.</p>
       <p>I started making these mods for the worlds I play in with friends. As the collection grew, I made this site to keep the projects, guides and updates together.</p>
       <div class="button-row">
-        <a class="button button-gold" href={curseforge} target="_blank" rel="noopener noreferrer">My CurseForge projects <Icon name="diagonal" size={18} /></a>
+        <a class="button button-primary" href={curseforge} target="_blank" rel="noopener noreferrer">My CurseForge projects <Icon name="diagonal" size={18} /></a>
         <a class="button button-outline" href={github} target="_blank" rel="noopener noreferrer">GitHub source <Icon name="code" size={18} /></a>
       </div>
     </div>

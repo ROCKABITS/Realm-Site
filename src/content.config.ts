@@ -9,6 +9,7 @@ const wiki = defineCollection({
     description: z.string(),
     category: z.enum(['Getting started', 'Character & society', 'Economy & trade', 'Kingdom & justice', 'Activities & rewards']),
     mod: z.string().optional(),
+    draft: z.boolean().default(false),
     order: z.number().default(50),
   }),
 });

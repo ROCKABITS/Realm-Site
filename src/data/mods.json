@@ -4,7 +4,6 @@
       "slug": "realm-origins",
       "name": "Realm Origins",
       "label": "Your story starts here",
-      "version": "0.5.7",
       "category": "Character & society",
       "image": "origins",
       "featured": true,
@@ -18,14 +17,15 @@
       ],
       "firstStep": "Create your character when prompted. Press P to open your character book afterwards.",
       "integrations": "Requires Origins 0.3.2 and Jupiter 2.3.7 for NeoForge. Origins: Classes 0.3 is optional. Replaces Chronicles RP; keep only one JAR.",
-      "folder": "realm-origins",
-      "jar": "realm-origins-0.5.7.jar"
+      "gallery": [
+        "originsCreation",
+        "originsBook"
+      ]
     },
     {
       "slug": "realm-treasury",
       "name": "Realm Treasury",
       "label": "The wealth of a kingdom",
-      "version": "0.4.0",
       "category": "Economy & trade",
       "image": "treasury",
       "featured": true,
@@ -39,14 +39,15 @@
       ],
       "firstStep": "Place the treasury block or loan counter and interact with it. Management depends on the current government or an operator-appointed steward.",
       "integrations": "Formerly Crown Ledger; do not install both. Can use physical emeralds independently. Origins supplies a digital wallet; Council supplies the elected ruler.",
-      "folder": "crown-ledger",
-      "jar": "realm-treasury-0.4.0.jar"
+      "gallery": [
+        "treasuryLoans",
+        "treasuryContract"
+      ]
     },
     {
       "slug": "realm-markets",
       "name": "Realm Markets",
       "label": "Open for business",
-      "version": "0.2.1",
       "category": "Economy & trade",
       "image": "markets",
       "featured": true,
@@ -60,17 +61,17 @@
       ],
       "firstStep": "Craft and place a stall, interact with it, then add stock and set the unit price.",
       "integrations": "Works with emeralds independently. New stalls can use the Origins wallet; Treasury adds sales tax. This version sells items without custom data.",
-      "folder": "realm-markets",
-      "jar": "realm-markets-0.2.1.jar"
+      "gallery": [
+        "marketsStalls"
+      ]
     },
     {
       "slug": "realm-council",
       "name": "Realm Council",
       "label": "Let the kingdom decide",
-      "version": "0.2.2",
       "category": "Kingdom & justice",
       "image": "council",
-      "featured": true,
+      "featured": false,
       "description": "Run for office, cast your vote, and swear an oath to the kingdom.",
       "story": "Give the people a voice. Physical election boards, ballot boxes, and an oath table turn government into something players take part in together.",
       "features": [
@@ -81,14 +82,12 @@
       ],
       "firstStep": "An operator sets up an election using an election board. Citizens consult the board and vote at a ballot box.",
       "integrations": "Works independently. Origins supplies character details; Notifications supplies optional medieval HUD notices. Political office does not grant operator permissions.",
-      "folder": "realm-council",
-      "jar": "realmcouncil-0.2.2.jar"
+      "gallery": []
     },
     {
       "slug": "contracts-bounties",
       "name": "Contracts & Bounties",
       "label": "A little work. A new adventure.",
-      "version": "0.4.0",
       "category": "Activities & rewards",
       "image": "contracts",
       "description": "Find work, post a contract, or take on your daily quests.",
@@ -101,14 +100,14 @@
       ],
       "firstStep": "Place a noticeboard and interact with it. Accept a daily quest before making progress, or browse player contracts.",
       "integrations": "Origins supplies money and reputation; Treasury supplies public funding and tax policy. Material contracts have an emerald fallback. Quest emerald mode requires administrative configuration.",
-      "folder": "contracts-bounties",
-      "jar": "contracts-bounties-0.4.0.jar"
+      "gallery": [
+        "contractsCatalogue"
+      ]
     },
     {
       "slug": "realm-identity",
       "name": "Realm Identity",
       "label": "Make it official",
-      "version": "0.1.2",
       "category": "Character & society",
       "image": "identity",
       "description": "Carry a signed document that tells the world who you are.",
@@ -121,14 +120,12 @@
       ],
       "firstStep": "Craft a writing desk and bring one paper and one ink sac to issue a document.",
       "integrations": "Works with account identity on its own. Origins supplies RP information, Titles supplies honours, and Marriage supplies civil status with privacy controls.",
-      "folder": "realm-identity",
-      "jar": "realm-identity-0.1.2.jar"
+      "gallery": []
     },
     {
       "slug": "realm-economy",
       "name": "Realm Economy",
       "label": "Give every coin a purpose",
-      "version": "0.5.0",
       "category": "Economy & trade",
       "image": "economy",
       "description": "Bring the kingdom’s economy into everyday survival.",
@@ -141,14 +138,12 @@
       ],
       "firstStep": "Install Realm Origins and its dependencies first, then read the service guide before using paid workstations.",
       "integrations": "Uses Realm Origins 0.5.7. Treasury receives applicable taxes and Council identifies the President. Replaces Realm Villager Economy; remove the old JAR.",
-      "folder": "realm-economy",
-      "jar": "realm-economy-0.5.0.jar"
+      "gallery": []
     },
     {
       "slug": "realm-titles",
       "name": "Realm Titles",
       "label": "An honour worth carrying",
-      "version": "0.1.0",
       "category": "Character & society",
       "image": "titles",
       "description": "Create honours and recognise the people who shape your kingdom.",
@@ -161,14 +156,12 @@
       ],
       "firstStep": "Craft the Royal Seal Desk and interact with it to browse the public register.",
       "integrations": "Council controls who may manage appointments. Without Council, an operator designates a responsible person. Titles do not grant combat bonuses or administrative powers.",
-      "folder": "realm-titles",
-      "jar": "realm-titles-0.1.0.jar"
+      "gallery": []
     },
     {
       "slug": "realm-marriage",
       "name": "Realm Marriage",
       "label": "Write your next chapter together",
-      "version": "0.1.0",
       "category": "Character & society",
       "image": "marriage",
       "description": "Celebrate a wedding with vows, witnesses, and a shared future.",
@@ -181,14 +174,15 @@
       ],
       "firstStep": "Use an engagement ring on another player. After acceptance, prepare and jointly approve your agreement at an altar.",
       "integrations": "Treasury can receive a ceremony fee. Identity can display civil status and validate a certificate. Other mods continue using personal wallets unless they explicitly support the shared-account API.",
-      "folder": "realm-marriage",
-      "jar": "realm-marriage-0.1.0.jar"
+      "gallery": [
+        "marriageAltar",
+        "marriageAgreement"
+      ]
     },
     {
       "slug": "laws-justice",
       "name": "Laws & Justice",
       "label": "Every kingdom needs its laws",
-      "version": "0.4.0",
       "category": "Kingdom & justice",
       "image": "justice",
       "description": "Bring courts, evidence, warrants, and prison sentences into roleplay.",
@@ -201,14 +195,12 @@
       ],
       "firstStep": "Build a prison and register its cells. Judicial actions are performed through the mod’s physical blocks and authorised roles.",
       "integrations": "Works independently. Council supplies the sworn President, Origins supplies digital payment, and Treasury receives judicial funds. No prisons are generated automatically.",
-      "folder": "laws-justice",
-      "jar": "laws-justice-0.4.0.jar"
+      "gallery": []
     },
     {
       "slug": "realm-casino",
       "name": "Realm Casino",
       "label": "An evening at the tables",
-      "version": "0.3.0",
       "category": "Activities & rewards",
       "image": "casino",
       "description": "Build a medieval casino with twelve physical games.",
@@ -221,14 +213,15 @@
       ],
       "firstStep": "Craft a game block and read its rules before playing. Betting requires the Origins digital wallet.",
       "integrations": "Uses the Origins wallet for virtual stakes. Treasury can receive tax on the owner’s withdrawn profit. Game rules and odds are documented in the source guide.",
-      "folder": "realm-casino",
-      "jar": "realm-casino-0.3.0.jar"
+      "gallery": [
+        "casinoTables",
+        "casinoPoker"
+      ]
     },
     {
       "slug": "realm-rewards",
       "name": "Realm Rewards",
       "label": "Make progress count",
-      "version": "0.1.2",
       "category": "Activities & rewards",
       "image": "rewards",
       "description": "Earn in-game money for the milestones you reach.",
@@ -241,14 +234,12 @@
       ],
       "firstStep": "Players earn rewards automatically. Operators use /rewards to configure values.",
       "integrations": "Origins supplies the wallet. Without an available wallet, payments remain pending. Notifications supplies optional HUD notices. Existing completed advancements are not paid retroactively.",
-      "folder": "realm-rewards",
-      "jar": "realm-rewards-0.1.2.jar"
+      "gallery": []
     },
     {
       "slug": "realm-notifications",
       "name": "Realm Notifications",
       "label": "News from your world",
-      "version": "0.1.1",
       "category": "Activities & rewards",
       "image": "notifications",
       "description": "Keep up with kingdom life through medieval on-screen notices.",
@@ -261,8 +252,30 @@
       ],
       "firstStep": "Press N to open the journal and preferences. Gameplay menus still open at their own blocks.",
       "integrations": "Companion integrations are optional. Players without the optional channel retain supported chat messages. Notices report completed events; they do not decide payments or permissions.",
-      "folder": "realm-notifications",
-      "jar": "realm-notifications-0.1.1.jar"
+      "gallery": []
+    },
+    {
+      "slug": "realm-gym",
+      "name": "Realm Gym",
+      "label": "Build a gym. Grow stronger",
+      "category": "Activities & rewards",
+      "image": "gym",
+      "featured": true,
+      "description": "Train on six animated machines, build permanent attributes and plan your workouts.",
+      "story": "Give your town a place to train. Mount real gym equipment, take on six exercise minigames and turn a daily routine into permanent progress.",
+      "features": [
+        "Six functional machines with articulated player and equipment animations.",
+        "Distinct exercise minigames with heavier loads, fatigue and permanent attribute levels.",
+        "Personal workout plans, training history and a daily calendar.",
+        "Physical record boards for your gym and server."
+      ],
+      "firstStep": "Craft a machine, then right-click to mount and train. Sneak-right-click before entering to increase the load. Press K to open your athlete profile and Shift to leave the equipment.",
+      "integrations": "Works independently; Realm Origins and other stats mods are not required. Previously Realm Fitness: replace its JAR with Realm Gym. Existing worlds, machines and progress remain compatible.",
+      "gallery": [
+        "gymEquipment",
+        "gymProfile"
+      ],
+      "video": "gymBench"
     }
   ]
 }

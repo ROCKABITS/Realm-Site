@@ -1,0 +1,210 @@
+{
+  "mods": [
+    {
+      "slug": "realm-origins",
+      "folder": "realm-origins",
+      "editions": [
+        {
+          "id": "neoforge-1.21.1",
+          "prefix": "realm-origins",
+          "minecraft": "1.21.1",
+          "loader": "NeoForge",
+          "loaderVersion": "21.1.256+",
+          "java": 21
+        }
+      ]
+    },
+    {
+      "slug": "realm-treasury",
+      "folder": "crown-ledger",
+      "editions": [
+        {
+          "id": "neoforge-1.21.1",
+          "prefix": "realm-treasury",
+          "minecraft": "1.21.1",
+          "loader": "NeoForge",
+          "loaderVersion": "21.1.256+",
+          "java": 21
+        }
+      ]
+    },
+    {
+      "slug": "realm-markets",
+      "folder": "realm-markets",
+      "editions": [
+        {
+          "id": "neoforge-1.21.1",
+          "prefix": "realm-markets",
+          "minecraft": "1.21.1",
+          "loader": "NeoForge",
+          "loaderVersion": "21.1.256+",
+          "java": 21
+        }
+      ]
+    },
+    {
+      "slug": "realm-council",
+      "folder": "realm-council",
+      "editions": [
+        {
+          "id": "neoforge-1.21.1",
+          "prefix": "realmcouncil",
+          "minecraft": "1.21.1",
+          "loader": "NeoForge",
+          "loaderVersion": "21.1.256+",
+          "java": 21
+        }
+      ]
+    },
+    {
+      "slug": "contracts-bounties",
+      "folder": "contracts-bounties",
+      "editions": [
+        {
+          "id": "neoforge-1.21.1",
+          "prefix": "contracts-bounties",
+          "minecraft": "1.21.1",
+          "loader": "NeoForge",
+          "loaderVersion": "21.1.256+",
+          "java": 21
+        },
+        {
+          "id": "forge-1.20.1",
+          "prefix": "contracts-bounties",
+          "suffix": "-forge-1.20.1",
+          "folder": "contracts-bounties-forge-1.20.1",
+          "minecraft": "1.20.1",
+          "loader": "Forge",
+          "loaderVersion": "47.4.0+",
+          "java": 17
+        }
+      ]
+    },
+    {
+      "slug": "realm-identity",
+      "folder": "realm-identity",
+      "editions": [
+        {
+          "id": "neoforge-1.21.1",
+          "prefix": "realm-identity",
+          "minecraft": "1.21.1",
+          "loader": "NeoForge",
+          "loaderVersion": "21.1.256+",
+          "java": 21
+        }
+      ]
+    },
+    {
+      "slug": "realm-economy",
+      "folder": "realm-economy",
+      "editions": [
+        {
+          "id": "neoforge-1.21.1",
+          "prefix": "realm-economy",
+          "minecraft": "1.21.1",
+          "loader": "NeoForge",
+          "loaderVersion": "21.1.256+",
+          "java": 21
+        }
+      ]
+    },
+    {
+      "slug": "realm-titles",
+      "folder": "realm-titles",
+      "editions": [
+        {
+          "id": "neoforge-1.21.1",
+          "prefix": "realm-titles",
+          "minecraft": "1.21.1",
+          "loader": "NeoForge",
+          "loaderVersion": "21.1.256+",
+          "java": 21
+        }
+      ]
+    },
+    {
+      "slug": "realm-marriage",
+      "folder": "realm-marriage",
+      "editions": [
+        {
+          "id": "neoforge-1.21.1",
+          "prefix": "realm-marriage",
+          "minecraft": "1.21.1",
+          "loader": "NeoForge",
+          "loaderVersion": "21.1.256+",
+          "java": 21
+        }
+      ]
+    },
+    {
+      "slug": "laws-justice",
+      "folder": "laws-justice",
+      "editions": [
+        {
+          "id": "neoforge-1.21.1",
+          "prefix": "laws-justice",
+          "minecraft": "1.21.1",
+          "loader": "NeoForge",
+          "loaderVersion": "21.1.256+",
+          "java": 21
+        }
+      ]
+    },
+    {
+      "slug": "realm-casino",
+      "folder": "realm-casino",
+      "editions": [
+        {
+          "id": "neoforge-1.21.1",
+          "prefix": "realm-casino",
+          "minecraft": "1.21.1",
+          "loader": "NeoForge",
+          "loaderVersion": "21.1.256+",
+          "java": 21
+        }
+      ]
+    },
+    {
+      "slug": "realm-rewards",
+      "folder": "realm-rewards",
+      "editions": [
+        {
+          "id": "neoforge-1.21.1",
+          "prefix": "realm-rewards",
+          "minecraft": "1.21.1",
+          "loader": "NeoForge",
+          "loaderVersion": "21.1.256+",
+          "java": 21
+        }
+      ]
+    },
+    {
+      "slug": "realm-notifications",
+      "folder": "realm-notifications",
+      "editions": [
+        {
+          "id": "neoforge-1.21.1",
+          "prefix": "realm-notifications",
+          "minecraft": "1.21.1",
+          "loader": "NeoForge",
+          "loaderVersion": "21.1.256+",
+          "java": 21
+        }
+      ]
+    },
+    {
+      "slug": "realm-gym",
+      "folder": "realm-gym",
+      "editions": [
+        {
+          "id": "neoforge-1.21.1",
+          "prefix": "realm-gym",
+          "minecraft": "1.21.1",
+          "loader": "NeoForge",
+          "loaderVersion": "21.1.256+",
+          "java": 21
+        }
+      ]
+    }
+  ]
+}
