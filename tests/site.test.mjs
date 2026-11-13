@@ -95,3 +95,19 @@ test('mod pages expose actual screenshots and separate loader downloads', async 
   const contracts = await readFile(join(root, 'mods/contracts-bounties/index.html'), 'utf8');
   assert(contracts.includes('Forge · Minecraft 1.20.1'));assert(contracts.includes('Download Forge'));assert(contracts.includes('Download NeoForge'));
 });
+
+test('account pages stay out of public search and preserve the protected CMS backend', async () => {
+  const sitemap = await readFile(join(root, 'sitemap.xml'), 'utf8');
+  assert(!sitemap.includes('/account/'));
+  for (const file of ['account/index.html', 'account/reset/index.html']) {
+    const html = await readFile(join(root, file), 'utf8');
+    assert.match(html, /name="robots" content="noindex, follow"/);
+    assert(html.includes('data-pagefind-ignore'));
+  }
+  const account = await readFile(join(root, 'account/index.html'), 'utf8');
+  assert(account.includes('href="/admin/"'));
+  const config = await readFile(new URL('../public/admin/config.yml', import.meta.url), 'utf8');
+  assert(config.includes('realm-studios-admin-auth.rockabits2007.workers.dev'));
+  const worker = await readFile(new URL('../admin-auth/src/index.ts', import.meta.url), 'utf8');
+  assert(worker.includes('ALLOWED_GITHUB_LOGIN'));
+});

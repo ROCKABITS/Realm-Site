@@ -30,7 +30,7 @@ Every successful Validate website workflow uploads a **realm-studios-pages** art
 
 ## Content and administration
 
-Open `/admin/` to edit content. Saves commit to **realm-studios-site** and trigger the existing Pages integration. See [ADMIN-SETUP.md](ADMIN-SETUP.md) for authentication.
+Use **Account → Open the admin panel** to edit content without typing an admin URL. Saves commit to **realm-studios-site** and trigger the existing Pages integration. See [ADMIN-SETUP.md](ADMIN-SETUP.md) for administrator authentication and [ACCOUNT-SETUP.md](ACCOUNT-SETUP.md) for visitor accounts and the required live Supabase configuration.
 
 - `src/data/home.json` supplies all homepage copy fields exposed by the CMS.
 - `src/data/site.json` supplies the brand, creator, external links and modpack settings.

@@ -1,6 +1,6 @@
 # Admin panel
 
-Open https://realmstudios.pt/admin/ to edit the homepage, brand, modpack settings, editorial catalogue, wiki and changelog. Saving commits directly to **realm-studios-site**; the existing Cloudflare Git integration publishes those commits.
+Use **Account → Open the admin panel** on the site to edit the homepage, brand, modpack settings, editorial catalogue, wiki and changelog. The direct URL https://realmstudios.pt/admin/ also works. Saving commits directly to **realm-studios-site**; the existing Cloudflare Git integration publishes those commits.
 
 Homepage fields are read from `src/data/home.json`. Version numbers and download files are generated from the release catalogue, so they are not editable as independent CMS fields. To refresh them, run **Refresh mod releases** in GitHub Actions or wait for its daily schedule.
 
@@ -15,3 +15,5 @@ For Season 8, choose **group** for restricted distribution. Choose **public** on
 3. Keep `public/admin/config.yml` pointed at the deployed worker and set the worker's `CMS_ORIGIN` to `https://realmstudios.pt`.
 
 The editor uses the authenticated GitHub account allowed by the worker. Credentials belong in the worker's secret settings.
+
+Visitor email accounts are separate from this permission check. See [ACCOUNT-SETUP.md](ACCOUNT-SETUP.md) to connect their Supabase authentication service.

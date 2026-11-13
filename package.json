@@ -19,6 +19,7 @@
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.2.0",
     "@fontsource/dm-sans": "^5.2.0",
+    "@supabase/supabase-js": "^2.119.0",
     "astro": "7.4.2"
   },
   "devDependencies": {
