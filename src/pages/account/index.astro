@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Icon from '../../components/Icon.astro';
+import MemberDashboard from '../../components/MemberDashboard.astro';
 ---
 <Layout title="Your account" description="Sign in to your Realm Studios account or open the site administration." noindex>
   <section class="container account-page" data-pagefind-ignore data-account-page>
@@ -42,14 +43,10 @@ import Icon from '../../components/Icon.astro';
       </div>
 
       <div data-session-panel hidden>
-        <div class="account-signed-symbol"><Icon name="check" size={26} /></div>
-        <h2>You're signed in.</h2>
-        <p class="account-email" data-session-email></p>
-        <p class="account-hint">Use Sign out when you're finished on a shared device.</p>
-        <div class="account-session-actions"><a class="button button-primary" href="/mods/">Explore the mods <Icon name="arrow" size={18} /></a><button class="button button-outline" type="button" data-signout>Sign out</button></div>
+        <MemberDashboard />
       </div>
 
-      <details class="account-privacy"><summary>About your account & privacy</summary><p>Your email is used for sign-in, confirmation and password recovery. Authentication is handled by Supabase. A session is stored in your browser to keep you signed in; signing out removes it from this browser. Visitor accounts do not grant access to site administration.</p></details>
+      <details class="account-privacy"><summary>About your account & privacy</summary><p>Your email is used for sign-in, confirmation and password recovery. Your profile, saved items and followed mods are stored with your account through Supabase. A session is stored in your browser to keep you signed in; use Sign out on shared devices. Visitor accounts do not grant access to site administration.</p></details>
     </div>
   </section>
   <script>import '../../scripts/account';</script>

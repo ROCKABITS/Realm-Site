@@ -1,5 +1,9 @@
 import type { User } from '@supabase/supabase-js';
 import { getAuth, getAccountAvailability, authErrorMessage } from '../lib/auth';
+import { setVerifiedMember, getCurrentMember } from '../lib/member-store';
+import { safeReturnPath } from '../lib/member-model';
+import { mountMemberDashboard } from './member-dashboard';
+import { completePendingMemberAction } from './member-actions';
 
 const page = document.querySelector<HTMLElement>('[data-account-page], [data-password-reset-page]');
 if (page) void initialise(page);
@@ -97,12 +101,22 @@ async function initialise(root: HTMLElement) {
       submit.textContent = mode === 'signup' ? 'Create account' : mode === 'reset' ? 'Send recovery email' : 'Sign in';
       fields.disabled = false;
     };
+    let returnHandled = false;
     const signedIn = (currentUser: User) => {
-      feedback(); authPanel.hidden = true; sessionPanel.hidden = false; form.reset();
-      title.textContent = 'Your Realm account.'; description.textContent = 'Welcome to Realm Studios. Pick a mod and make yourself at home.';
+      const alreadyVisible = root.classList.contains('member-active') && getCurrentMember()?.user.id === currentUser.id;
+      if (!alreadyVisible) feedback(); authPanel.hidden = true; sessionPanel.hidden = false; form.reset(); root.classList.add('member-active');
+      title.textContent = 'Your Realm account.'; description.textContent = 'Your favourite mods, saved guides and the projects you follow. All in one place.';
       root.querySelector<HTMLElement>('[data-session-email]')!.textContent = currentUser.email ?? 'Realm account';
+      if (!alreadyVisible) setVerifiedMember(currentUser); mountMemberDashboard(root.querySelector<HTMLElement>('[data-member-dashboard]')!);
+      if (!returnHandled) {
+        returnHandled = true;
+        void (async () => {
+          try { const pendingPath = await completePendingMemberAction(); const path = pendingPath ?? safeReturnPath(url.searchParams.get('next')); if (path) location.assign(path); }
+          catch { feedback('You are signed in, but the item could not be saved. You can try again from its page.', 'error'); }
+        })();
+      }
     };
-    const signedOut = () => { authPanel.hidden = false; sessionPanel.hidden = true; root.querySelector<HTMLElement>('[data-session-email]')!.textContent = ''; setMode(null); };
+    const signedOut = () => { authPanel.hidden = false; sessionPanel.hidden = true; root.classList.remove('member-active'); root.querySelector<HTMLElement>('[data-session-email]')!.textContent = ''; setVerifiedMember(null); setMode(null); };
 
     modeLinks.forEach(link => link.addEventListener('click', event => {
       if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;

@@ -56,10 +56,10 @@ test('visitor sign-in persists across reload and sign-out clears the session', a
   await page.goto('/account/'); await expect(page.locator('[name=email]')).toBeEnabled();
   await page.getByLabel('Email address').fill(user.email); await page.getByLabel('Password', { exact: true }).fill('my-test-password');
   await page.getByRole('button', { name: 'Sign in', exact: true }).click();
-  await expect(page.getByRole('heading', { name: "You're signed in." })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Your Realm account.' })).toBeVisible();
   await expect(page.locator('[data-session-email]')).toHaveText(user.email);
   expect(calls.some(call => call.path === 'user' && call.method === 'GET')).toBe(true);
-  await page.reload(); await expect(page.getByRole('heading', { name: "You're signed in." })).toBeVisible();
+  await page.reload(); await expect(page.getByRole('heading', { name: 'Your Realm account.' })).toBeVisible();
   await page.getByRole('button', { name: 'Sign out', exact: true }).click();
   await expect(page.getByRole('status')).toContainText('signed out');
   expect(await page.evaluate(() => localStorage.getItem('realm-studios-auth'))).toBeNull();

@@ -2,7 +2,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 
 const url = import.meta.env.PUBLIC_SUPABASE_URL?.trim().replace(/\/$/, '');
 const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY?.trim();
-let client: SupabaseClient | undefined;
+let client: Promise<SupabaseClient> | undefined;
 
 // All values here are public browser configuration. Never use a service-role key.
 export const authConfigured = !!url && !!key && /^https:\/\//.test(url);
@@ -14,14 +14,11 @@ const timedFetch: typeof fetch = (input, init) => fetch(input, {
 
 export async function getAuth() {
   if (!authConfigured) throw new Error('Account service is not configured');
-  if (!client) {
-    const { createClient } = await import('@supabase/supabase-js');
-    client = createClient(url!, key!, {
+  if (!client) client = import('@supabase/supabase-js').then(({ createClient }) => createClient(url!, key!, {
       auth: { storageKey: 'realm-studios-auth', persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
       global: { fetch: timedFetch },
-    });
-  }
-  return client.auth;
+    }));
+  return (await client).auth;
 }
 
 export async function getAccountAvailability(): Promise<{ signup: boolean }> {

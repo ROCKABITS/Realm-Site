@@ -5,6 +5,7 @@ import Artwork from '../../components/Artwork.astro';
 import Icon from '../../components/Icon.astro';
 import ModCard from '../../components/ModCard.astro';
 import ModGallery from '../../components/ModGallery.astro';
+import MemberActions from '../../components/MemberActions.astro';
 import { mods, sourceUrl, downloadUrl } from '../../data/mods';
 import { artwork, type ArtworkName } from '../../data/artwork';
 import { creator } from '../../data/site';
@@ -24,6 +25,8 @@ const social = await getImage({ src: artwork[mod.image as ArtworkName], width: 8
         <div class="button-row"><a href={downloadUrl(mod)} class="button button-primary"><Icon name="download" size={18} /> Download JAR</a><a href={`/wiki/${mod.slug}/`} class="button button-outline"><Icon name="book" size={18} /> Player guide</a></div>
         <p class="download-note">Minecraft {primary.minecraft} · {primary.loader} {primary.loaderVersion} · Java {primary.java}</p>
         {mod.editions.length > 1 && <a href="#downloads" class="text-link">Choose another Minecraft / loader edition <Icon name="arrow" size={16} /></a>}
+        <MemberActions id={mod.slug} name={mod.name} editions={mod.editions} />
+        <p class="member-setup-note" data-member-setup-note data-member-editions={JSON.stringify(mod.editions.map(({ id, version, minecraft, loader, downloadUrl }) => ({ id, version, minecraft, loader, downloadUrl })))} hidden></p>
       </div>
       <div class="mod-detail-art"><Artwork name={mod.image} alt={`${mod.name} artwork`} eager /></div>
     </section>

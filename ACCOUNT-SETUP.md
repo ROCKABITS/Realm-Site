@@ -4,6 +4,17 @@ The header's **Account** link opens `/account/`. Visitors can sign in, create an
 
 The same page has **Open the admin panel**, which opens the Realm Studios administration dashboard. Administration requires the authorised GitHub account checked by the OAuth Worker. Supabase users, editable user metadata and visitor session values do not grant administration permissions.
 
+## Signed-in features
+
+- **Profile & setup**: a private nickname, one of six avatar presets, Minecraft version and loader. A matching download must fit both installation preferences. Mod pages link directly to the matching edition when there is one.
+- **Your collection**: saved mods and player guides, with direct links and removal controls. Use the bookmark on catalogue cards or **Save** on a mod or guide page.
+- **Following**: follow mods from their detail pages. The account shows the current release of each loader/Minecraft edition, highlights versions not yet acknowledged and lets the user mark them as read. A new follow starts with the current releases marked read. Updates are shown on the website; no notification emails are sent by this feature.
+- An explicit anonymous Save/Follow click can be completed after sign-in and returns the visitor to that mod or guide. The intent is stored only in the current tab, expires after 15 minutes and cannot be created through URL parameters. Return paths are limited to local mod and guide pages.
+
+These small, private preferences are saved under the `realm_studios` namespace in the authenticated user's Supabase Auth metadata. They sync across sessions/devices with the existing project; no SQL migration, new table, storage bucket or additional key is required. Other provider metadata is preserved. Only public catalogue data is embedded in the built account page; user preferences are fetched after the session is verified with Supabase.
+
+Writes fetch the latest authenticated user, apply a specific change, and wait for server confirmation before showing success. Writes are queued in the tab and coordinated between supporting same-origin tabs with Web Locks. A changed user identity cancels the action. Simultaneous saves from separate devices use Supabase Auth's normal last-write behavior; use a database with atomic operations if the feature grows into shared/public lists or larger collections. This metadata must never be used as an administrator role or permission check.
+
 ## Connect a live Supabase project
 
 The production project is `grittvzryidrzuxqbpst.supabase.co`; its email authentication and signup settings were confirmed active on 2026-11-13 after the production configuration was updated. The account page checks the public authentication settings before enabling visitor forms and shows an unavailable message if the project cannot be reached. The administrator link remains usable. The steps below also apply when replacing the project.
@@ -18,8 +29,10 @@ The production project is `grittvzryidrzuxqbpst.supabase.co`; its email authenti
 
 For local development, put the public values in `.env.local` and allow `http://localhost:4321/account/` and `http://localhost:4321/account/reset/` as development redirects. Preview domains need their own explicit redirect allowlist entries if you want working emails on previews; avoid a broad wildcard for unrelated hosts.
 
-Visitor authentication uses Supabase Auth directly. It does not create profile tables or database policies, and the site does not request a service-role key. Enable the provider's abuse/rate-limit controls for your expected traffic. If a CAPTCHA is enabled later, its client challenge must also be integrated before using these forms.
+Visitor authentication and private preferences use Supabase Auth directly. The site does not create database tables/policies or request a service-role key. If a CAPTCHA is enabled later, its client challenge must also be integrated before using these forms.
 
 ## Verification
 
 `tests/browser/account.spec.ts` intercepts auth requests to exercise valid/invalid sign-in, persistent sessions, sign-out, registration validation, confirmation instructions, recovery links, matching-password checks, disabled signups and service outages. It does not send emails, create real accounts or weaken administrator checks. Real email delivery and redirect configuration require the live-project check above.
+
+`tests/browser/member.spec.ts` exercises profile persistence in separate browser contexts, saved mods/guides, following and edition-specific read state, post-login intents, failed/queued writes, changed identities, sign-out/account switching, compatibility, HTML-safe profile strings, narrow layouts and accessibility. Auth requests use an isolated fixture; tests do not alter real visitor accounts. `tests/member.test.mjs` covers metadata validation and the pure preference/compatibility operations.

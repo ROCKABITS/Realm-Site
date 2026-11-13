@@ -1,11 +1,13 @@
 ---
 import type { Mod } from '../data/mods';
 import Artwork from './Artwork.astro';
+import MemberActions from './MemberActions.astro';
 interface Props { mod: Mod; index?: number; }
 const { mod } = Astro.props;
 const primary = mod.editions[0];
 ---
 <article class="mod-card" data-category={mod.category} data-mod-name={`${mod.name} ${mod.description}`.toLowerCase()}>
+  <MemberActions id={mod.slug} name={mod.name} compact />
   <a class="mod-card-link" href={`/mods/${mod.slug}/`}>
     <div class="mod-card-art"><Artwork name={mod.image} alt={`${mod.name} artwork`} /></div>
     <div class="mod-card-copy">
