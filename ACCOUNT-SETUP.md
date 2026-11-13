@@ -2,13 +2,13 @@
 
 The header's **Account** link opens `/account/`. Visitors can sign in, create an account, confirm their email, recover a password and sign out. Their session survives a reload. Downloads and player guides remain public.
 
-The same page has **Open the admin panel**, which opens the existing Decap editor. Administration still requires the authorised GitHub account checked by the OAuth Worker. Supabase users, editable user metadata and browser session values do not grant CMS permissions.
+The same page has **Open the admin panel**, which opens the Realm Studios administration dashboard. Administration requires the authorised GitHub account checked by the OAuth Worker. Supabase users, editable user metadata and visitor session values do not grant administration permissions.
 
 ## Connect a live Supabase project
 
-The repository already contained public configuration for `grittvzryidrzuxqbpst.supabase.co`. On 2026-11-13 that hostname did not resolve. The account page checks the public authentication settings before enabling visitor forms; it shows an unavailable message if the project cannot be reached. The administrator link remains usable.
+The production project is `grittvzryidrzuxqbpst.supabase.co`; its email authentication and signup settings were confirmed active on 2026-11-13 after the production configuration was updated. The account page checks the public authentication settings before enabling visitor forms and shows an unavailable message if the project cannot be reached. The administrator link remains usable. The steps below also apply when replacing the project.
 
-1. Restore that project in Supabase if it belongs to you, or create a project you control.
+1. Use the existing Supabase project, or create a replacement project you control.
 2. Under **Authentication → Sign In / Providers**, enable Email and allow new signups. Enable email confirmation and configure your email sender/SMTP before opening registration to visitors. Supabase's built-in sender has restrictions and is intended for development; use a production sender for public registrations.
 3. Under **Authentication → URL Configuration**, set Site URL to `https://realmstudios.pt`. Add these exact Redirect URLs:
    - `https://realmstudios.pt/account/`

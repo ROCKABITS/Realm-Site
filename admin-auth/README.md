@@ -1,6 +1,6 @@
 # Admin OAuth Worker
 
-This Worker is the GitHub sign-in bridge used by Decap CMS. It allows only the GitHub account configured in ALLOWED_GITHUB_LOGIN to edit the repository.
+This Worker is the GitHub sign-in bridge used by the Realm Studios admin dashboard and the advanced Decap editor. It allows only the GitHub account configured in ALLOWED_GITHUB_LOGIN to edit the repository. Both clients use the existing origin-checked popup handshake; the dashboard also checks the popup window identity before accepting a response.
 
 ## Deploy
 

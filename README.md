@@ -32,6 +32,8 @@ Every successful Validate website workflow uploads a **realm-studios-pages** art
 
 Use **Account → Open the admin panel** to edit content without typing an admin URL. Saves commit to **realm-studios-site** and trigger the existing Pages integration. See [ADMIN-SETUP.md](ADMIN-SETUP.md) for administrator authentication and [ACCOUNT-SETUP.md](ACCOUNT-SETUP.md) for visitor accounts and the required live Supabase configuration.
 
+The administration dashboard provides individual mod cards, search, visual article editing, image thumbnails, local previews, draft recovery, guarded navigation and publication status. The previous editor remains available through Settings as an advanced editor. Administrator tests intercept GitHub requests and never publish test content.
+
 - `src/data/home.json` supplies all homepage copy fields exposed by the CMS.
 - `src/data/site.json` supplies the brand, creator, external links and modpack settings.
 - `src/data/mods.json` holds editorial mod descriptions, categories, featured flags and gallery keys.

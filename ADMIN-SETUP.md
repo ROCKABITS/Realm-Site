@@ -1,19 +1,40 @@
-# Admin panel
+# Realm Studios administration
 
-Use **Account → Open the admin panel** on the site to edit the homepage, brand, modpack settings, editorial catalogue, wiki and changelog. The direct URL https://realmstudios.pt/admin/ also works. Saving commits directly to **realm-studios-site**; the existing Cloudflare Git integration publishes those commits.
+Open **Account → Open the admin panel** on the site, or visit https://realmstudios.pt/admin/. The panel is in Portuguese; the text you publish on the public site can remain in English.
 
-Homepage fields are read from `src/data/home.json`. Version numbers and download files are generated from the release catalogue, so they are not editable as independent CMS fields. To refresh them, run **Refresh mod releases** in GitHub Actions or wait for its daily schedule.
+## Everyday editing
 
-The wiki Category field writes `category`, matching the content schema. Draft guides and releases are excluded from public routes and the sitemap. Select screenshot and artwork keys already defined by the site; invalid keys fail validation instead of silently creating broken content.
+- **Visão geral**: counts, shortcuts and recent changes.
+- **Mods**: search individual mod cards, filter by category and open one mod. Edit its presentation, content and images in separate sections. Select logos and screenshots by thumbnail. Versions and downloads remain generated from the release catalogue.
+- **Guias da wiki** and **Novidades**: search published pages or drafts. Use the visual editor for formatted text, lists, links and tables, or switch to Markdown. New pages start as drafts. Uncheck **Guardar como rascunho** when ready to publish.
+- **Página inicial**: separate sections for the welcome message, collection, wiki and modpack.
+- **Modpack**: name, displayed version and public/group access. A public download needs a valid URL; an empty version uses the latest published changelog.
+- **Definições**: studio name, creator, site description and external links.
 
-For Season 8, choose **group** for restricted distribution. Choose **public** only with an actual download URL. The latest published changelog supplies a release label when the version setting is empty.
+The preview shows the current form before saving. **Ver página publicada** opens the existing public page. **Guardar e publicar** saves the content and shows its publication state; the build and Pages checks determine when it is published. A saved draft stays out of public routes and search.
 
-## Authentication setup
+Unsaved edits prompt before leaving. A local draft in the current browser tab can survive a reload. **Exportar rascunho** downloads a copy. If another edit changed the same source file, the panel keeps your input and reports the conflict instead of overwriting that edit. Reopen the page and compare with your exported copy.
 
-1. Keep `realm-studios-site` connected as the Pages production branch, with `npm run build` and output `dist`.
-2. Deploy the OAuth Worker described in [admin-auth/README.md](admin-auth/README.md), with its GitHub OAuth callback at the worker's `/callback` route.
-3. Keep `public/admin/config.yml` pointed at the deployed worker and set the worker's `CMS_ORIGIN` to `https://realmstudios.pt`.
+## Authentication and publication
 
-The editor uses the authenticated GitHub account allowed by the worker. Credentials belong in the worker's secret settings.
+The existing GitHub OAuth Worker checks the authorised GitHub account before handing a token to the panel. The panel verifies the account again through GitHub before loading content. The token stays in memory and, when available, `sessionStorage` for this tab; it is not shared with visitor account code. **Terminar sessão** clears the panel session. GitHub's API enforces permissions on every read and save.
 
-Visitor email accounts are separate from this permission check. See [ACCOUNT-SETUP.md](ACCOUNT-SETUP.md) to connect their Supabase authentication service.
+The panel reads current repository content and saves with the file's SHA to **realm-studios-site**. The existing Cloudflare Pages Git integration publishes that branch. No new service or server configuration is needed for the redesigned panel.
+
+Keep Pages configured with `npm run build`, output `dist` and production branch **realm-studios-site**. Keep `CMS_ORIGIN=https://realmstudios.pt` and the authorised login in the Worker configuration. See [admin-auth/README.md](admin-auth/README.md) for deployment and the OAuth callback.
+
+The previous Decap editor remains at `/admin/legacy/`, linked from **Definições → Abrir editor avançado**. It supports the previous media upload and collection controls and uses the same OAuth Worker and `/admin/config.yml`.
+
+## Content sources
+
+- `src/data/home.json`: homepage copy.
+- `src/data/site.json`: brand, links and modpack settings.
+- `src/data/mods.json`: editorial mod information; saving one card preserves other entries.
+- `src/content/wiki/*.md` and `src/content/changelog/*.md`: Markdown and frontmatter. Unknown metadata and local image references are preserved when editing.
+- `src/data/releases.json`: generated release information; refresh with the scheduled **Refresh mod releases** workflow.
+
+Visitor Supabase authentication does not grant administrator permissions. See [ACCOUNT-SETUP.md](ACCOUNT-SETUP.md) for visitor accounts.
+
+## Verification
+
+Browser tests exercise the popup handshake, wrong-account rejection, mod editing, draft recovery, navigation guards, conflicting saves, visual Markdown editing, preserved image paths/tables, preview sanitisation, homepage/modpack forms, narrow layouts and accessibility. Repository reads and writes are intercepted; tests do not publish content to GitHub.
