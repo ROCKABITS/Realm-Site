@@ -102,7 +102,9 @@
       "integrations": "Origins supplies money and reputation; Treasury supplies public funding and tax policy. Material contracts have an emerald fallback. Quest emerald mode requires administrative configuration.",
       "gallery": [
         "contractsCatalogue"
-      ]
+      ],
+      "featured": true,
+      "video": ""
     },
     {
       "slug": "realm-identity",
