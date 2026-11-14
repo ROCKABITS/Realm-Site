@@ -31,6 +31,8 @@ For local development, put the public values in `.env.local` and allow `http://l
 
 Visitor authentication and private preferences use Supabase Auth directly. The site does not create database tables/policies or request a service-role key. If a CAPTCHA is enabled later, its client challenge must also be integrated before using these forms.
 
+For a branded **Realm Studios <noreply@realmstudios.pt>** sender, follow [the SMTP setup and optional email templates](docs/email/README.md). These settings are applied in Supabase; publishing the website does not change the mail sender.
+
 ## Verification
 
 `tests/browser/account.spec.ts` intercepts auth requests to exercise valid/invalid sign-in, persistent sessions, sign-out, registration validation, confirmation instructions, recovery links, matching-password checks, disabled signups and service outages. It does not send emails, create real accounts or weaken administrator checks. Real email delivery and redirect configuration require the live-project check above.
