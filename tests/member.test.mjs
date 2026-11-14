@@ -6,9 +6,10 @@ const editions = [{ id: 'neoforge-1.21.1', version: '0.4.1', minecraft: '1.21.1'
 const mod = { slug: 'contracts-bounties', name: 'Contracts', editions };
 
 test('untrusted metadata is normalised without granting roles or accepting image URLs', () => {
-  const state = normaliseMember({ role: 'admin', realm_studios: { name: 'A'.repeat(100), avatar: 'https://bad.test/image', favoriteMods: ['realm-gym', 'realm-gym', '../admin', '<script>'], favoriteGuides: null, follows: { '../escape': {}, 'realm-gym': { seen: { 'neoforge-1.21.1': 99 } } }, setup: { loader: 'admin', minecraft: '<script>' } } });
+  const state = normaliseMember({ role: 'admin', realm_studios: { name: 'A'.repeat(100), avatar: 'https://bad.test/image', photoPath: 'https://bad.test/photo.png', favoriteMods: ['realm-gym', 'realm-gym', '../admin', '<script>'], favoriteGuides: null, follows: { '../escape': {}, 'realm-gym': { seen: { 'neoforge-1.21.1': 99 } } }, setup: { loader: 'admin', minecraft: '<script>' } } });
   assert.equal(state.name.length, 32); assert.equal(state.avatar, 'spark'); assert.deepEqual(state.favoriteMods, ['realm-gym']); assert.deepEqual(state.setup, { loader: '', minecraft: '' }); assert(!('role' in state));
   assert.deepEqual(Object.keys(state.follows), ['realm-gym']); assert.deepEqual(state.follows['realm-gym'].seen, {});
+  assert.equal(state.photoPath, '');
 });
 
 test('profile edits preserve saved items and following state', () => {

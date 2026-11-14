@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+interface Props { kind?: 'mod' | 'guide'; id: string; name: string; }
+const { kind = 'mod', id, name } = Astro.props;
+const account = `/account/?next=${encodeURIComponent(Astro.url.pathname)}`;
+---
+<section class="community-feedback" id="feedback" aria-labelledby="feedback-title" data-feedback data-kind={kind} data-resource={id} data-name={name} data-pagefind-ignore>
+  <div class="feedback-heading"><div><p class="eyebrow">From the community</p><h2 id="feedback-title">Your world. Your feedback.</h2><p>Share what you enjoy, suggest an improvement or tell us what could work better.</p></div><button class="feedback-like" type="button" aria-pressed="false" aria-label={`Like ${name}`} data-feedback-like disabled><Icon name="heart" size={20} /><span data-like-label>Like</span><span data-like-count>—</span></button></div>
+  <div class="feedback-toolbar"><h3>Comments <span data-comment-count>—</span></h3><button type="button" class="feedback-text-button" data-feedback-refresh>Refresh</button></div>
+  <p class="feedback-status" data-feedback-status role="status" aria-live="polite">Loading community feedback…</p>
+  <div class="feedback-signin" data-feedback-gate><Icon name="user" size={22} /><p>A little feedback goes a long way.<br /><a href={account}>Sign in</a> to leave a like or join the conversation.</p></div>
+  <form class="feedback-composer" data-feedback-compose hidden>
+    <label for="feedback-body">Leave a comment</label><textarea id="feedback-body" name="body" rows="4" maxlength="4000" required placeholder="What has your experience been like?" aria-describedby="feedback-privacy feedback-length"></textarea>
+    <p id="feedback-privacy" class="feedback-hint">Your nickname and photo will be public with your comment. <a href="/account/">Edit your profile</a>. Please keep feedback respectful and avoid sharing personal information.</p>
+    <div class="feedback-compose-actions"><span id="feedback-length" class="feedback-hint" data-feedback-length>0 / 2,000</span><button class="button button-primary" type="submit" disabled>Post comment <Icon name="arrow" size={16} /></button></div>
+  </form>
+  <div class="feedback-comments" data-feedback-comments></div>
+  <button type="button" class="button button-outline feedback-more" data-feedback-more hidden>Load older comments</button>
+  <dialog class="feedback-dialog" data-feedback-delete aria-labelledby="feedback-delete-title"><form method="dialog"><h3 id="feedback-delete-title">Delete this comment?</h3><p>This permanently removes the comment from the conversation.</p><div><button class="button button-outline" value="cancel">Keep comment</button><button class="button button-primary" value="delete">Delete comment</button></div></form></dialog>
+  <noscript><p>Enable JavaScript to view community feedback.</p></noscript>
+</section>
+<script>import '../scripts/community-feedback';</script>

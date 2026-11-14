@@ -12,14 +12,16 @@ const timedFetch: typeof fetch = (input, init) => fetch(input, {
   signal: init?.signal ? AbortSignal.any([init.signal, AbortSignal.timeout(10_000)]) : AbortSignal.timeout(10_000),
 });
 
-export async function getAuth() {
+export async function getSupabase() {
   if (!authConfigured) throw new Error('Account service is not configured');
   if (!client) client = import('@supabase/supabase-js').then(({ createClient }) => createClient(url!, key!, {
       auth: { storageKey: 'realm-studios-auth', persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
       global: { fetch: timedFetch },
     }));
-  return (await client).auth;
+  return client;
 }
+
+export async function getAuth() { return (await getSupabase()).auth; }
 
 export async function getAccountAvailability(): Promise<{ signup: boolean }> {
   if (!authConfigured) throw new Error('Account service is not configured');

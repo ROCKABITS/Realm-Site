@@ -12,13 +12,14 @@ const boot = JSON.parse(document.getElementById('admin-options')!.textContent!) 
 const q = <T extends Element = HTMLElement>(selector: string, root: ParentNode = document) => root.querySelector<T>(selector)!;
 const esc = (value: unknown) => String(value ?? '').replace(/[&<>"']/g, value => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[value]!));
 const login = q('#admin-login'), app = q('#admin-app'), view = q('#admin-view');
-const labels: Record<string, string> = { '': 'Visão geral', mods: 'Mods', wiki: 'Guias da wiki', changelog: 'Novidades', home: 'Página inicial', modpack: 'Modpack', settings: 'Definições' };
+const labels: Record<string, string> = { '': 'Visão geral', mods: 'Mods', wiki: 'Guias da wiki', changelog: 'Novidades', home: 'Página inicial', modpack: 'Modpack', settings: 'Definições', feedback: 'Feedback' };
 const categoryNames: Record<string, string> = { 'Character & society': 'Personagens e sociedade', 'Economy & trade': 'Economia e comércio', 'Kingdom & justice': 'Reinos e justiça', 'Activities & rewards': 'Atividades e recompensas', 'Getting started': 'Primeiros passos' };
 const turndown = new TurndownService({ headingStyle: 'atx', codeBlockStyle: 'fenced', bulletListMarker: '-' }); turndown.use(gfm);
 turndown.addRule('source-image', { filter: node => node.nodeName === 'IMG' && !!(node as HTMLElement).dataset.originalSrc, replacement: (_content, node) => { const image = node as HTMLImageElement; return `![${image.alt.replace(/[\[\]]/g, '\\$&')}](${image.dataset.originalSrc})`; } });
 const cache = new Map<string, Document>();
 let api: Repository | undefined, site: Data = {}, catalogue: Data = {}, releases: Data = {}, files: Record<string, FileEntry[]> = {}, editor: Editor | undefined;
 let currentRoute = '', generation = 0, publicationGeneration = 0;
+let leaveFeedback: (() => void) | undefined;
 
 function cleanHtml(source: string): string {
   const template = document.createElement('template');
@@ -75,6 +76,7 @@ async function go(route: string, fromHistory = false, force = false) {
   if (!force && route === currentRoute && view.childElementCount) { closeMenu(); return; }
   if (!await canLeave()) { if (fromHistory) history.replaceState(null, '', href(currentRoute)); return; }
   if (!fromHistory) history.pushState(null, '', href(route));
+  leaveFeedback?.(); leaveFeedback = undefined;
   currentRoute = route; editor = undefined; const revision = ++generation; closeMenu();
   q('#topbar-section').textContent = titleOf(route);
   document.querySelectorAll<HTMLAnchorElement>('[data-route]').forEach(link => { link.removeAttribute('aria-current'); if (link.dataset.route === route.split('/')[0]) link.setAttribute('aria-current', 'page'); });
@@ -82,6 +84,7 @@ async function go(route: string, fromHistory = false, force = false) {
   try {
     const [section, id] = route.split('/');
     if (!section) dashboard();
+    else if (section === 'feedback') { const { mountFeedbackModeration } = await import('./community-moderation'); if (revision === generation) leaveFeedback = mountFeedbackModeration(view); }
     else if (section === 'mods' && !id) renderMods();
     else if ((section === 'wiki' || section === 'changelog') && !id) await renderArticles(section, revision);
     else if (section === 'mods' && id) { const data = catalogue.mods.find((mod: Data) => mod.slug === id); if (!data) throw new Error('Mod desconhecido'); renderEditor({ kind: 'mod', document: await read('src/data/mods.json'), data: { ...data }, slug: id, dirty: false, busy: false }); }
@@ -314,7 +317,7 @@ async function enter(token: string) {
   } catch (error) { try { sessionStorage.removeItem(sessionKey); } catch { /* Nothing to clear. */ } api = undefined; status.textContent = error instanceof RepositoryError ? error.message : 'Não foi possível abrir o painel. Tenta entrar novamente.'; }
 }
 q<HTMLButtonElement>('#admin-signin').addEventListener('click', async event => { const button = event.currentTarget as HTMLButtonElement; button.disabled = true; q('#login-status').textContent = 'Conclui o login na janela do GitHub.'; try { await enter(await signIn()); } catch (error) { q('#login-status').textContent = (error as Error).message; } finally { button.disabled = false; } });
-q('#admin-signout').addEventListener('click', async () => { if (!await canLeave()) return; publicationGeneration++; generation++; api = undefined; editor = undefined; cache.clear(); view.innerHTML = ''; try { sessionStorage.removeItem(sessionKey); } catch { /* Storage can be disabled. */ } app.hidden = true; login.hidden = false; q('#publication-status').hidden = true; q('#login-status').textContent = 'Sessão terminada neste separador.'; history.replaceState(null, '', '#/'); });
+q('#admin-signout').addEventListener('click', async () => { if (!await canLeave()) return; publicationGeneration++; generation++; leaveFeedback?.(); leaveFeedback = undefined; api = undefined; editor = undefined; cache.clear(); view.innerHTML = ''; try { sessionStorage.removeItem(sessionKey); } catch { /* Storage can be disabled. */ } app.hidden = true; login.hidden = false; q('#publication-status').hidden = true; q('#login-status').textContent = 'Sessão terminada neste separador.'; history.replaceState(null, '', '#/'); });
 q('.admin-menu').addEventListener('click', () => { const open = app.classList.toggle('menu-open'); q('.admin-menu').setAttribute('aria-expanded', String(open)); q('.admin-menu').setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu'); });
 q('[data-cancel-link]').addEventListener('click', () => q<HTMLDialogElement>('#link-dialog').close());
 document.addEventListener('keydown', event => { if (event.key === 'Escape' && app.classList.contains('menu-open')) { closeMenu(); q<HTMLButtonElement>('.admin-menu').focus(); } });

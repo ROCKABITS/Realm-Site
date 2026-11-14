@@ -27,12 +27,7 @@
 .member-active .account-card { padding: 0; border: 0; background: transparent; box-shadow: none; }
 .member-welcome { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding: 26px 30px; background: var(--panel); border: 1px solid var(--line); border-radius: 18px; }
 .member-identity { display: flex; gap: 20px; align-items: center; min-width: 0; }
-.member-avatar { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 70px; height: 70px; border: 1px solid #8b7945; border-radius: 19px; background: #2d3420; color: #ead39b; }
-.member-avatar[data-avatar="book"] { background: #29324a; border-color: #667a9f; color: #cbdaf5; }
-.member-avatar[data-avatar="globe"] { background: #183e36; border-color: #528d7f; color: #b3dfd0; }
-.member-avatar[data-avatar="code"] { background: #3b273c; border-color: #9c6b9e; color: #e6bee8; }
-.member-avatar[data-avatar="crown"] { background: #42321d; border-color: #a18549; color: #f0d299; }
-.member-avatar[data-avatar="leaf"] { background: #233b1c; border-color: #729555; color: #c3dfa3; }
+.member-avatar { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 70px; height: 70px; overflow: hidden; border: 1px solid #8b7945; border-radius: 19px; background: #2d3420; color: #ead39b; font-size: 22px; font-weight: 600; }
 .member-signed-in { display: inline-flex; align-items: center; gap: 6px; color: var(--link); font-size: 11px; margin-bottom: 7px; }
 .account-card .member-identity h2 { margin: 0 0 5px; font-size: 26px; overflow-wrap: anywhere; }
 .member-identity .account-email { margin: 0; color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
@@ -96,13 +91,13 @@
 .member-profile-card > p { font-size: 13px; }
 .member-profile-card select { width: 100%; }
 .member-profile-card > .account-hint { font-size: 11px; }
-.account-card .member-avatar-picker { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 25px; padding-top: 18px; }
-.member-avatar-picker legend { color: var(--text); font-size: 14px; font-weight: 500; }
-.account-card label.member-avatar-option { display: flex; align-items: center; flex-direction: column; gap: 8px; position: relative; min-width: 0; padding: 20px 8px 12px; margin: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); cursor: pointer; font-size: 11px; }
-.member-avatar-option .member-avatar { width: 47px; height: 47px; border-radius: 12px; }
-.account-card .member-avatar-option input { position: absolute; top: 7px; right: 7px; width: 14px; height: 14px; margin: 0; accent-color: var(--action); }
-.member-avatar-option:has(input:checked) { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
-.member-avatar-option:has(input:focus-visible) { outline: 2px solid var(--gold); outline-offset: 3px; }
+.member-photo-picker { display: flex; gap: 18px; align-items: center; padding-top: 20px; margin-top: 22px; border-top: 1px solid var(--line); }
+.member-photo-picker > div { min-width: 0; }
+.member-photo-picker .member-photo-preview { width: 80px; height: 80px; border-radius: 18px; }
+.account-card .member-photo-picker input { width: 100%; max-width: 100%; padding: 8px; font-size: 11px; margin-bottom: 10px; }
+.member-photo-picker input::file-selector-button { border: 0; border-radius: 5px; padding: 7px 9px; margin-right: 7px; font: inherit; background: var(--panel-soft); color: var(--text); cursor: pointer; }
+.account-card .member-photo-picker label { margin-top: 0; }
+.account-card [data-photo-status] { min-height: 18px; margin-top: 12px; color: var(--gold); }
 .member-profile-save { display: flex; justify-content: space-between; align-items: center; gap: 25px; padding: 23px 0; }
 .member-profile-save p { color: var(--muted); margin-bottom: 0; font-size: 12px; }
 @media (min-width: 901px) and (max-width: 1100px) { .account-link { width: 44px; padding: 0; } .account-link [data-account-nav-label] { display: none; } }

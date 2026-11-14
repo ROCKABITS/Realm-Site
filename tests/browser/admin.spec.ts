@@ -2,6 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import { readFileSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { parse } from 'yaml';
+import { authServer } from './fixtures/member-auth';
 
 const owner = { login: 'ROCKABITS' }; const token = 'fixture-admin-token';
 type Write = { path: string; body: any; text: string };
@@ -180,4 +181,21 @@ test('admin views work on mobile and pass serious accessibility checks', async (
     const violations = await page.evaluate(async () => (await (window as any).axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa'] } })).violations.filter((violation: any) => ['serious', 'critical'].includes(violation.impact)).map((violation: any) => ({ id: violation.id, nodes: violation.nodes.map((node: any) => node.target) })));
     expect(violations, route).toEqual([]);
   }
+});
+
+test('feedback moderation requires the site role and supports hiding and restoring', async ({ page, context }) => {
+  const auth = authServer(); await auth.attach(context); await mockAdmin(page);
+  let allowed = true, hidden: string | null = null; let moderationReads = 0;
+  await page.route('**/rest/v1/rpc/**', async route => {
+    const action = new URL(route.request().url()).pathname.split('realm_feedback_')[1], headers = { 'access-control-allow-origin': '*' };
+    if (action === 'is_moderator') return route.fulfill({ headers, json: allowed });
+    if (action === 'moderation') { moderationReads++; return route.fulfill({ headers, json: { items: [{ id: '00000000-0000-4000-9000-000000000001', author_id: '00000000-0000-4000-8000-000000000002', display_name: 'A player', body: 'Please improve the animations.', resource_type: 'mod', resource_id: 'realm-gym', created_at: '2026-11-14T10:00:00Z', updated_at: '2026-11-14T10:00:00Z', hidden_at: hidden }] } }); }
+    if (action === 'set_hidden') { hidden = route.request().postDataJSON().p_hidden ? new Date().toISOString() : null; return route.fulfill({ headers, json: null }); }
+    return route.fulfill({ status: 403, headers, json: { code: '42501' } });
+  });
+  await open(page, 'feedback'); await expect(page.locator('[data-moderation-list]')).toContainText('Please improve the animations.');
+  await page.getByRole('button', { name: 'Ocultar comentário', exact: true }).click(); await expect(page.locator('.moderation-meta')).toContainText('Oculto'); expect(hidden).toBeTruthy();
+  await page.getByRole('button', { name: 'Restaurar comentário', exact: true }).click(); await expect(page.locator('.moderation-meta')).toContainText('Público'); expect(hidden).toBeNull();
+  await page.getByRole('link', { name: 'Mods', exact: true }).click(); allowed = false; await page.getByRole('link', { name: 'Feedback', exact: true }).click();
+  await expect(page.locator('[data-moderation-status]')).toContainText('não tem permissões'); expect(moderationReads).toBe(1); await expect(page.locator('.moderation-comment')).toHaveCount(0);
 });

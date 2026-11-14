@@ -10,11 +10,10 @@ const catalogue = {
   minecraft: [...new Set(mods.flatMap(mod => mod.editions.map(edition => edition.minecraft)))].sort().reverse(),
   loaders: [...new Set(mods.flatMap(mod => mod.editions.map(edition => edition.loader)))].sort(),
 };
-const avatarOptions = [{ id: 'spark', label: 'Spark' }, { id: 'book', label: 'Scholar' }, { id: 'globe', label: 'Explorer' }, { id: 'code', label: 'Builder' }, { id: 'crown', label: 'Royal' }, { id: 'leaf', label: 'Forest' }];
 ---
 <div class="member-dashboard" data-member-dashboard>
   <div class="member-welcome">
-    <div class="member-identity"><span class="member-avatar" data-member-avatar data-avatar="spark"><Icon name="spark" size={32} /></span><div><span class="member-signed-in"><Icon name="check" size={13} /> Signed in</span><h2 data-member-name>Adventurer</h2><p class="account-email" data-session-email></p></div></div>
+    <div class="member-identity"><span class="member-avatar" data-member-avatar>AD</span><div><span class="member-signed-in"><Icon name="check" size={13} /> Signed in</span><h2 data-member-name>Adventurer</h2><p class="account-email" data-session-email></p></div></div>
     <div class="button-row"><a class="button button-quiet" href="/admin/">Administration <Icon name="lock" size={15} /></a><button class="button button-outline" type="button" data-signout>Sign out</button></div>
   </div>
   <div class="member-tabs" role="tablist" aria-label="Your account sections">
@@ -37,12 +36,12 @@ const avatarOptions = [{ id: 'spark', label: 'Spark' }, { id: 'book', label: 'Sc
   </section>
 
   <section role="tabpanel" id="member-panel-profile" aria-labelledby="member-tab-profile" data-member-panel="profile" hidden>
-    <div class="member-section-heading"><div><p class="eyebrow">Make yourself at home</p><h3>Your profile & installation.</h3><p>Your nickname and preferences are private to your account.</p></div></div>
+    <div class="member-section-heading"><div><p class="eyebrow">Make yourself at home</p><h3>Your profile & installation.</h3><p>Your nickname and photo appear with comments you publish. Your collection, email and installation preferences stay private.</p></div></div>
     <form data-member-profile class="member-profile-form">
       <fieldset>
         <legend class="sr-only">Profile and installation preferences</legend>
         <div class="member-profile-grid"><div class="member-profile-card"><h4>A little more you.</h4><label for="member-nickname">Nickname</label><input id="member-nickname" name="nickname" type="text" autocomplete="nickname" maxlength="64" placeholder="How should we call you?" aria-describedby="nickname-hint" /><p class="account-hint" id="nickname-hint">Up to 32 characters. Leave blank to use Adventurer.</p>
-          <fieldset class="member-avatar-picker"><legend>Choose an avatar</legend>{avatarOptions.map(avatar => <label class="member-avatar-option"><input type="radio" name="avatar" value={avatar.id} checked={avatar.id === 'spark'} /><span class="member-avatar" data-avatar={avatar.id}><Icon name={avatar.id} size={25} /></span><span>{avatar.label}</span></label>)}</fieldset>
+          <div class="member-photo-picker"><span class="member-avatar member-photo-preview" data-photo-preview>AD</span><div><label for="member-photo">Profile photo</label><input id="member-photo" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="photo-hint" /><button class="member-small-button" type="button" data-photo-remove>Remove photo</button></div></div><p class="account-hint" id="photo-hint">JPEG, PNG or WebP, up to 8 MB. Your photo is cropped to a square and resized before upload. Save your profile to apply it.</p><p class="account-hint" data-photo-status role="status"></p>
         </div><div class="member-profile-card"><h4>Your Minecraft setup.</h4><p>Save your version and loader to see which editions fit your installation.</p><label for="member-minecraft">Minecraft version</label><select id="member-minecraft" name="minecraft"><option value="">Any version</option>{catalogue.minecraft.map(version => <option value={version}>{version}</option>)}</select><label for="member-loader">Mod loader</label><select id="member-loader" name="loader"><option value="">Any loader</option>{catalogue.loaders.map(loader => <option value={loader}>{loader}</option>)}</select><p class="account-hint">A compatible edition must match both choices. Always check a mod’s dependencies before installing.</p></div></div>
         <div class="member-profile-save"><p>Saved to your account and available on your other devices.</p><button class="button button-primary" type="submit">Save profile <Icon name="check" size={17} /></button></div>
       </fieldset>

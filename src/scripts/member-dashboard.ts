@@ -1,5 +1,8 @@
 import { getCurrentMember, memberEvent, updateMember, type Member } from '../lib/member-store';
-import { currentReleases, unreadEditions, compatibleEditions, type MemberCatalogue, type MemberMod, type MemberOperation, type MemberState, type Avatar } from '../lib/member-model';
+import { currentReleases, unreadEditions, compatibleEditions, type MemberCatalogue, type MemberMod, type MemberOperation, type MemberState } from '../lib/member-model';
+import { getAuth } from '../lib/auth';
+import { communityRpc, sameMember, verifiedMember } from '../lib/community';
+import { deletePhoto, preparePhoto, showPhoto, uploadPhoto } from '../lib/profile-photo';
 const mounted = new WeakSet<HTMLElement>();
 const esc = (value: unknown) => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]!));
 const smallButton = (action: string, id: string, label: string) => `<button type="button" class="member-small-button" data-collection-action="${action}" data-collection-id="${esc(id)}">${esc(label)}</button>`;
@@ -12,22 +15,27 @@ export function mountMemberDashboard(root: HTMLElement) {
   const q = <T extends Element = HTMLElement>(selector: string) => root.querySelector<T>(selector)!;
   const form = q<HTMLFormElement>('[data-member-profile]'); const fields = form.querySelector('fieldset')!;
   let profileDirty = false; let savingProfile = false; let previousUserId: string | undefined;
+  let pendingPhoto: Blob | null = null, removePhoto = false, previewUrl = '', photoRevision = 0, preparingPhoto = false;
+  const photoInput = q<HTMLInputElement>('#member-photo'), photoPreview = q('[data-photo-preview]'), photoStatus = q('[data-photo-status]');
+  function clearPhotoDraft() { pendingPhoto = null; removePhoto = false; preparingPhoto = false; photoRevision++; photoInput.value = ''; if (previewUrl) URL.revokeObjectURL(previewUrl); previewUrl = ''; photoStatus.textContent = ''; }
   const inFlight = new Set<string>();
   function feedback(message = '', error = false) { const status = q('[data-member-status]'); status.textContent = message; status.hidden = !message; status.dataset.tone = error ? 'error' : 'success'; }
   function render(member: Member | null) {
     if (!member) {
-      previousUserId = undefined; profileDirty = false; form.reset(); q('[data-member-name]').textContent = 'Adventurer';
+      previousUserId = undefined; profileDirty = false; form.reset(); clearPhotoDraft(); showPhoto(q('[data-member-avatar]'), '', 'Adventurer'); showPhoto(photoPreview, '', 'Adventurer'); q('[data-member-name]').textContent = 'Adventurer';
       q('[data-saved-mods]').replaceChildren(); q('[data-saved-guides]').replaceChildren(); q('[data-followed-mods]').replaceChildren(); q('[data-saved-count]').textContent = '0'; q('[data-follow-count]').textContent = '0'; q('[data-unread-count]').hidden = true; feedback(); return;
     }
     const { state } = member;
-    if (previousUserId !== member.user.id) { profileDirty = false; form.reset(); previousUserId = member.user.id; feedback(); }
+    if (previousUserId !== member.user.id) { profileDirty = false; form.reset(); clearPhotoDraft(); previousUserId = member.user.id; feedback(); }
     q('[data-member-name]').textContent = state.name || 'Adventurer';
-    const avatar = q('[data-member-avatar]'); avatar.dataset.avatar = state.avatar;
-    const picture = q<HTMLInputElement>(`input[name=avatar][value="${state.avatar}"]`).parentElement!.querySelector('svg')!.cloneNode(true); avatar.replaceChildren(picture);
+    const path = state.photoPath.startsWith(`${member.user.id}/`) ? state.photoPath : '';
+    showPhoto(q('[data-member-avatar]'), path, state.name);
     if (!profileDirty && !savingProfile) {
-      q<HTMLInputElement>('[name=nickname]').value = state.name; q<HTMLInputElement>(`input[name=avatar][value="${state.avatar}"]`).checked = true;
+      q<HTMLInputElement>('[name=nickname]').value = state.name;
       q<HTMLSelectElement>('[name=minecraft]').value = state.setup.minecraft; q<HTMLSelectElement>('[name=loader]').value = state.setup.loader;
     }
+    if (!pendingPhoto && !removePhoto) showPhoto(photoPreview, path, state.name);
+    q<HTMLButtonElement>('[data-photo-remove]').disabled = savingProfile || (!path && !pendingPhoto);
     q('[data-saved-count]').textContent = String(state.favoriteMods.length + state.favoriteGuides.length); q('[data-follow-count]').textContent = String(Object.keys(state.follows).length);
     const unread = catalogue.mods.filter(mod => unreadEditions(state, mod).length > 0).length; q('[data-unread-count]').textContent = `${unread} new`; q('[data-unread-count]').hidden = unread === 0;
     q('[data-saved-mods]').innerHTML = state.favoriteMods.length ? state.favoriteMods.map(id => {
@@ -70,13 +78,41 @@ export function mountMemberDashboard(root: HTMLElement) {
   });
   q('[data-update-filter]').addEventListener('change', () => render(getCurrentMember()));
   form.addEventListener('input', () => { profileDirty = true; }); form.addEventListener('change', () => { profileDirty = true; });
-  form.addEventListener('submit', async event => {
-    event.preventDefault(); if (savingProfile || !form.reportValidity()) return;
-    const values = new FormData(form); savingProfile = true; fields.disabled = true; feedback('Saving your profile…');
+  photoInput.addEventListener('change', async () => {
+    const file = photoInput.files?.[0]; if (!file) return;
+    const revision = ++photoRevision, id = getCurrentMember()?.user.id; preparingPhoto = true; photoStatus.textContent = 'Preparing your photo…';
     try {
-      await updateMember({ type: 'profile', name: String(values.get('nickname') ?? ''), avatar: String(values.get('avatar')) as Avatar, setup: { minecraft: String(values.get('minecraft') ?? ''), loader: String(values.get('loader') ?? '') } });
-      profileDirty = false; feedback('Profile saved. Your preferences are available on your other devices.');
-    } catch (error) { feedback(error instanceof Error && error.message.includes('32 characters') ? error.message : 'Your profile could not be saved. Your edits are still here; please try again.', true); }
+      const blob = await preparePhoto(file); if (revision !== photoRevision || !id || !sameMember(id)) return;
+      if (previewUrl) URL.revokeObjectURL(previewUrl); previewUrl = URL.createObjectURL(blob); pendingPhoto = blob; removePhoto = false; profileDirty = true;
+      photoPreview.dataset.photoKey = 'preview'; const image = new Image(); image.alt = 'New profile photo preview'; image.src = previewUrl; photoPreview.replaceChildren(image);
+      q<HTMLButtonElement>('[data-photo-remove]').disabled = false; photoStatus.textContent = 'Photo ready. Save your profile to apply it.';
+    } catch (error) { if (revision === photoRevision) photoStatus.textContent = (error as Error).message; }
+    finally { if (revision === photoRevision) preparingPhoto = false; }
+  });
+  q('[data-photo-remove]').addEventListener('click', () => { clearPhotoDraft(); removePhoto = true; profileDirty = true; showPhoto(photoPreview, '', q<HTMLInputElement>('[name=nickname]').value); photoStatus.textContent = 'Photo will be removed when you save your profile.'; });
+  form.addEventListener('submit', async event => {
+    event.preventDefault(); if (savingProfile || preparingPhoto || !form.reportValidity()) return;
+    const values = new FormData(form); savingProfile = true; fields.disabled = true; feedback('Saving your profile…');
+    const expected = getCurrentMember()?.user.id; let uploaded = '', metadataSaved = false;
+    try {
+      if (!expected) throw new Error('SESSION_CHANGED');
+      const member = await verifiedMember(expected), oldPath = member.state.photoPath;
+      const path = pendingPhoto ? (uploaded = await uploadPhoto(expected, pendingPhoto)) : removePhoto ? '' : oldPath;
+      if (!sameMember(expected)) throw new Error('SESSION_CHANGED');
+      await updateMember({ type: 'profile', name: String(values.get('nickname') ?? ''), avatar: member.state.avatar, photoPath: path, setup: { minecraft: String(values.get('minecraft') ?? ''), loader: String(values.get('loader') ?? '') } });
+      metadataSaved = true; if (!sameMember(expected)) return;
+      profileDirty = false; clearPhotoDraft();
+      let synced = false; try { await verifiedMember(expected); await communityRpc('sync_profile'); synced = true; } catch { /* The account is saved; retrying also updates the public comment identity. */ }
+      if (!sameMember(expected)) return;
+      if (synced && oldPath && oldPath !== path && oldPath.startsWith(`${expected}/`)) await deletePhoto(oldPath).catch(() => {});
+      feedback(synced ? 'Profile saved. Your preferences are available on your other devices.' : 'Profile saved. Your comment profile could not be refreshed yet; save again to retry.');
+    } catch (error) {
+      if (uploaded && !metadataSaved && expected && sameMember(expected)) {
+        const { data } = await (await getAuth()).getUser();
+        if (data.user?.id === expected && data.user.user_metadata?.realm_studios?.photoPath !== uploaded) await deletePhoto(uploaded).catch(() => {});
+      }
+      if (expected && sameMember(expected)) feedback(error instanceof Error && (/32 characters|photo/i.test(error.message)) ? error.message : 'Your profile could not be saved. Your edits are still here; please try again.', true);
+    }
     finally { savingProfile = false; fields.disabled = false; render(getCurrentMember()); }
   });
   document.addEventListener(memberEvent, () => render(getCurrentMember())); render(getCurrentMember());

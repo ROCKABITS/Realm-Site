@@ -244,3 +244,13 @@ p { color: var(--a-muted); margin-bottom: 18px; }
 }
 @media (max-width: 390px) { .studio-mod-grid { grid-template-columns: 1fr; } .studio-mod-art { min-height: 145px; } .image-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); } .document-row { grid-template-columns: 1fr auto; } .document-row > span:last-child { display: none; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+/* Shared user feedback; access is checked by the database moderator role. */
+.moderation-panel { padding: 28px; }
+.moderation-panel > [role=status] { color: #4f6255; font-size: 13px; line-height: 1.7; }
+.moderation-comment { border-top: 1px solid #d8dfd1; padding: 26px 0; }
+.moderation-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.moderation-meta strong { overflow-wrap: anywhere; }
+.moderation-meta time { color: #58664f; font-size: 12px; }
+.moderation-comment > a { display: inline-block; margin-top: 10px; color: #355b25; font-size: 12px; text-decoration: underline; }
+.moderation-comment > p { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; line-height: 1.8; margin: 16px 0; }
+.moderation-actions { display: flex; flex-wrap: wrap; gap: 12px; }
