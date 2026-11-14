@@ -265,15 +265,15 @@
       "image": "gym",
       "featured": true,
       "description": "Train on eight animated machines, build permanent attributes and plan your workouts.",
-      "story": "Give your town a place to train. Mount real gym equipment, take on six exercise minigames and turn a daily routine into permanent progress.",
+      "story": "Give your town a place to train. Mount real gym equipment, take on exercise minigames and turn a daily routine into permanent progress. The NeoForge and Fabric 1.21.1 editions include eight machines, with leg press and cable rope triceps; Forge 1.20.1 includes the original six.",
       "features": [
-        "Eight functional machines with articulated player and equipment animations.",
+        "Eight animated machines on Minecraft 1.21.1, including leg press and cable rope triceps.",
         "Distinct exercise minigames with heavier loads, fatigue and permanent attribute levels.",
         "Personal workout plans, training history and a daily calendar.",
         "Physical record boards for your gym and server."
       ],
       "firstStep": "Craft a machine, then right-click to mount and train. Sneak-right-click before entering to increase the load. Press K to open your athlete profile and Shift to leave the equipment.",
-      "integrations": "Works independently; Realm Origins and other stats mods are not required. Previously Realm Fitness: replace its JAR with Realm Gym. Existing worlds, machines and progress remain compatible.",
+      "integrations": "Works independently of Realm Origins and other stats mods. The Fabric edition requires Fabric API on the server and clients. Previously Realm Fitness: replace its JAR with Realm Gym. Match the Minecraft version and loader when choosing your edition.",
       "gallery": [
         "gymEquipment",
         "gymProfile"

@@ -3,7 +3,8 @@ const text = z.string().trim().min(1);
 const url = z.url();
 export const editionSchema = z.object({
   id: text, version: z.string().regex(/^\d+\.\d+\.\d+$/), minecraft: text,
-  loader: z.enum(['NeoForge', 'Forge']), loaderVersion: text, java: z.number().int().positive(),
+  loader: z.enum(['NeoForge', 'Forge', 'Fabric']), loaderVersion: text, java: z.number().int().positive(),
+  dependencies: z.array(z.object({ name: text, version: text, url })).default([]), note: text.optional(),
   status: z.enum(['Beta', 'Release']).nullable(), jar: z.string().endsWith('.jar'), downloadUrl: url, sourceUrl: url, sha256: z.string().optional(),
 });
 export const releaseSchema = z.object({ repository: text, releaseCommit: z.string().regex(/^[a-f0-9]{40}$/), mods: z.array(z.object({ slug: text, editions: z.array(editionSchema).min(1) })) });

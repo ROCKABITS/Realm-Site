@@ -26,3 +26,19 @@ test('every editorial mod has unique, complete release metadata', async () => {
   const forge = releases.mods.find(x => x.slug === 'contracts-bounties').editions.find(x => x.loader === 'Forge');assert.equal(forge.minecraft, '1.20.1');assert.equal(forge.java, 17);
   assert(releases.mods.some(x => x.slug === 'realm-gym'));
 });
+
+test('Realm Gym selects NeoForge, Fabric and Forge releases independently', () => {
+  const paths = ['mod-pronto/realm-gym-0.5.1.jar', 'mod-pronto/realm-gym-0.6.0.jar', 'mod-pronto/realm-gym-0.6.0-fabric-1.21.1.jar', 'mod-pronto/realm-gym-0.5.1-forge-1.20.1.jar'];
+  assert.equal(selectRelease(paths, { prefix: 'realm-gym' }).version, '0.6.0');
+  assert.equal(selectRelease(paths, { prefix: 'realm-gym', suffix: '-fabric-1.21.1' }).path, 'mod-pronto/realm-gym-0.6.0-fabric-1.21.1.jar');
+  assert.equal(selectRelease(paths, { prefix: 'realm-gym', suffix: '-forge-1.20.1' }).version, '0.5.1');
+});
+test('Fabric metadata supplies its loader version and edition-specific API requirement', () => {
+  const commit = 'c'.repeat(40);
+  const edition = { id: 'fabric-1.21.1', loader: 'Fabric', loaderVersion: '0.16.14+', minecraft: '1.21.1', java: 21, dependencies: [{ name: 'Fabric API', version: 'old', url: 'https://www.curseforge.com/minecraft/mc-mods/fabric-api' }] };
+  const release = { path: 'mod-pronto/realm-gym-0.6.0-fabric-1.21.1.jar', version: '0.6.0' };
+  const result = normalizeRelease(release, edition, { fabric_loader: '0.16.14', fabric_api: '0.116.18+1.21.1', source_commit: commit }, commit, 'realm-gym-fabric-1.21.1');
+  assert.equal(result.loaderVersion, '0.16.14+'); assert.equal(result.dependencies[0].version, '0.116.18+1.21.1'); assert.equal(result.java, 21);
+  const neo = normalizeRelease(release, { id: 'neo', loader: 'NeoForge', loaderVersion: '21.1.256+', minecraft: '1.21.1', java: 21 }, { neoforge: '21.1.256' }, commit, 'realm-gym');
+  assert.equal(neo.dependencies, undefined);
+});

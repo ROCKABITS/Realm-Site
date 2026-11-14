@@ -17,7 +17,7 @@ export const gallery = {
   marketsStalls: { image: marketsStalls, caption: 'Build a market with crimson and green stalls.' },
   casinoTables: { image: casinoTables, caption: 'Medieval game tables and machines placed in a demonstration world.' },
   marriageAltar: { image: marriageAltar, caption: 'Prepare a physical altar for your ceremony.' },
-  gymEquipment: { image: gymEquipment, caption: 'Six gym machines, rendered in Minecraft.' },
+  gymEquipment: { image: gymEquipment, caption: 'Eight gym machines in Realm Gym 0.6.0 for Minecraft 1.21.1, including leg press and cable triceps.' },
   treasuryContract: { image: treasuryContract, caption: 'Read the terms and instalments on a signed loan contract.' },
   marriageAgreement: { image: marriageAgreement, caption: 'Agree on the ceremony and marriage terms together.' },
   casinoPoker: { image: casinoPoker, caption: 'Read the poker rules before joining a table.' },
@@ -25,5 +25,5 @@ export const gallery = {
   gymProfile: { image: gymProfile, caption: 'Track your attributes and permanent training progress.' },
 };
 export const videos = {
-  gymBench: { url: 'https://raw.githubusercontent.com/ROCKABITS/Mods/e00a265fcf858297b093820683d622eaf11fe311/media/realm-fitness/0.5.0/fitness-motion-bench.mp4', label: 'Bench press gameplay and equipment animation — recorded in 0.5.0, before the Realm Gym rename' },
+  gymBench: { url: 'https://raw.githubusercontent.com/ROCKABITS/Mods/c3d0a6a3b5db8863b90ca737fcfccb1bc2e3fa84/media/realm-gym/0.6.0-fabric-1.21.1/fitness-motion-bench.mp4', label: 'Bench press gameplay and articulated equipment animation — Realm Gym 0.6.0, Fabric 1.21.1' },
 };

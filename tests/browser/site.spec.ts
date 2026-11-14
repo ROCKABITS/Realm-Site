@@ -102,3 +102,20 @@ test('Season 8 explains availability and links to access instructions', async ({
   await page.goto('/modpack/');await expect(page.locator('.version-label')).not.toBeEmpty();
   await expect(page.locator('#modpack-access')).toBeVisible();await expect(page.locator('.distribution-label')).not.toBeEmpty();
 });
+
+test('Realm Gym exposes three loader editions and scopes Fabric API to Fabric', async ({ page }) => {
+  for (const width of [320, 1280]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/mods/realm-gym/');
+    await expect(page.locator('.download-card')).toHaveCount(3);
+    const fabric = page.locator('.download-card').filter({ hasText: 'Fabric · Minecraft 1.21.1' });
+    await expect(fabric).toContainText('Fabric 0.16.14+');
+    await expect(fabric.getByRole('link', { name: 'Fabric API 0.116.18+1.21.1', exact: true })).toHaveAttribute('href', 'https://www.curseforge.com/minecraft/mc-mods/fabric-api');
+    await expect(fabric.getByRole('link', { name: 'Download Realm Gym for Fabric 1.21.1', exact: true })).toHaveAttribute('href', /realm-gym-0\.6\.0-fabric-1\.21\.1\.jar$/);
+    const forge = page.locator('.download-card').filter({ hasText: 'Forge · Minecraft 1.20.1' });
+    await expect(forge).toContainText('Java 17'); await expect(forge).toContainText('Includes six machines');
+    await expect(page.locator('.download-card').filter({ hasText: 'NeoForge · Minecraft 1.21.1' })).not.toContainText('Fabric API');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
+  await page.goto('/wiki/realm-gym/'); await expect(page.locator('main')).toContainText('Cable rope triceps'); await expect(page.locator('main')).toContainText('240 kg');
+});

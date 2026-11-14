@@ -56,7 +56,7 @@ npm run build
 npm test
 ```
 
-`scripts/sync-releases.mjs` reads the public **ROCKABITS/Mods** release tree, selects the newest semantic version for each configured edition, reads its build metadata and writes `src/data/releases.json`. Downloads are pinned to a repository commit. Existing editorial descriptions are preserved. Forge and NeoForge releases are selected independently.
+`scripts/sync-releases.mjs` reads the public **ROCKABITS/Mods** release tree, selects the newest semantic version for each configured edition, reads its build metadata and writes `src/data/releases.json`. Downloads are pinned to a repository commit. Existing editorial descriptions are preserved. Forge, NeoForge and Fabric releases are selected independently. Edition-specific dependencies such as Fabric API are displayed with the corresponding download.
 
 `src/data/catalog-sources.json` maps each catalogue slug to its source folder and edition filenames. Add a source mapping, editorial entry, artwork and player guide when adding a new project.
 

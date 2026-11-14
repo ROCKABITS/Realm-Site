@@ -92,6 +92,9 @@ test('production metadata uses the canonical domain and the CMS home content is 
 test('mod pages expose actual screenshots and separate loader downloads', async () => {
   const gym = await readFile(join(root, 'mods/realm-gym/index.html'), 'utf8');
   assert(gym.includes('gameplay-section'));assert(gym.includes('<video'));assert(gym.includes('Realm Gym'));
+  const cards = gym.match(/<article class="download-card">[\s\S]*?<\/article>/g); assert.equal(cards.length, 3);
+  const fabric = cards.find(card => card.includes('<h3>Fabric')); assert(fabric.includes('Fabric API 0.116.18+1.21.1')); assert(fabric.includes('realm-gym-0.6.0-fabric-1.21.1.jar'));
+  assert(!cards.find(card => card.includes('<h3>NeoForge')).includes('Fabric API')); assert(cards.find(card => card.includes('<h3>Forge')).includes('Includes six machines'));
   const contracts = await readFile(join(root, 'mods/contracts-bounties/index.html'), 'utf8');
   assert(contracts.includes('Forge · Minecraft 1.20.1'));assert(contracts.includes('Download Forge'));assert(contracts.includes('Download NeoForge'));
 });
