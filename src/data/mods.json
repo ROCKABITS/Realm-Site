@@ -50,7 +50,7 @@
       "label": "Open for business",
       "category": "Economy & trade",
       "image": "markets",
-      "featured": true,
+      "featured": false,
       "description": "Set up a medieval stall and let your shop work while you are away.",
       "story": "Turn a town square into a living marketplace. Build a crimson or green stall, stock real items, set a price, and collect your earnings when you return.",
       "features": [
@@ -63,7 +63,8 @@
       "integrations": "Works with emeralds independently. New stalls can use the Origins wallet; Treasury adds sales tax. This version sells items without custom data.",
       "gallery": [
         "marketsStalls"
-      ]
+      ],
+      "video": ""
     },
     {
       "slug": "realm-council",
