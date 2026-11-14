@@ -137,10 +137,12 @@ test('visual article edits preserve local image references and Markdown tables',
   expect(mock.writes[0].text).toContain('../../assets/screenshots/origins-creation.png'); expect(mock.writes[0].text).toContain('../../assets/screenshots/origins-book.png');
   await page.getByRole('navigation', { name: 'Administração' }).getByRole('link', { name: 'Guias da wiki' }).click();
   await page.getByRole('link', { name: /Train at your gym/ }).click();
-  await expect(page.locator('[data-rich-editor] table')).toHaveCount(1);
+  await expect(page.locator('[data-rich-editor] table').filter({ hasText: 'Controls' })).toHaveCount(1);
+  await expect(page.locator('[data-rich-editor] table').filter({ hasText: 'Edition' })).toHaveCount(1);
   await page.getByRole('textbox', { name: 'Conteúdo da página' }).press('Control+End'); await page.keyboard.type(' Extra gym information.');
   await page.getByRole('button', { name: 'Guardar e publicar' }).click(); await expect(page.locator('#editor-notice')).toContainText('Alterações guardadas');
   expect(mock.writes[1].text).toContain('| Equipment'); expect(mock.writes[1].text).toContain('Bench press');
+  expect(mock.writes[1].text).toContain('| Edition'); expect(mock.writes[1].text).toContain('Fabric');
 });
 
 test('previews sanitize Markdown HTML instead of executing scripts', async ({ page }) => {
