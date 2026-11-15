@@ -14,6 +14,7 @@ Choose an edition from the [Realm Gym downloads](/mods/realm-gym/#downloads). In
 | --- | --- | --- | --- |
 | NeoForge · Minecraft 1.21.1 | 0.6.0 | NeoForge 21.1.256+, Java 21 | Eight machines |
 | Fabric · Minecraft 1.21.1 | 0.6.0 | Fabric Loader 0.16.14+, Java 21 and Fabric API 0.116.18+1.21.1 | Eight machines |
+| Forge · Minecraft 1.21.1 | 0.6.0 | Forge 52.1.20+, Java 21 | Eight machines |
 | Forge · Minecraft 1.20.1 | 0.5.1 | Forge 47.4.0+, Java 17 | Six machines |
 
 For Fabric, add [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) for Minecraft 1.21.1 to both the server and clients. Realm Gym works independently of Realm Origins and other stats mods.
@@ -55,4 +56,4 @@ Training develops 20 permanent levels in each of six attributes. Lighter loads b
 
 `/gym` opens your profile. Operators can use `/gym equipment` to obtain the equipment and `/gym reload` to reload settings. Existing `/fitness` commands remain aliases.
 
-Find the full configuration and validation details in the source guides for [NeoForge 1.21.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym), [Fabric 1.21.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym-fabric-1.21.1) and [Forge 1.20.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym-forge-1.20.1).
+Find the full configuration and validation details in the source guides for [NeoForge 1.21.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym), [Fabric 1.21.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym-fabric-1.21.1), [Forge 1.21.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym-forge-1.21.1) and [Forge 1.20.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym-forge-1.20.1).
