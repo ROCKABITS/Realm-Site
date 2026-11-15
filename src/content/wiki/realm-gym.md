@@ -12,10 +12,10 @@ Choose an edition from the [Realm Gym downloads](/mods/realm-gym/#downloads). In
 
 | Edition | Version | Requirements | Equipment |
 | --- | --- | --- | --- |
-| NeoForge · Minecraft 1.21.1 | 0.7.0 | NeoForge 21.1.256+, Java 21 | Eight machines |
-| Fabric · Minecraft 1.21.1 | 0.7.0 | Fabric Loader 0.16.14+, Java 21 and Fabric API 0.116.18+1.21.1 | Eight machines |
-| Forge · Minecraft 1.21.1 | 0.7.0 | Forge 52.1.20+, Java 21 | Eight machines |
-| Forge · Minecraft 1.20.1 | 0.7.0 | Forge 47.4.0+, Java 17 | Six machines |
+| NeoForge · Minecraft 1.21.1 | 0.7.1 | NeoForge 21.1.256+, Java 21 | Eight machines |
+| Fabric · Minecraft 1.21.1 | 0.7.1 | Fabric Loader 0.16.14+, Java 21 and Fabric API 0.116.18+1.21.1 | Eight machines |
+| Forge · Minecraft 1.21.1 | 0.7.1 | Forge 52.1.20+, Java 21 | Eight machines |
+| Forge · Minecraft 1.20.1 | 0.7.1 | Forge 47.4.0+, Java 17 | Six machines |
 
 For Fabric, add [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) for Minecraft 1.21.1 to both the server and clients. Realm Gym works independently of Realm Origins and other stats mods.
 
@@ -54,7 +54,15 @@ Training develops 20 permanent levels in each of six attributes. Lighter loads b
 
 ## Optional physical condition
 
-Version 0.7.0 adds physical condition for each attribute. It is **disabled by default**. To enable it, the server owner sets `conditioning.enabled` to `true` in `config/realm-fitness.json` and runs `/gym reload`.
+Physical condition is **disabled by default**. In version 0.7.1, operators can control it directly in Minecraft:
+
+```text
+/gym conditioning on
+/gym conditioning off
+/gym conditioning status
+```
+
+Enabling or disabling requires operator permission level 2. Changes apply immediately, are saved automatically and survive server restarts. Everyone can check the current state with `/gym conditioning status` or `/gym conditioning`. The console and the `/fitness conditioning` alias are supported. No file editing or `/gym reload` is needed for these commands.
 
 By default, condition stays at 100% for seven full days without maintenance, then loses five percentage points per additional complete day, down to 60%. A potential +10% damage bonus becomes +8% at 80% condition. Lifetime XP, levels, unlocked weights, routines and personal records remain saved.
 
