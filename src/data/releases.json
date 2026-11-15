@@ -1,6 +1,6 @@
 {
   "repository": "ROCKABITS/Mods",
-  "releaseCommit": "aa63d9d32ef90d29b850e316f64c1da390f5f92e",
+  "releaseCommit": "fb8a3494309018c813291d07bd0a9fabe283cd6a",
   "mods": [
     {
       "slug": "realm-origins",
@@ -14,7 +14,7 @@
           "java": 21,
           "status": null,
           "jar": "realm-origins-0.5.7.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/realm-origins-0.5.7.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/realm-origins-0.5.7.jar",
           "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/e407cd69444e6b97472760ac8bed66d20908864d/realm-origins",
           "sha256": "0b90c49b9e3c49d2f0343301ac3662b21d6ce5551ea343fb7fc8ebdab9e09684"
         }
@@ -32,7 +32,7 @@
           "java": 21,
           "status": null,
           "jar": "realm-treasury-0.4.0.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/realm-treasury-0.4.0.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/realm-treasury-0.4.0.jar",
           "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/f3b0e3a7365092603e04e95bd7d9024b6728d090/crown-ledger",
           "sha256": "fb22b77ae2ab11ecfc4b81701c67d22a4618198f3b04d97922625491f5f32f39"
         }
@@ -50,7 +50,7 @@
           "java": 21,
           "status": null,
           "jar": "realm-markets-0.2.1.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/realm-markets-0.2.1.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/realm-markets-0.2.1.jar",
           "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/0d9e45962ae298e4fac98f46c6c9b5823e0ffc8d/realm-markets",
           "sha256": "bfb1e73186015ab94a86c841abba1df02bf1b5851a65771e622234624b806bb1"
         }
@@ -68,7 +68,7 @@
           "java": 21,
           "status": null,
           "jar": "realmcouncil-0.2.2.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/realmcouncil-0.2.2.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/realmcouncil-0.2.2.jar",
           "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/461d5c6ff258da843edd79a8f6594c0a7b3e4293/realm-council",
           "sha256": "0bfe5d871554a391a7ed1b2971e49dc9531a01d18c00e30140ac18d7da22f062"
         }
@@ -86,7 +86,7 @@
           "java": 21,
           "status": null,
           "jar": "contracts-bounties-0.4.1.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/contracts-bounties-0.4.1.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/contracts-bounties-0.4.1.jar",
           "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/d69ae21862fbac53acf5e6f49df3556f8f0e7db7/contracts-bounties",
           "sha256": "a9088f3395ef4263d4b124c60e16d1d2e90c0ac728498fa81b624a18d1dd8b33"
         },
@@ -99,7 +99,7 @@
           "java": 17,
           "status": null,
           "jar": "contracts-bounties-0.4.1-forge-1.20.1.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/contracts-bounties-0.4.1-forge-1.20.1.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/contracts-bounties-0.4.1-forge-1.20.1.jar",
           "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/10f214341352a63a96cb9c3ad0ea4c67b2e244c4/contracts-bounties-forge-1.20.1",
           "sha256": "f3f3f6dc7ac1673ca4526362ed3c2aa53ecdd7f7ed29508c48abc1734a8d6b9a"
         }
@@ -117,7 +117,7 @@
           "java": 21,
           "status": null,
           "jar": "realm-identity-0.1.2.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/realm-identity-0.1.2.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/realm-identity-0.1.2.jar",
           "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/26ac0103890ab6db62f314ff3ea4ef06cd032ec0/realm-identity",
           "sha256": "4bb9ef1d4df009fe1061c5daeaa76e95fb9ce355c72f00a83b31dffe0b36f016"
         }
@@ -135,7 +135,7 @@
           "java": 21,
           "status": null,
           "jar": "realm-economy-0.5.1.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/realm-economy-0.5.1.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/realm-economy-0.5.1.jar",
           "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/b4c0d1b294790861f8741b64e9e6b4721fd036b8/realm-economy",
           "sha256": "43716162e02bcf7cbd9e2b12f450d7ffd979e8de792ed2410fcc1c9d8e4e12fe"
         }
@@ -153,7 +153,7 @@
           "java": 21,
           "status": null,
           "jar": "realm-titles-0.1.0.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/realm-titles-0.1.0.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/realm-titles-0.1.0.jar",
           "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/a9de43fdc55325ff9f3aaedaf4ffc61608b8dc16/realm-titles",
           "sha256": "65d854ffd92805f6e8cb0891454f80ba5a6f33394cc0375cf23f64098af2bd16"
         }
@@ -171,7 +171,7 @@
           "java": 21,
           "status": null,
           "jar": "realm-marriage-0.1.0.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/realm-marriage-0.1.0.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/realm-marriage-0.1.0.jar",
           "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/26ac0103890ab6db62f314ff3ea4ef06cd032ec0/realm-marriage",
           "sha256": "c2d2471029a006843c542622a1e1e0543a20492ea22a5999de02dd423d2390ca"
         }
@@ -189,7 +189,7 @@
           "java": 21,
           "status": null,
           "jar": "laws-justice-0.4.0.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/laws-justice-0.4.0.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/laws-justice-0.4.0.jar",
           "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/86b93988a7ef5bfe9736f56085c6a861adddb66e/laws-justice",
           "sha256": "78c32b0c3acc8930ffd508c9bb44cc98b794a4b87900438b19ab812c21d36f7b"
         }
@@ -207,7 +207,7 @@
           "java": 21,
           "status": null,
           "jar": "realm-casino-0.3.0.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/realm-casino-0.3.0.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/realm-casino-0.3.0.jar",
           "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/d7d367d362905fe3ef2763bdcc9066c3d7f34928/realm-casino",
           "sha256": "99c6c457d26be354f6cddddc4c865fe444f765b8d359004de12921aa0fad9117"
         }
@@ -225,7 +225,7 @@
           "java": 21,
           "status": null,
           "jar": "realm-rewards-0.1.2.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/realm-rewards-0.1.2.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/realm-rewards-0.1.2.jar",
           "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/0d9e45962ae298e4fac98f46c6c9b5823e0ffc8d/realm-rewards",
           "sha256": "ab8efe3bd9a7b24a4f725bf6dfe1f07dec0b88ecfaac91533b57c45b11cb7bcb"
         }
@@ -243,7 +243,7 @@
           "java": 21,
           "status": null,
           "jar": "realm-notifications-0.1.1.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/realm-notifications-0.1.1.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/realm-notifications-0.1.1.jar",
           "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/a64cd023f02d8e35ebb80fe786ec05c341da3f5a/realm-notifications",
           "sha256": "2fb85c87eb296e49f3f68c0d7defd709ceca8913fa5a3f6ef9442d9b9548c99e"
         }
@@ -254,20 +254,20 @@
       "editions": [
         {
           "id": "neoforge-1.21.1",
-          "version": "0.6.0",
+          "version": "0.7.0",
           "minecraft": "1.21.1",
           "loader": "NeoForge",
           "loaderVersion": "21.1.256+",
           "java": 21,
           "status": "Beta",
-          "jar": "realm-gym-0.6.0.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/realm-gym-0.6.0.jar",
-          "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/e3a9f432840c9b85a785114bafe2d11069ea833d/realm-gym",
-          "sha256": "aabc7f0c4323eec8c8cedb7e387e08cf2d89a81cc4ac3487011023d2818f0a1d"
+          "jar": "realm-gym-0.7.0.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/realm-gym-0.7.0.jar",
+          "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/9035df3a7c79d293bbf4ba88f6d270f88d660865/realm-gym",
+          "sha256": "b8cd5aa01de48b6f9a92ff266633a3d908504d6ae5ae90fd8ec4aed4570cdc66"
         },
         {
           "id": "fabric-1.21.1",
-          "version": "0.6.0",
+          "version": "0.7.0",
           "minecraft": "1.21.1",
           "loader": "Fabric",
           "loaderVersion": "0.16.14+",
@@ -280,37 +280,37 @@
           ],
           "java": 21,
           "status": "Beta",
-          "jar": "realm-gym-0.6.0-fabric-1.21.1.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/realm-gym-0.6.0-fabric-1.21.1.jar",
-          "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/093b349ed707973a745cd79d088675a753884b83/realm-gym-fabric-1.21.1",
-          "sha256": "59df14498c8e23d0d571160f98c9d01ddcbaae0d72a55cdc0a0f0fbead99b153"
+          "jar": "realm-gym-0.7.0-fabric-1.21.1.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/realm-gym-0.7.0-fabric-1.21.1.jar",
+          "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/849445388235869c67c0509922d3aa8537d30977/realm-gym-fabric-1.21.1",
+          "sha256": "f7ec4d5de20fb0a93febb8ef542524d9c98ba66cad7c87e372781b0e0bca2cfd"
         },
         {
           "id": "forge-1.21.1",
-          "version": "0.6.0",
+          "version": "0.7.0",
           "minecraft": "1.21.1",
           "loader": "Forge",
           "loaderVersion": "52.1.20+",
           "java": 21,
           "status": "Beta",
-          "jar": "realm-gym-0.6.0-forge-1.21.1.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/realm-gym-0.6.0-forge-1.21.1.jar",
-          "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/e1de997b8f81bc50daa21b389783593625ad640a/realm-gym-forge-1.21.1",
-          "sha256": "e8076816e9649f40763f124daf85c792c094419eee7f596f1e0ab3c3cf2de7a7"
+          "jar": "realm-gym-0.7.0-forge-1.21.1.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/realm-gym-0.7.0-forge-1.21.1.jar",
+          "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/849445388235869c67c0509922d3aa8537d30977/realm-gym-forge-1.21.1",
+          "sha256": "a4cab891c77e396780fac0f39d82d4d46d12f83db110473a04439a5e47be6060"
         },
         {
           "id": "forge-1.20.1",
-          "version": "0.5.1",
+          "version": "0.7.0",
           "minecraft": "1.20.1",
           "loader": "Forge",
           "loaderVersion": "47.4.0+",
           "note": "Includes six machines. Leg press and cable triceps are available in the Minecraft 1.21.1 editions.",
           "java": 17,
           "status": "Beta",
-          "jar": "realm-gym-0.5.1-forge-1.20.1.jar",
-          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/aa63d9d32ef90d29b850e316f64c1da390f5f92e/mod-pronto/realm-gym-0.5.1-forge-1.20.1.jar",
-          "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/8c97b6ea93f26ebe3400b1d8b70418ca81b2a351/realm-gym-forge-1.20.1",
-          "sha256": "829d2119fc42de0ee0b4336fcda13c523221765d5e331c67729f5c7853436cfd"
+          "jar": "realm-gym-0.7.0-forge-1.20.1.jar",
+          "downloadUrl": "https://github.com/ROCKABITS/Mods/raw/fb8a3494309018c813291d07bd0a9fabe283cd6a/mod-pronto/realm-gym-0.7.0-forge-1.20.1.jar",
+          "sourceUrl": "https://github.com/ROCKABITS/Mods/tree/849445388235869c67c0509922d3aa8537d30977/realm-gym-forge-1.20.1",
+          "sha256": "73460376cdfdd4451632a49b04007bbda22502b665c15d38702676fd87cbd835"
         }
       ]
     }

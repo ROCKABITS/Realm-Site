@@ -12,10 +12,10 @@ Choose an edition from the [Realm Gym downloads](/mods/realm-gym/#downloads). In
 
 | Edition | Version | Requirements | Equipment |
 | --- | --- | --- | --- |
-| NeoForge · Minecraft 1.21.1 | 0.6.0 | NeoForge 21.1.256+, Java 21 | Eight machines |
-| Fabric · Minecraft 1.21.1 | 0.6.0 | Fabric Loader 0.16.14+, Java 21 and Fabric API 0.116.18+1.21.1 | Eight machines |
-| Forge · Minecraft 1.21.1 | 0.6.0 | Forge 52.1.20+, Java 21 | Eight machines |
-| Forge · Minecraft 1.20.1 | 0.5.1 | Forge 47.4.0+, Java 17 | Six machines |
+| NeoForge · Minecraft 1.21.1 | 0.7.0 | NeoForge 21.1.256+, Java 21 | Eight machines |
+| Fabric · Minecraft 1.21.1 | 0.7.0 | Fabric Loader 0.16.14+, Java 21 and Fabric API 0.116.18+1.21.1 | Eight machines |
+| Forge · Minecraft 1.21.1 | 0.7.0 | Forge 52.1.20+, Java 21 | Eight machines |
+| Forge · Minecraft 1.20.1 | 0.7.0 | Forge 47.4.0+, Java 17 | Six machines |
 
 For Fabric, add [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) for Minecraft 1.21.1 to both the server and clients. Realm Gym works independently of Realm Origins and other stats mods.
 
@@ -51,6 +51,18 @@ Leg press loads start at **40 kg**, increase in 10 kg steps and unlock up to **2
 Press **K** to open the athlete profile. Choose or create a routine with exercises, sets, repetitions, loads and rest periods. Your active workout is saved between sessions.
 
 Training develops 20 permanent levels in each of six attributes. Lighter loads become easier as you progress. Daily XP limits, fatigue and recovery encourage regular training. Record boards show results by exercise, load, repetitions, period and gym area.
+
+## Optional physical condition
+
+Version 0.7.0 adds physical condition for each attribute. It is **disabled by default**. To enable it, the server owner sets `conditioning.enabled` to `true` in `config/realm-fitness.json` and runs `/gym reload`.
+
+By default, condition stays at 100% for seven full days without maintenance, then loses five percentage points per additional complete day, down to 60%. A potential +10% damage bonus becomes +8% at 80% condition. Lifetime XP, levels, unlocked weights, routines and personal records remain saved.
+
+Two successful sets of at least eight repetitions for an attribute maintain it and restore 20 condition points, once per attribute per training day. Bench press and cable triceps share strength; squats and leg press share leg power. Maintenance also works after reaching the daily XP cap. Failed, cancelled and shorter sets do not count.
+
+The RPG profile shows condition and the active bonus. Hover over an attribute to see today's maintenance and the time until the next loss. Server owners can configure the grace period, loss, minimum, recovery and set requirement. Set `conditioning.countOfflineTime` to `false` to count only time connected to that world.
+
+Disabling the option restores the full bonuses from permanent levels and pauses saved condition. Existing profiles receive a full grace period when the feature is first enabled. [Full configuration guide](https://github.com/ROCKABITS/Mods/blob/main/realm-gym/CONDITIONING.md).
 
 ## Commands
 
