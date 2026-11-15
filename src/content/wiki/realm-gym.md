@@ -12,10 +12,10 @@ Choose an edition from the [Realm Gym downloads](/mods/realm-gym/#downloads). In
 
 | Edition | Version | Requirements | Equipment |
 | --- | --- | --- | --- |
-| NeoForge · Minecraft 1.21.1 | 0.7.1 | NeoForge 21.1.256+, Java 21 | Eight machines |
-| Fabric · Minecraft 1.21.1 | 0.7.1 | Fabric Loader 0.16.14+, Java 21 and Fabric API 0.116.18+1.21.1 | Eight machines |
-| Forge · Minecraft 1.21.1 | 0.7.1 | Forge 52.1.20+, Java 21 | Eight machines |
-| Forge · Minecraft 1.20.1 | 0.7.1 | Forge 47.4.0+, Java 17 | Six machines |
+| NeoForge · Minecraft 1.21.1 | 0.7.0 | NeoForge 21.1.256+, Java 21 | Eight machines |
+| Fabric · Minecraft 1.21.1 | 0.7.0 | Fabric Loader 0.16.14+, Java 21 and Fabric API 0.116.18+1.21.1 | Eight machines |
+| Forge · Minecraft 1.21.1 | 0.7.0 | Forge 52.1.20+, Java 21 | Eight machines |
+| Forge · Minecraft 1.20.1 | 0.7.0 | Forge 47.4.0+, Java 17 | Six machines |
 
 For Fabric, add [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) for Minecraft 1.21.1 to both the server and clients. Realm Gym works independently of Realm Origins and other stats mods.
 
@@ -54,7 +54,7 @@ Training develops 20 permanent levels in each of six attributes. Lighter loads b
 
 ## Optional physical condition
 
-Physical condition is **disabled by default**. In version 0.7.1, operators can control it directly in Minecraft:
+Physical condition is **disabled by default**. In version 0.7.0, operators can control it directly in Minecraft:
 
 ```text
 /gym conditioning on
@@ -77,3 +77,21 @@ Disabling the option restores the full bonuses from permanent levels and pauses 
 `/gym` opens your profile. Operators can use `/gym equipment` to obtain the equipment and `/gym reload` to reload settings. Existing `/fitness` commands remain aliases.
 
 Find the full configuration and validation details in the source guides for [NeoForge 1.21.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym), [Fabric 1.21.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym-fabric-1.21.1), [Forge 1.21.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym-forge-1.21.1) and [Forge 1.20.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym-forge-1.20.1).
+
+## Changelog — 0.7.0
+
+- Added optional physical condition for each of the six training attributes. The system is disabled by default.
+- By default, condition remains at 100% for seven full days without maintenance, then loses five percentage points per additional complete day, down to 60%.
+- Condition scales Realm Gym's earned attribute bonuses. Lifetime XP, levels, unlocked loads, workout plans and personal records remain saved.
+- Completing two valid sets of at least eight repetitions for an attribute restores 20 condition points, once per attribute per training day, and renews its grace period. Maintenance still counts after reaching the daily XP cap.
+- Added condition, effective bonuses and maintenance details to the athlete profile, with additional information in attribute tooltips.
+- Added `/gym conditioning on`, `/gym conditioning off` and `/gym conditioning status`. Enabling or disabling requires operator permission level 2; everyone can check the status.
+- Command changes apply immediately to the whole server and are saved automatically across restarts. No file editing or `/gym reload` is needed.
+- Added console support and the `/fitness conditioning` alias. Existing configuration values are preserved when toggling the system.
+- Disabling condition restores full earned bonuses and pauses saved condition. Repeating `on` while already enabled does not reset condition or renew the grace period.
+- Added configurable grace period, loss rate, minimum condition, recovery and maintenance requirements. Offline time can be included or excluded.
+- Existing profiles receive full condition and a complete grace period when the feature is first enabled, with no inactivity charged from before activation.
+
+Available for NeoForge, Fabric and Forge on Minecraft 1.21.1, and Forge on Minecraft 1.20.1. The 1.21.1 editions include eight machines; Forge 1.20.1 includes six. Install the same edition and version on the server and every client. Fabric also requires Fabric API.
+
+[Read the changelog on GitHub](https://github.com/ROCKABITS/Mods/blob/main/realm-gym/CHANGELOG.md).
