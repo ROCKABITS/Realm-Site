@@ -232,6 +232,24 @@
           "java": 21
         },
         {
+          "id": "fabric-1.20.1",
+          "prefix": "realm-gym",
+          "suffix": "-fabric-1.20.1",
+          "folder": "realm-gym-fabric-1.20.1",
+          "minecraft": "1.20.1",
+          "loader": "Fabric",
+          "loaderVersion": "0.16.14+",
+          "java": 17,
+          "dependencies": [
+            {
+              "name": "Fabric API",
+              "version": "0.92.12+1.20.1",
+              "url": "https://www.curseforge.com/minecraft/mc-mods/fabric-api"
+            }
+          ],
+          "note": "Includes all eight machines, including leg press and cable rope triceps."
+        },
+        {
           "id": "forge-1.20.1",
           "prefix": "realm-gym",
           "suffix": "-forge-1.20.1",
@@ -240,7 +258,7 @@
           "loader": "Forge",
           "loaderVersion": "47.4.0+",
           "java": 17,
-          "note": "Includes six machines. Leg press and cable triceps are available in the Minecraft 1.21.1 editions."
+          "note": "Includes six machines. Leg press and cable triceps are available in Fabric 1.20.1 and the Minecraft 1.21.1 editions."
         }
       ]
     }

@@ -15,9 +15,10 @@ Choose an edition from the [Realm Gym downloads](/mods/realm-gym/#downloads). In
 | NeoForge · Minecraft 1.21.1 | 0.7.0 | NeoForge 21.1.256+, Java 21 | Eight machines |
 | Fabric · Minecraft 1.21.1 | 0.7.0 | Fabric Loader 0.16.14+, Java 21 and Fabric API 0.116.18+1.21.1 | Eight machines |
 | Forge · Minecraft 1.21.1 | 0.7.0 | Forge 52.1.20+, Java 21 | Eight machines |
+| Fabric · Minecraft 1.20.1 | 0.7.0 | Fabric Loader 0.16.14+, Java 17 and Fabric API 0.92.12+1.20.1 | Eight machines |
 | Forge · Minecraft 1.20.1 | 0.7.0 | Forge 47.4.0+, Java 17 | Six machines |
 
-For Fabric, add [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) for Minecraft 1.21.1 to both the server and clients. Realm Gym works independently of Realm Origins and other stats mods.
+For Fabric, add [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) to both the server and clients: **0.116.18+1.21.1** for Minecraft 1.21.1, or **0.92.12+1.20.1** for Minecraft 1.20.1. Match the Minecraft version when choosing the API file. Realm Gym works independently of Realm Origins and other stats mods.
 
 Realm Gym was previously called **Realm Fitness**. Replace the old JAR when updating. The mod retains its existing machine IDs and saved progression format.
 
@@ -31,7 +32,7 @@ Sneak-right-click **before entering** to increase the weight or resistance. Load
 
 ## Exercises
 
-All eight exercises are available in the Minecraft 1.21.1 editions. Forge 1.20.1 includes the first six.
+All eight exercises are available in Fabric 1.20.1 and the Minecraft 1.21.1 editions. Forge 1.20.1 includes the first six.
 
 | Equipment | Controls | Attribute |
 | --- | --- | --- |
@@ -76,10 +77,11 @@ Disabling the option restores the full bonuses from permanent levels and pauses 
 
 `/gym` opens your profile. Operators can use `/gym equipment` to obtain the equipment and `/gym reload` to reload settings. Existing `/fitness` commands remain aliases.
 
-Find the full configuration and validation details in the source guides for [NeoForge 1.21.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym), [Fabric 1.21.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym-fabric-1.21.1), [Forge 1.21.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym-forge-1.21.1) and [Forge 1.20.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym-forge-1.20.1).
+Find the full configuration and validation details in the source guides for [NeoForge 1.21.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym), [Fabric 1.21.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym-fabric-1.21.1), [Forge 1.21.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym-forge-1.21.1), [Fabric 1.20.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym-fabric-1.20.1) and [Forge 1.20.1](https://github.com/ROCKABITS/Mods/tree/main/realm-gym-forge-1.20.1).
 
 ## Changelog — 0.7.0
 
+- Added a Fabric edition for Minecraft 1.20.1 with all eight machines, Java 17 support and dedicated networking adapters.
 - Added optional physical condition for each of the six training attributes. The system is disabled by default.
 - By default, condition remains at 100% for seven full days without maintenance, then loses five percentage points per additional complete day, down to 60%.
 - Condition scales Realm Gym's earned attribute bonuses. Lifetime XP, levels, unlocked loads, workout plans and personal records remain saved.
@@ -92,6 +94,6 @@ Find the full configuration and validation details in the source guides for [Neo
 - Added configurable grace period, loss rate, minimum condition, recovery and maintenance requirements. Offline time can be included or excluded.
 - Existing profiles receive full condition and a complete grace period when the feature is first enabled, with no inactivity charged from before activation.
 
-Available for NeoForge, Fabric and Forge on Minecraft 1.21.1, and Forge on Minecraft 1.20.1. The 1.21.1 editions include eight machines; Forge 1.20.1 includes six. Install the same edition and version on the server and every client. Fabric also requires Fabric API.
+Available for NeoForge, Fabric and Forge on Minecraft 1.21.1, and Fabric and Forge on Minecraft 1.20.1. Fabric 1.20.1 and all 1.21.1 editions include eight machines; Forge 1.20.1 includes six. Install the same edition and version on the server and every client. Fabric also requires Fabric API.
 
 [Read the changelog on GitHub](https://github.com/ROCKABITS/Mods/blob/main/realm-gym/CHANGELOG.md).

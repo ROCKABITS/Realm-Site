@@ -103,11 +103,11 @@ test('Season 8 explains availability and links to access instructions', async ({
   await expect(page.locator('#modpack-access')).toBeVisible();await expect(page.locator('.distribution-label')).not.toBeEmpty();
 });
 
-test('Realm Gym exposes four editions across three loaders and scopes Fabric API to Fabric', async ({ page }) => {
+test('Realm Gym exposes five editions across three loaders and scopes Fabric API to Fabric', async ({ page }) => {
   for (const width of [320, 1280]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/mods/realm-gym/');
-    await expect(page.locator('.download-card')).toHaveCount(4);
+    await expect(page.locator('.download-card')).toHaveCount(5);
     const fabric = page.locator('.download-card').filter({ hasText: 'Fabric · Minecraft 1.21.1' });
     await expect(fabric).toContainText('Fabric 0.16.14+');
     await expect(fabric.getByRole('link', { name: 'Fabric API 0.116.18+1.21.1', exact: true })).toHaveAttribute('href', 'https://www.curseforge.com/minecraft/mc-mods/fabric-api');
@@ -115,6 +115,11 @@ test('Realm Gym exposes four editions across three loaders and scopes Fabric API
     const forge211 = page.locator('.download-card').filter({ has: page.getByRole('heading', { name: 'Forge · Minecraft 1.21.1', exact: true }) });
     await expect(forge211).toContainText('Forge 52.1.20+'); await expect(forge211).toContainText('Java 21'); await expect(forge211).not.toContainText('Fabric API');
     await expect(forge211.getByRole('link', { name: 'Download Realm Gym for Forge 1.21.1', exact: true })).toHaveAttribute('href', /realm-gym-0\.7\.0-forge-1\.21\.1\.jar$/);
+    const fabric201 = page.locator('.download-card').filter({ hasText: 'Fabric · Minecraft 1.20.1' });
+    await expect(fabric201).toContainText('Fabric 0.16.14+'); await expect(fabric201).toContainText('Java 17'); await expect(fabric201).toContainText('Includes all eight machines');
+    await expect(fabric201.getByRole('link', { name: 'Fabric API 0.92.12+1.20.1', exact: true })).toHaveAttribute('href', 'https://www.curseforge.com/minecraft/mc-mods/fabric-api');
+    await expect(fabric201.getByRole('link', { name: 'Download Realm Gym for Fabric 1.20.1', exact: true })).toHaveAttribute('href', /realm-gym-0\.7\.0-fabric-1\.20\.1\.jar$/);
+    await expect(fabric201).not.toContainText('0.116.18+1.21.1');
     const forge = page.locator('.download-card').filter({ hasText: 'Forge · Minecraft 1.20.1' });
     await expect(forge).toContainText('Java 17'); await expect(forge).toContainText('Includes six machines');
     await expect(page.locator('.download-card').filter({ hasText: 'NeoForge · Minecraft 1.21.1' })).not.toContainText('Fabric API');
