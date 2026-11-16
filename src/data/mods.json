@@ -269,7 +269,7 @@
       "features": [
         "Eight animated machines on Fabric 1.20.1 and Minecraft 1.21.1, including leg press and cable rope triceps.",
         "Distinct exercise minigames with heavier loads, fatigue and permanent attribute levels.",
-        "Optional physical condition with gradual inactivity loss, maintenance and muscle memory; lifetime levels remain saved.",
+        "Optional physical condition with real-time or Minecraft-day clocks, configurable grace periods and gradual inactivity loss; lifetime levels remain saved.",
         "Personal workout plans, training history and a daily calendar.",
         "Physical record boards for your gym and server."
       ],
