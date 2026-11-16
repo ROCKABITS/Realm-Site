@@ -1,0 +1,37 @@
+.modpack-hero { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 65px; padding-block: 65px; }
+.modpack-hero-copy > p { max-width: 640px; }
+.version-label { margin: 22px 0 6px; font-size: 14px; color: var(--gold); }
+.distribution-label { font-size: 14px; }
+.season-large-art { position: relative; max-width: 440px; width: 100%; margin-left: auto; }
+.season-ring { display: none; }
+.season-art-frame { border: 1px solid var(--line); border-radius: 18px; padding: 22px; background: var(--panel); }
+.season-art-frame-top, .season-art-frame-bottom { display: flex; justify-content: space-between; align-items: center; gap: 10px; color: var(--muted); font-size: 12px; }
+.season-art-frame img { width: 100%; aspect-ratio: 1; margin-block: 20px; }
+.season-art-frame strong { color: var(--gold); }
+.modpack-access { padding: 30px; background: var(--panel-soft); border: 1px solid var(--line); border-radius: 16px; margin-bottom: 48px; }
+.modpack-access h2 { font-size: 32px; }
+.modpack-access p { max-width: 900px; }
+.modpack-divider { display: flex; justify-content: space-between; gap: 15px; border-block: 1px solid var(--line); padding-block: 16px; color: var(--gold); font-size: 12px; letter-spacing: 1.4px; }
+.release-list { display: grid; gap: 16px; }
+.release-card { display: flex; align-items: center; gap: 25px; padding: 25px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+.release-card:hover { border-color: var(--gold); }
+.release-version { color: var(--gold); border: 1px solid var(--line); padding: 12px 16px; border-radius: 8px; font-size: 15px; }
+.release-card > div { flex: 1; }
+.release-card .eyebrow { font-size: 12px; margin-bottom: 8px; }
+.release-card h2, .release-card h3 { font-size: 24px; margin-bottom: 10px; }
+.release-card p { font-size: 15px; margin-bottom: 0; }
+.changelog-section { padding-bottom: 70px; }
+.modpack-links { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 70px; }
+.modpack-links > a { padding: 28px; border: 1px solid var(--line); border-radius: 14px; }
+.modpack-links h3 { margin-top: 18px; }
+.journal-empty { border: 1px dashed var(--line); border-radius: 14px; padding: 30px; }
+.journal-empty h3 { font-size: 26px; }
+@media (max-width: 750px) {
+  .modpack-hero { grid-template-columns: 1fr; gap: 30px; padding-block: 40px; }
+  .season-large-art { max-width: 320px; margin-inline: auto; }
+  .modpack-access { padding: 24px; }
+  .modpack-links { grid-template-columns: 1fr; }
+  .release-card { align-items: start; flex-wrap: wrap; padding: 22px; gap: 15px; }
+  .release-card > div { flex-basis: 100%; order: 2; }
+  .release-card > svg { margin-left: auto; }
+}

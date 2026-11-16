@@ -1,0 +1,57 @@
+---
+import '@fontsource/dm-sans/400.css';
+import '@fontsource/dm-sans/500.css';
+import '@fontsource/dm-sans/600.css';
+import '@fontsource/dm-sans/700.css';
+import '../../styles/admin.css';
+import { getImage } from 'astro:assets';
+import { artwork } from '../../data/artwork';
+import { gallery, videos } from '../../data/media';
+const pictures = await Promise.all(Object.entries(artwork).map(async ([key, src]) => ({ key, src: (await getImage({ src, width: 160, format: 'webp' })).src })));
+const screenshots = await Promise.all(Object.entries(gallery).map(async ([key, value]) => ({ key, label: value.caption, source: `../../assets/screenshots/${value.image.src.split('/').pop()!.split('.')[0]}.png`, src: (await getImage({ src: value.image, width: 380, format: 'webp' })).src })));
+const boot = JSON.stringify({ pictures, screenshots, videos }).replaceAll('<', '\\u003c');
+---
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" /><meta name="referrer" content="same-origin" />
+    <meta name="description" content="Painel de administração do Realm Studios." /><meta name="theme-color" content="#0b1813" />
+    <title>Administração | Realm Studios</title><link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body data-pagefind-ignore>
+    <a class="admin-skip" href="#admin-main">Saltar para o conteúdo</a>
+    <section id="admin-login" class="admin-login">
+      <div class="login-intro"><a href="/" class="admin-brand"><img src="/favicon.svg" alt="" width="42" height="42" /><span>REALM <small>STUDIOS</small></span></a><span class="admin-eyebrow">O teu espaço de criação</span><h1>Menos cliques.<br /><em>Mais Realm.</em></h1><p>Os teus mods, os guias e as novidades.<br />Tudo organizado num só lugar.</p><a href="/" class="subtle-link">← Voltar ao site</a></div>
+      <div class="login-card"><span class="admin-eyebrow">Administração</span><h2>Olá, ROCKadm.</h2><p>Entra com a tua conta GitHub autorizada para gerir o Realm Studios.</p><button type="button" class="admin-button primary" id="admin-signin">Entrar com GitHub <span aria-hidden="true"><span class="external-mark" aria-hidden="true"></span></span></button><p class="login-note">As contas de visitantes têm o seu próprio <a href="/account/">espaço de conta</a>.</p><p role="status" id="login-status" aria-live="polite"></p></div>
+    </section>
+    <div id="admin-app" class="admin-app" hidden>
+      <aside class="admin-sidebar" id="admin-navigation" aria-label="Navegação do painel">
+        <a class="admin-brand" href="#/"><img src="/favicon.svg" alt="" width="37" height="37" /><span>REALM <small>STUDIOS</small></span></a>
+        <span class="sidebar-caption">O teu estúdio</span>
+        <nav aria-label="Administração">
+          <a href="#/" data-route=""><span aria-hidden="true">◫</span>Visão geral</a>
+          <a href="#/mods" data-route="mods"><span aria-hidden="true">◈</span>Mods</a>
+          <a href="#/wiki" data-route="wiki"><span aria-hidden="true">▤</span>Guias da wiki</a>
+          <a href="#/changelog" data-route="changelog"><span aria-hidden="true">◷</span>Novidades</a>
+          <a href="#/feedback" data-route="feedback"><span aria-hidden="true">♡</span>Feedback</a>
+          <span class="sidebar-caption">O site</span>
+          <a href="#/home" data-route="home"><span aria-hidden="true">⌂</span>Página inicial</a>
+          <a href="#/modpack" data-route="modpack"><span aria-hidden="true">▦</span>Modpack</a>
+          <a href="#/settings" data-route="settings"><span aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3h6l1 3 3 1 2 5-2 5-3 1-1 3H9l-1-3-3-1-2-5 2-5 3-1 1-3Z"/><circle cx="12" cy="12" r="3"/></svg></span>Definições</a>
+        </nav>
+        <div class="sidebar-bottom"><a href="/" target="_blank" rel="noopener noreferrer">Ver o site <span aria-hidden="true"><span class="external-mark" aria-hidden="true"></span></span></a><button type="button" id="admin-signout">Terminar sessão <span aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 4H4v16h5m0-8h12m-5-5 5 5-5 5"/></svg></span></button><span id="admin-identity"></span></div>
+      </aside>
+      <div class="admin-workspace">
+        <header class="admin-topbar"><button type="button" class="admin-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="admin-navigation">☰</button><span>Realm Studios <span aria-hidden="true">/</span> <strong id="topbar-section">Visão geral</strong></span><a class="topbar-site" href="/" target="_blank" rel="noopener noreferrer">Ver site <span class="external-mark" aria-hidden="true"></span></a><span class="admin-avatar" aria-hidden="true">R</span></header>
+        <div id="publication-status" role="status" aria-live="polite" hidden></div>
+        <main id="admin-main" tabindex="-1"><div id="admin-view"></div></main>
+      </div>
+    </div>
+    <dialog id="leave-dialog" class="admin-dialog"><h2>Há alterações por guardar.</h2><p>Queres continuar a editar ou descartar estas alterações?</p><div class="dialog-actions"><button type="button" class="admin-button secondary" data-stay>Continuar a editar</button><button type="button" class="admin-button danger" data-discard>Descartar alterações</button></div></dialog>
+    <dialog id="link-dialog" class="admin-dialog"><form method="dialog"><h2>Inserir ligação</h2><label class="admin-field"><span>Endereço da página</span><input name="url" type="url" placeholder="https://…" required /></label><div class="dialog-actions"><button type="button" class="admin-button secondary" data-cancel-link>Cancelar</button><button type="submit" class="admin-button primary">Inserir ligação</button></div></form></dialog>
+    <script id="admin-options" type="application/json" set:html={boot}></script>
+    <noscript><p class="admin-noscript">Ativa JavaScript para abrir o painel.</p></noscript>
+    <script>import '../../admin/app';</script>
+  </body>
+</html>

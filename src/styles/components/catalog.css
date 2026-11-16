@@ -1,0 +1,92 @@
+.mod-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.featured-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.mod-card { min-width: 0; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--panel); transition: border-color .2s, transform .2s; }
+.mod-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+.mod-card-link { display: flex; flex-direction: column; height: 100%; }
+.mod-card-art { padding: 20px; background: #102119; }
+.mod-card-art img { width: 100%; aspect-ratio: 1; object-fit: contain; }
+.mod-card-copy { display: flex; flex-direction: column; flex: 1; padding: 20px; border-top: 1px solid var(--line); }
+.mod-card .eyebrow { font-size: 11px; letter-spacing: .75px; margin-bottom: 10px; }
+.mod-card h3 { font-size: 22px; margin-bottom: 12px; }
+.mod-card p { font-size: 14px; line-height: 1.65; margin-bottom: 24px; }
+.mod-card-bottom { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.mod-card-bottom small { display: block; margin-top: 4px; font-size: inherit; color: var(--gold); }
+.collection-section { padding-bottom: 70px; }
+.collection-controls { display: flex; gap: 20px; align-items: center; justify-content: space-between; border-block: 1px solid var(--line); padding-block: 20px; }
+.filter-tabs { display: flex; flex-wrap: wrap; gap: 7px; }
+.filter-tab { padding: 9px 12px; min-height: 44px; font-size: 13px; line-height: 1.4; border: 1px solid transparent; border-radius: 999px; background: transparent; color: var(--muted); }
+.filter-tab.selected { background: #263921; color: #edf6d8; border-color: #67804a; }
+.collection-search { display: flex; flex-shrink: 0; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 999px; padding: 9px 14px; }
+.collection-search input { width: 170px; border: 0; outline: none; background: transparent; color: var(--text); min-width: 0; }
+.collection-search:focus-within { border-color: var(--gold); }
+.collection-search input::placeholder { color: var(--muted); }
+.results-count { font-size: 13px; padding-block: 18px; margin: 0; }
+.collection-section .notice { margin-top: 40px; }
+.mod-detail-hero { display: grid; grid-template-columns: minmax(260px, .8fr) minmax(0, 1.2fr); gap: 65px; align-items: center; padding-block: 25px 55px; }
+.mod-detail-copy { grid-column: 2; grid-row: 1; }
+.mod-detail-copy h1 { font-size: clamp(40px, 4.8vw, 67px); }
+.mod-label { color: var(--headline); font-size: 23px; line-height: 1.4; }
+.detail-description { font-size: 17px; max-width: 670px; }
+.mod-detail-art { grid-column: 1; grid-row: 1; padding: 26px; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; }
+.mod-detail-art img { width: 100%; aspect-ratio: 1; object-fit: contain; }
+.detail-pills { margin-block: 22px; }
+.detail-pills > span { font-size: 12px; padding: 5px 10px; border: 1px solid var(--line); border-radius: 6px; }
+.download-note { margin: 13px 0 12px; font-size: 13px; }
+.mod-detail-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 70px; padding-block: 60px; }
+.detail-story { font-size: 16px; }
+.feature-list { list-style: none; padding: 0; margin-block: 28px; }
+.feature-list > li { display: flex; align-items: start; gap: 15px; padding-block: 19px; border-bottom: 1px solid var(--line); color: var(--muted); }
+.feature-list li > span { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: #263921; color: var(--action); }
+.first-step { margin-top: 32px; padding: 28px; background: var(--panel-soft); border: 1px solid var(--line); border-radius: 16px; }
+.first-step h3 { font-size: 28px; }
+.mod-specs { border-top: 1px solid var(--gold); padding-top: 25px; align-self: start; }
+.mod-specs dl { margin-block: 25px; }
+.mod-specs dl > div { display: flex; justify-content: space-between; gap: 15px; padding-block: 13px; border-bottom: 1px solid var(--line); font-size: 14px; }
+.mod-specs dt { color: var(--muted); }
+.mod-specs dd { margin: 0; text-align: right; }
+.mod-specs .text-link { display: flex; margin-top: 15px; }
+.mod-specs > p { font-size: 14px; }
+.gameplay-section { padding-block: 28px 38px; }
+.gameplay-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.gameplay-grid figure, .gameplay-video { overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: var(--bg-deep); }
+.gameplay-grid img { width: 100%; aspect-ratio: 16 / 10; object-fit: contain; }
+.gameplay-section figcaption { padding: 15px 18px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.gameplay-video { margin-top: 24px; max-width: 900px; }
+.gameplay-video video { width: 100%; aspect-ratio: 16 / 9; object-fit: contain; }
+.downloads-section { padding-block: 40px 65px; border-top: 1px solid var(--line); }
+.download-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 22px; margin-top: 28px; }
+.download-card { padding: 25px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; }
+.download-card h3 { font-size: 22px; }
+.download-card p { margin-bottom: 12px; }
+.download-requirement { font-size: 14px; }
+.download-card .button { margin-top: 8px; }
+@media (max-width: 1050px) {
+  .featured-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .collection-controls { align-items: start; flex-direction: column; }
+  .mod-detail-hero { gap: 30px; }
+  .mod-detail-grid { gap: 35px; }
+}
+@media (max-width: 700px) {
+  .mod-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .mod-card-art { padding: 12px; }
+  .mod-card-copy { padding: 15px 12px; }
+  .mod-card h3 { font-size: 19px; }
+  .mod-card .eyebrow { font-size: 11px; letter-spacing: .4px; }
+  .mod-card-bottom { display: block; }
+  .mod-card-bottom > span { display: block; }
+  .mod-card-bottom > span + span { margin-top: 5px; }
+  .filter-tab { padding: 9px 10px; }
+  .collection-search { width: 100%; }
+  .collection-search input { width: 100%; }
+  .mod-detail-hero { display: flex; flex-direction: column; align-items: stretch; padding-block: 18px 35px; gap: 30px; }
+  .mod-detail-copy h1 { font-size: 42px; }
+  .mod-label { font-size: 21px; }
+  .detail-description { font-size: 16px; }
+  .mod-detail-art { width: 190px; padding: 12px; margin-inline: auto; }
+  .mod-detail-grid { grid-template-columns: 1fr; padding-block: 35px; }
+  .detail-pills { margin-block: 18px; gap: 8px; }
+  .gameplay-grid { grid-template-columns: 1fr; }
+  .gameplay-section { padding-top: 15px; }
+  .first-step { padding: 22px; }
+}
+@media (max-width: 359px) { .mod-grid { grid-template-columns: 1fr; } .mod-card-art { padding: 18px; } .mod-card-copy { padding: 20px; } .mod-card-bottom { display: flex; } }

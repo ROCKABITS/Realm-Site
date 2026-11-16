@@ -1,0 +1,51 @@
+---
+import Icon from './Icon.astro';
+import { getImage } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import { mods } from '../data/mods';
+import { artwork, type ArtworkName } from '../data/artwork';
+const catalogue = {
+  mods: await Promise.all(mods.map(async mod => ({ slug: mod.slug, name: mod.name, description: mod.description, image: (await getImage({ src: artwork[mod.image as ArtworkName], width: 160, format: 'webp' })).src, editions: mod.editions.map(({ id, version, minecraft, loader, downloadUrl }) => ({ id, version, minecraft, loader, downloadUrl })) }))),
+  guides: (await getCollection('wiki', ({ data }) => !data.draft)).map(guide => ({ id: guide.id, title: guide.data.title, description: guide.data.description, category: guide.data.category })),
+  minecraft: [...new Set(mods.flatMap(mod => mod.editions.map(edition => edition.minecraft)))].sort().reverse(),
+  loaders: [...new Set(mods.flatMap(mod => mod.editions.map(edition => edition.loader)))].sort(),
+};
+---
+<div class="member-dashboard" data-member-dashboard>
+  <div class="member-welcome">
+    <div class="member-identity"><span class="member-avatar" data-member-avatar>AD</span><div><span class="member-signed-in"><Icon name="check" size={13} /> Signed in</span><h2 data-member-name>Adventurer</h2><p class="account-email" data-session-email></p></div></div>
+    <div class="button-row"><a class="button button-quiet" href="/admin/">Administration <Icon name="lock" size={15} /></a><button class="button button-outline" type="button" data-signout>Sign out</button></div>
+  </div>
+  <div class="member-tabs" role="tablist" aria-label="Your account sections">
+    <button type="button" role="tab" id="member-tab-saved" aria-controls="member-panel-saved" aria-selected="true" data-member-tab="saved"><Icon name="bookmark" size={17} />Your collection <span data-saved-count>0</span></button>
+    <button type="button" role="tab" id="member-tab-updates" aria-controls="member-panel-updates" aria-selected="false" tabindex="-1" data-member-tab="updates"><Icon name="bell" size={17} />Following <span data-follow-count>0</span><small data-unread-count hidden></small></button>
+    <button type="button" role="tab" id="member-tab-profile" aria-controls="member-panel-profile" aria-selected="false" tabindex="-1" data-member-tab="profile"><Icon name="user" size={17} />Profile & setup</button>
+  </div>
+  <div class="member-status" role="status" aria-live="polite" data-member-status hidden></div>
+
+  <section role="tabpanel" id="member-panel-saved" aria-labelledby="member-tab-saved" data-member-panel="saved">
+    <div class="member-section-heading"><div><p class="eyebrow">Made for your worlds</p><h3>Your saved mods.</h3><p>Keep your favourites close, wherever you sign in.</p></div><a href="/mods/" class="text-link">Explore all mods <Icon name="arrow" size={16} /></a></div>
+    <div class="member-saved-grid" data-saved-mods></div>
+    <div class="member-section-heading"><div><p class="eyebrow">Your reading list</p><h3>Guides for later.</h3></div><a href="/wiki/" class="text-link">Player wiki <Icon name="arrow" size={16} /></a></div>
+    <div class="member-guide-list" data-saved-guides></div>
+  </section>
+
+  <section role="tabpanel" id="member-panel-updates" aria-labelledby="member-tab-updates" data-member-panel="updates" hidden>
+    <div class="member-section-heading"><div><p class="eyebrow">Stay in the loop</p><h3>The mods you follow.</h3><p>New versions appear here when they are published. Each loader edition is tracked separately.</p></div><label class="member-update-filter"><span class="sr-only">Filter followed mods</span><select data-update-filter><option value="all">All followed mods</option><option value="unread">With new releases</option></select></label></div>
+    <div class="member-follow-list" data-followed-mods></div>
+  </section>
+
+  <section role="tabpanel" id="member-panel-profile" aria-labelledby="member-tab-profile" data-member-panel="profile" hidden>
+    <div class="member-section-heading"><div><p class="eyebrow">Make yourself at home</p><h3>Your profile & installation.</h3><p>Your nickname and photo appear with comments you publish. Your collection, email and installation preferences stay private.</p></div></div>
+    <form data-member-profile class="member-profile-form">
+      <fieldset>
+        <legend class="sr-only">Profile and installation preferences</legend>
+        <div class="member-profile-grid"><div class="member-profile-card"><h4>A little more you.</h4><label for="member-nickname">Nickname</label><input id="member-nickname" name="nickname" type="text" autocomplete="nickname" maxlength="64" placeholder="How should we call you?" aria-describedby="nickname-hint" /><p class="account-hint" id="nickname-hint">Up to 32 characters. Leave blank to use Adventurer.</p>
+          <div class="member-photo-picker"><span class="member-avatar member-photo-preview" data-photo-preview>AD</span><div><label for="member-photo">Profile photo</label><input id="member-photo" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="photo-hint" /><button class="member-small-button" type="button" data-photo-remove>Remove photo</button></div></div><p class="account-hint" id="photo-hint">JPEG, PNG or WebP, up to 8 MB. Your photo is cropped to a square and resized before upload. Save your profile to apply it.</p><p class="account-hint" data-photo-status role="status"></p>
+        </div><div class="member-profile-card"><h4>Your Minecraft setup.</h4><p>Save your version and loader to see which editions fit your installation.</p><label for="member-minecraft">Minecraft version</label><select id="member-minecraft" name="minecraft"><option value="">Any version</option>{catalogue.minecraft.map(version => <option value={version}>{version}</option>)}</select><label for="member-loader">Mod loader</label><select id="member-loader" name="loader"><option value="">Any loader</option>{catalogue.loaders.map(loader => <option value={loader}>{loader}</option>)}</select><p class="account-hint">A compatible edition must match both choices. Always check a mod’s dependencies before installing.</p></div></div>
+        <div class="member-profile-save"><p>Saved to your account and available on your other devices.</p><button class="button button-primary" type="submit">Save profile <Icon name="check" size={17} /></button></div>
+      </fieldset>
+    </form>
+  </section>
+  <script type="application/json" id="member-catalogue" set:html={JSON.stringify(catalogue).replaceAll('<', '\\u003c')}></script>
+</div>

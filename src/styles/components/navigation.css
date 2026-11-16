@@ -1,0 +1,51 @@
+.site-header, .site-footer {
+  --text: #f1f4ed; --muted: #b1bdb3; --line: rgba(205,191,150,.2); --gold: #d7bd85; --link: #c3df9c;
+  color: var(--text); background: #0b1410;
+}
+.site-header { position: sticky; top: 0; z-index: 30; border-bottom: 1px solid var(--line); }
+.header-inner { width: min(1400px, calc(100% - 64px)); height: 76px; margin-inline: auto; display: flex; align-items: center; gap: 28px; }
+.brand { display: inline-flex; align-items: center; flex-shrink: 0; gap: 12px; }
+.brand-seal { width: 38px; height: 38px; }
+.brand-seal img { width: 100%; height: 100%; object-fit: contain; }
+.brand-type { font-size: 20px; font-weight: 700; line-height: 1; letter-spacing: -.04em; text-transform: uppercase; }
+.brand-type > span { display: block; margin-top: 9px; color: #c2cabc; font-size: 9px; font-weight: 500; letter-spacing: 3px; }
+.desktop-nav { display: flex; justify-content: center; align-items: center; gap: 5px; margin-left: auto; }
+.desktop-nav > a { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 8px 15px; font-size: 14px; color: var(--muted); border-radius: 999px; }
+.desktop-nav > a.active, .desktop-nav > a:hover { color: var(--text); background: #1c2b21; }
+.header-actions { display: flex; align-items: center; gap: 18px; }
+.account-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 14px; border-radius: 999px; background: var(--action); color: var(--action-ink); font-size: 14px; font-weight: 600; }
+.account-link:hover { background: var(--action-hover); }
+.search-trigger { display: inline-flex; align-items: center; gap: 9px; min-height: 42px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); font-size: 14px; }
+kbd { font: 12px var(--sans); border: 1px solid var(--line); border-radius: 4px; padding: 2px 5px; }
+.header-creator { display: inline-flex; align-items: center; gap: 9px; font-size: 13px; color: var(--text); }
+.mobile-toggle { display: none; }
+#mobile-nav { position: absolute; inset: 100% 0 auto; padding: 12px 18px 22px; background: #0b1410; border-bottom: 1px solid var(--line); box-shadow: 0 20px 25px #0005; }
+#mobile-nav > a { display: flex; align-items: center; justify-content: space-between; min-height: 48px; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+.site-footer { border-top: 1px solid var(--line); }
+.footer-main { display: flex; justify-content: space-between; gap: 50px; padding-block: 50px; }
+.footer-main p { margin: 22px 0 0; font-size: 14px; }
+.footer-links { display: flex; gap: 80px; }
+.footer-links > div { display: grid; align-content: start; gap: 12px; }
+.footer-links .eyebrow { margin-bottom: 5px; }
+.footer-links a { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted); }
+.footer-links a:hover { color: var(--gold); }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-block: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+@media (max-width: 1100px) { .header-creator { display: none; } .header-inner { gap: 16px; } }
+@media (max-width: 900px) {
+  .header-inner { width: calc(100% - 36px); height: 66px; justify-content: space-between; }
+  .desktop-nav { display: none; }
+  .header-actions { margin-left: auto; gap: 12px; }
+  .mobile-toggle { display: inline-flex; }
+  .account-link { width: 44px; padding: 0; }
+  .account-link span { display: none; }
+  .search-trigger { width: 44px; height: 44px; padding: 0; justify-content: center; }
+  .search-trigger span, .search-trigger kbd { display: none; }
+}
+@media (max-width: 359px) { .header-inner { width: calc(100% - 24px); gap: 8px; } .header-actions { gap: 5px; } .brand { gap: 8px; } .brand-seal { width: 30px; height: 30px; } }
+@media (max-width: 600px) {
+  .brand-type { font-size: 18px; }
+  .brand-type > span { font-size: 8px; }
+  .footer-main { flex-direction: column; padding-block: 38px; gap: 35px; }
+  .footer-links { justify-content: space-between; gap: 25px; }
+  .footer-bottom { display: grid; font-size: 12px; }
+}

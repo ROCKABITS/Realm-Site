@@ -1,0 +1,14 @@
+---
+import { Image } from 'astro:assets';
+import type { Mod } from '../data/mods';
+import { gallery, videos } from '../data/media';
+interface Props { mod: Mod; }
+const { mod } = Astro.props;
+const images = mod.gallery.map(key => gallery[key as keyof typeof gallery]);
+const video = mod.video ? videos[mod.video as keyof typeof videos] : undefined;
+---
+{(images.length > 0 || video) && <section class="container gameplay-section" aria-labelledby="gameplay-title">
+  <div class="section-heading"><div><p class="eyebrow">Inside Minecraft</p><h2 id="gameplay-title">See it in <em>your world.</em></h2></div></div>
+  <div class="gameplay-grid">{images.map(item => <figure><Image src={item.image} alt={item.caption} widths={[480, 800, 1200]} sizes="(max-width: 700px) 92vw, 46vw" format="webp" loading="lazy" /><figcaption>{item.caption}</figcaption></figure>)}</div>
+  {video && <figure class="gameplay-video"><video controls preload="none" playsinline poster={images[0]?.image.src} aria-label={video.label}><source src={video.url} type="video/mp4" /><a href={video.url}>Watch {video.label}</a></video><figcaption>{video.label}. Captured in Minecraft.</figcaption></figure>}
+</section>}

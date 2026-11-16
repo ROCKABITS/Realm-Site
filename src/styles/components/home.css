@@ -1,0 +1,62 @@
+.home-intro { background: #0e1c14; border-bottom: 1px solid var(--line); }
+.home-intro-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 65px; align-items: center; padding-block: 70px; }
+.home-intro-copy h1 { font-size: clamp(42px, 4.8vw, 68px); max-width: 640px; }
+.home-lead { max-width: 540px; font-size: 17px; line-height: 1.8; margin-bottom: 28px; }
+.home-meta { display: flex; flex-wrap: wrap; gap: 8px 15px; margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+.home-meta span + span::before { content: '·'; color: var(--gold); margin-right: 15px; }
+.home-art-area { min-width: 0; }
+.hero-art { position: relative; height: 460px; isolation: isolate; }
+.orbit { position: absolute; border: 1px solid rgba(215,189,133,.13); border-radius: 50%; z-index: -1; }
+.orbit-outer { inset: 4% 0; }
+.orbit-inner { inset: 20% 11%; }
+.orbit-star { position: absolute; color: var(--gold); font-size: 22px; }
+.star-one { top: 15%; left: 10%; }
+.star-two { right: 5%; bottom: 15%; }
+.art-caption { position: absolute; top: 0; left: 30%; font-size: 10px; letter-spacing: 2px; color: var(--muted); }
+.hero-piece { position: absolute; filter: drop-shadow(0 18px 28px #0006); }
+.hero-piece img { width: 100%; height: auto; border-radius: 9px; }
+.piece-origins { width: 57%; left: 1%; top: 17%; transform: rotate(-5deg); }
+.piece-treasury { width: 34%; top: 0; right: 0; transform: rotate(6deg); }
+.piece-markets { width: 37%; bottom: 1%; right: 0; transform: rotate(5deg); }
+.hero-art-note { position: absolute; left: 0; bottom: 0; display: inline-flex; align-items: center; gap: 10px; max-width: 78%; padding: 10px 13px; border: 1px solid var(--line); border-radius: 10px; background: #122019; font-size: 12px; color: var(--muted); }
+.hero-art-note strong { color: var(--text); }
+.home-collection { padding-block: 65px; }
+.home-section-heading > div { max-width: 760px; }
+.home-guides { padding-block: 60px; background: var(--paper); color: var(--ink); --text: #243b2c; --muted: #506354; --line: #c9d1c0; --gold: #775b27; --headline: #466034; --link: #355b25; }
+.home-guides-inner { display: grid; grid-template-columns: 1fr 1.2fr; gap: 75px; align-items: center; }
+.home-guides-copy h2 { max-width: 470px; }
+.home-guides-copy p { max-width: 450px; }
+.home-guide-list { display: grid; }
+.home-guide-list > a { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 23px; border-top: 1px solid var(--line); }
+.home-guide-list strong { display: block; font-size: 16px; }
+.home-guide-list small { display: block; margin-top: 5px; color: var(--muted); font-size: 14px; }
+.home-season { padding-block: 60px; }
+.home-season-panel { display: flex; gap: 36px; align-items: center; padding: 32px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); }
+.home-season-logo { flex: 0 0 190px; padding-right: 30px; border-right: 1px solid var(--line); }
+.home-season-logo img { width: 160px; aspect-ratio: 1; }
+.home-season-copy { max-width: 780px; }
+.home-season-copy h2 { margin-bottom: 12px; }
+.home-about { padding-block: 50px; border-top: 1px solid var(--line); }
+.home-about-inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; }
+.home-about h2 { font-size: 34px; }
+@media (max-width: 1000px) {
+  .home-intro-inner { gap: 30px; }
+  .hero-art { height: 360px; }
+  .home-guides-inner { gap: 35px; }
+}
+@media (max-width: 700px) {
+  .home-intro-inner { grid-template-columns: 1fr; padding-block: 40px; gap: 35px; }
+  .home-intro-copy h1 { font-size: 43px; }
+  .home-lead { font-size: 16px; }
+  .hero-art { height: 280px; width: min(100%, 380px); margin-inline: auto; }
+  .art-caption { font-size: 9px; top: -9px; left: 8%; }
+  .hero-art-note { font-size: 11px; padding: 8px 10px; }
+  .home-collection { padding-block: 42px; }
+  .home-guides { padding-block: 42px; }
+  .home-guides-inner, .home-about-inner { grid-template-columns: 1fr; gap: 28px; }
+  .home-season-panel { flex-direction: column; align-items: start; padding: 24px; gap: 22px; }
+  .home-season-logo { flex-basis: auto; width: 100%; padding: 0 0 22px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .home-season-logo img { width: 145px; margin-inline: auto; }
+  .home-about { padding-block: 36px; }
+}
+@media (max-width: 359px) { .home-intro-copy h1 { font-size: 36px; } .hero-art { height: 245px; } }

@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+---
+<Layout title="Reset your password" description="Choose a new password for your Realm Studios account." noindex>
+  <section class="container account-reset-page" data-pagefind-ignore data-password-reset-page>
+    <p class="eyebrow">Realm Studios · Account recovery</p>
+    <h1>Set a new password.</h1>
+    <p>Opened the link from your email? Choose a new password below.</p>
+    <div class="account-card">
+      <div class="account-status" role="status" aria-live="polite" data-account-status>Checking your recovery link…</div>
+      <noscript><p>Enable JavaScript to reset your password.</p></noscript>
+      <form data-reset-form hidden>
+        <fieldset disabled data-auth-fields>
+          <legend class="sr-only">Choose your new password</legend>
+          <label for="new-password">New password</label>
+          <div class="account-password"><input id="new-password" name="password" type="password" autocomplete="new-password" minlength="12" maxlength="128" required aria-describedby="new-password-hint" /><button type="button" data-toggle-password aria-controls="new-password" aria-pressed="false">Show</button></div>
+          <p id="new-password-hint" class="account-hint">Use at least 12 characters.</p>
+          <label for="confirm-password">Confirm new password</label>
+          <input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" minlength="12" maxlength="128" required />
+          <button class="button button-primary account-submit" type="submit">Save new password <Icon name="check" size={18} /></button>
+        </fieldset>
+      </form>
+      <a class="text-link" href="/account/?mode=reset" data-retry-recovery hidden>Request another recovery email <Icon name="arrow" size={17} /></a>
+      <a class="text-link account-return" href="/account/">← Back to your account</a>
+    </div>
+  </section>
+  <script>import '../../scripts/account';</script>
+</Layout>

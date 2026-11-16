@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import MemberDashboard from '../../components/MemberDashboard.astro';
+---
+<Layout title="Your account" description="Sign in to your Realm Studios account or open the site administration." noindex>
+  <section class="container account-page" data-pagefind-ignore data-account-page>
+    <div class="account-intro">
+      <a class="text-link" href="/mods/">← Back to the mods</a>
+      <p class="eyebrow">Realm Studios · Account</p>
+      <h1 data-account-title>Welcome back.</h1>
+      <p data-account-description>Sign in to your Realm account. New here? You can create one below.</p>
+      <div class="account-admin">
+        <span class="account-symbol"><Icon name="lock" size={22} /></span>
+        <div><h2>Site administration</h2><p>Manage the mods, wiki and site content with your authorised GitHub account.</p><a class="text-link" href="/admin/">Open the admin panel <Icon name="arrow" size={17} /></a></div>
+      </div>
+      <p class="account-public-note">Just exploring? All mods and guides are available without an account.</p>
+    </div>
+
+    <div class="account-card">
+      <div class="account-status" role="status" aria-live="polite" data-account-status>Checking sign-in availability…</div>
+      <noscript><p>Enable JavaScript to sign in. You can also <a href="/admin/">open the admin panel</a> or <a href="/mods/">browse the mods</a>.</p></noscript>
+      <div data-auth-panel>
+        <nav class="account-tabs" aria-label="Account options">
+          <a href="/account/" aria-current="page" data-auth-mode="signin">Sign in</a>
+          <a href="/account/?mode=signup" data-auth-mode="signup">Create account</a>
+        </nav>
+        <form data-auth-form>
+          <fieldset disabled data-auth-fields>
+            <legend class="sr-only" data-form-legend>Sign in with your email and password</legend>
+            <label for="account-email">Email address</label>
+            <input id="account-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="you@example.com" required />
+            <div data-password-field>
+              <label for="account-password">Password</label>
+              <div class="account-password"><input id="account-password" name="password" type="password" autocomplete="current-password" maxlength="128" required /><button type="button" data-toggle-password aria-controls="account-password" aria-pressed="false">Show</button></div>
+              <p class="account-hint" data-password-hint hidden>Use at least 12 characters.</p>
+            </div>
+            <a class="account-forgot" href="/account/?mode=reset" data-auth-mode="reset">Forgot your password?</a>
+            <button class="button button-primary account-submit" type="submit" data-auth-submit>Sign in <Icon name="arrow" size={18} /></button>
+          </fieldset>
+        </form>
+        <a class="text-link account-return" href="/account/" data-auth-mode="signin" hidden>← Back to sign in</a>
+      </div>
+
+      <div data-session-panel hidden>
+        <MemberDashboard />
+      </div>
+
+      <details class="account-privacy"><summary>About your account & privacy</summary><p>Your email is used for sign-in, confirmation and password recovery. Your account preferences and profile photo are stored through Supabase. Your nickname, photo and comments become public when you post a comment; your email, collection and installation preferences stay private. You can edit or delete your own comments. A session is stored in your browser to keep you signed in; use Sign out on shared devices. Visitor accounts do not grant access to site administration.</p></details>
+    </div>
+  </section>
+  <script>import '../../scripts/account';</script>
+</Layout>

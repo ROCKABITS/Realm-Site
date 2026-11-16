@@ -1,0 +1,7 @@
+---
+import { Image } from 'astro:assets';
+import { artwork, type ArtworkName } from '../data/artwork';
+interface Props { name: string; alt: string; eager?: boolean; class?: string; }
+const { name, alt, eager = false, class: className } = Astro.props;
+---
+<Image src={artwork[name as ArtworkName]} alt={alt} widths={[240, 480, 800]} sizes="(max-width: 640px) 90vw, (max-width: 1000px) 45vw, 400px" format="webp" quality={85} loading={eager ? 'eager' : 'lazy'} decoding="async" class={className} />

@@ -1,0 +1,40 @@
+{
+  "name": "realm-studios",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0",
+    "check": "astro check",
+    "build": "astro build && pagefind --site dist",
+    "preview": "astro preview --host 0.0.0.0",
+    "test": "node --test tests/site.test.mjs tests/catalog.test.mjs tests/admin.test.mjs tests/member.test.mjs tests/community-sql.test.mjs",
+    "test:content": "node --test tests/content.test.mjs",
+    "test:browser": "playwright test",
+    "sync:releases": "node scripts/sync-releases.mjs"
+  },
+  "dependencies": {
+    "@fontsource/cormorant-garamond": "^5.2.0",
+    "@fontsource/dm-sans": "^5.2.0",
+    "@supabase/supabase-js": "^2.119.0",
+    "astro": "7.4.2",
+    "dompurify": "^3.4.17",
+    "marked": "^18.2.0",
+    "turndown": "^7.2.5",
+    "turndown-plugin-gfm": "^1.0.2",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@electric-sql/pglite": "^0.5.16",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
+    "@types/turndown": "^5.0.6",
+    "axe-core": "^4.14.0",
+    "pagefind": "1.5.2",
+    "typescript": "^5.9.0"
+  }
+}

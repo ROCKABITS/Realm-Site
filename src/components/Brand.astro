@@ -1,0 +1,10 @@
+---
+import { siteName } from '../data/site';
+interface Props { footer?: boolean; }
+const { footer = false } = Astro.props;
+const [first, ...rest] = siteName.split(' ');
+---
+<a class:list={['brand', { 'brand-footer': footer }]} href="/" aria-label={`${siteName} home`}>
+  <span class="brand-seal" aria-hidden="true"><img src="/favicon.svg" alt="" width="38" height="38" /></span>
+  <span class="brand-type">{first}<span>{rest.join(' ')}</span></span>
+</a>

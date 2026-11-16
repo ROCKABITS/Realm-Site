@@ -1,0 +1,9 @@
+---
+import Icon from './Icon.astro';
+interface Props { id: string; name: string; kind?: 'mod' | 'guide'; compact?: boolean; editions?: Array<{ id: string; version: string }>; }
+const { id, name, kind = 'mod', compact = false, editions } = Astro.props;
+---
+<div class:list={['member-actions', { 'member-actions-compact': compact }]} data-pagefind-ignore>
+  <button type="button" class="member-action" data-member-action={kind === 'mod' ? 'favorite-mod' : 'favorite-guide'} data-member-id={id} data-member-name={name} aria-label={`Save ${name}`} title={`Save ${name}`} aria-pressed="false"><Icon name="bookmark" size={17} /><span data-member-label>Save{kind === 'guide' ? ' guide' : ''}</span></button>
+  {!compact && kind === 'mod' && editions && <button type="button" class="member-action" data-member-action="follow" data-member-id={id} data-member-name={name} data-member-releases={JSON.stringify(Object.fromEntries(editions.map(edition => [edition.id, edition.version])))} aria-label={`Follow ${name}`} aria-pressed="false"><Icon name="bell" size={17} /><span data-member-label>Follow updates</span></button>}
+</div>

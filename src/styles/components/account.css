@@ -1,0 +1,50 @@
+.account-page { display: grid; grid-template-columns: 1fr minmax(0, 460px); align-items: start; gap: 90px; max-width: 1100px; padding-block: 72px 90px; }
+.account-intro > .text-link { margin-bottom: 44px; }
+.account-intro h1 { font-size: clamp(38px, 4.8vw, 62px); }
+.account-intro > p { max-width: 420px; }
+.account-card { min-width: 0; padding: 32px; border: 1px solid var(--line); border-radius: 22px; background: var(--panel); box-shadow: 0 20px 60px #0002; }
+.account-tabs { display: flex; gap: 25px; border-bottom: 1px solid var(--line); margin-bottom: 26px; }
+.account-tabs a { min-height: 44px; padding: 4px 0 15px; color: var(--muted); font-size: 14px; border-bottom: 2px solid transparent; }
+.account-tabs a[aria-current] { color: var(--gold); border-color: var(--gold); }
+.account-card fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
+.account-card label { display: block; margin: 18px 0 7px; font-size: 14px; font-weight: 500; }
+.account-card input { width: 100%; min-width: 0; height: 50px; padding: 11px 14px; color: var(--text); background: var(--bg); border: 1px solid #526456; border-radius: 10px; font-size: 16px; }
+.account-card input::placeholder { color: #8d9d91; }
+.account-card input:focus-visible { outline-offset: 2px; }
+.account-password { position: relative; }
+.account-password input { padding-right: 74px; }
+.account-password > button { position: absolute; inset: 3px 3px 3px auto; min-width: 62px; padding: 0 10px; background: transparent; border: 0; border-radius: 7px; color: var(--link); font-size: 13px; }
+.account-forgot { display: inline-block; padding-block: 12px; font-size: 13px; color: var(--link); }
+.account-submit { width: 100%; margin-top: 12px; }
+.account-card :disabled { cursor: not-allowed; opacity: .55; }
+.account-hint { margin: 8px 0 0; font-size: 13px; line-height: 1.6; }
+.account-status { padding: 12px 14px; margin-bottom: 22px; border: 1px solid var(--line); border-radius: 10px; font-size: 14px; line-height: 1.6; color: var(--muted); overflow-wrap: anywhere; }
+.account-status[data-tone="error"] { color: #ffd3c9; background: #3c211c; border-color: #8d5143; }
+.account-status[data-tone="success"] { color: #d7f2be; background: #20371f; border-color: #5a7646; }
+.account-return { display: flex; margin-top: 22px; }
+.account-privacy { border-top: 1px solid var(--line); margin-top: 26px; padding-top: 18px; }
+.account-privacy summary { color: var(--muted); cursor: pointer; font-size: 13px; }
+.account-privacy p { margin: 12px 0 0; font-size: 13px; }
+.account-admin { display: flex; gap: 17px; margin-top: 38px; padding-top: 30px; border-top: 1px solid var(--line); }
+.account-symbol, .account-signed-symbol { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; flex-shrink: 0; color: var(--gold); background: var(--panel-soft); border: 1px solid var(--line); border-radius: 13px; }
+.account-admin h2 { margin: 2px 0 10px; font-size: 21px; }
+.account-admin p { margin-bottom: 14px; font-size: 14px; }
+.account-public-note { margin: 26px 0 0; font-size: 13px; }
+.account-signed-symbol { width: 54px; height: 54px; margin-bottom: 20px; color: var(--action); }
+.account-card h2 { font-size: 28px; margin-bottom: 12px; }
+.account-email { overflow-wrap: anywhere; color: var(--text); }
+.account-session-actions { display: grid; gap: 12px; margin-top: 25px; }
+.account-reset-page { max-width: 550px; padding-block: 64px 90px; }
+.account-reset-page h1 { font-size: clamp(36px, 4vw, 50px); }
+.account-reset-page > p { max-width: 430px; }
+.account-reset-page .account-card { margin-top: 30px; }
+@media (max-width: 900px) { .account-page { gap: 38px; padding-block: 44px 60px; grid-template-columns: 1fr 1fr; } .account-card { padding: 25px; } }
+@media (max-width: 650px) {
+  .account-page { display: flex; flex-direction: column; gap: 28px; max-width: 480px; padding-block: 32px 52px; }
+  .account-intro > .text-link { margin-bottom: 28px; }
+  .account-intro > p { margin-bottom: 0; }
+  .account-admin { margin-top: 25px; padding-top: 22px; }
+  .account-intro > .account-public-note { margin-top: 20px; }
+  .account-card { width: 100%; padding: 22px; border-radius: 16px; }
+  .account-reset-page { padding-block: 38px 55px; }
+}
